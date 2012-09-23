@@ -1,9 +1,9 @@
-package experimentsDomain.test.extensions;
+package experimentDomain.TestExperiment.extensions;
 
-import networkDomain.extensions.CellularLifeCycle;
+import networkDomain.extensions.LifeCycle;
 import networkDomain.extensions.NodeExtensionEncapsulator;
 
-public class clc implements CellularLifeCycle {
+public class lc implements LifeCycle {
 
 	NodeExtensionEncapsulator NXE;
 	

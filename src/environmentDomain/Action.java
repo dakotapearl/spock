@@ -1,10 +1,9 @@
-package environmentsDomain;
+package environmentDomain;
 
 import tools.Log;
-import networkDomain.NetworkComponent;
 import networkDomain.NetworkSignal;
 
-public abstract class Action extends NetworkComponent {
+public abstract class Action {
 
 	public Action() {
 		Log.write("Action initialised: " + this.getClass().getSimpleName());

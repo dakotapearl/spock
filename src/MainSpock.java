@@ -1,38 +1,49 @@
+
+import interfaceDomain.InterfaceDomain;
 import tools.Log;
 import dataDomain.DataDomain;
-import environmentsDomain.*;
-import experimentsDomain.ExperimentsDomain;
+import environmentDomain.EnvironmentDomain;
+import experimentDomain.ExperimentDomain;
 import networkDomain.*;
-import mechanismsDomain.*;
 
-public class NeuralNetwork extends Application {
+public class MainSpock {
 	
 	public void initialise() {
 		
-		Log.write("Application (1): making domains");
-		ExperimentsDomain experimentsDomain  = new ExperimentsDomain();
-		EnvironmentsDomain environmentsDomain  = new EnvironmentsDomain();
+		Log.write("Application (1): initialising domains");
+		ExperimentDomain experimentDomain = new ExperimentDomain();
+		EnvironmentDomain environmentDomain = new EnvironmentDomain();
 		NetworkDomain networkDomain  = new NetworkDomain();
 		DataDomain dataDomain = new DataDomain();
+		InterfaceDomain interfaceDomain = new InterfaceDomain();
 		
 		Log.write("Application (2): connecting domains");
-		experimentsDomain.setEnvironmentEE(environmentsDomain);
-		experimentsDomain.setNetworkEE(networkDomain);
-		environmentsDomain.setExperimentsEE(experimentsDomain);
-		environmentsDomain.setDataEE(dataDomain);
-		networkDomain.setExperimentsEE(experimentsDomain);
-		networkDomain.setDataEE(dataDomain);
+		// TODO write these methods
+		/*experimentDomain.setEnvironmentDomain(environmentDomain);
+		experimentDomain.setNetworkDomain(networkDomain);
+		environmentDomain.setExperimentsDomain(experimentDomain);
+		environmentDomain.setDataDomain(dataDomain);
+		networkDomain.setExperimentsDomain(experimentDomain);
+		networkDomain.setDataDomain(dataDomain);
+		interfaceDomain.setExperimentsDomain(experimentDomain);
+		interfaceDomain.setNetworkDomain(networkDomain);
+		interfaceDomain.setEnvironmentDomain(environmentDomain);
+		interfaceDomain.setDataDomain(dataDomain);*/
 		
 		Log.write("Application (3): selecting experiment");
-		experimentsDomain.setExperiment(ExperimentsDomain.XID_TEXTUAL_ONE);
+		//experimentsDomain.setExperiment(ExperimentsDomain.XID_TEXTUAL_ONE);
 		
 		Log.write("Application (4): initialising domains");
-		environmentsDomain.initialise();
+		environmentDomain.initialise();
 		networkDomain.initialise();
-		experimentsDomain.initialise();
+		experimentDomain.initialise();
+		dataDomain.initialise();
 		
-		Log.write("Application (5): starting application queue");
-		ApplicationEventQueue.start();
+		Log.write("Application (5): setting parameters");
+		
+		
+		Log.write("Application (6): start threads");
+		// TODO
 		
 	}
 	
@@ -43,7 +54,9 @@ public class NeuralNetwork extends Application {
 		Log.MechanismDebugEnabled = false;
 		Log.TimeStampEnabled = true;
 		
-		new NeuralNetwork().initialise();
+		new MainSpock().initialise();
+		
+		//TODO separate interface and running of experiments so that an experiment can be run multiple times.
 		
 	}
 }

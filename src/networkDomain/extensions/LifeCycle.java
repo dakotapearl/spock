@@ -1,6 +1,6 @@
 package networkDomain.extensions;
 
-public interface CellularLifeCycle {
+public interface LifeCycle {
 
 	public void setNXE(NodeExtensionEncapsulator NXE);
 	// cell death condition

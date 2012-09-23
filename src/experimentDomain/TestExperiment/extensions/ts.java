@@ -1,10 +1,10 @@
-package experimentsDomain.test.extensions;
+package experimentDomain.TestExperiment.extensions;
 
 import java.util.ArrayList;
 import java.util.Random;
 import dataDomain.DataCell;
-import networkDomain.NetworkComponent;
-import networkDomain.NetworkNodeProperties;
+import networkDomain.NetworkNode;
+import networkDomain.NetworkSignal;
 import networkDomain.extensions.NodeExtensionEncapsulator;
 import networkDomain.extensions.TargetSelection;
 
@@ -18,12 +18,12 @@ public class ts implements TargetSelection {
 	}
 
 	@Override
-	public NetworkComponent selectTarget(DataCell dataCell) {
+	public NetworkNode selectTarget(NetworkSignal signal) {
 		//tools.Log.write("Test Extension: TargetingSelection received selectTarget command");
 		
 		NetworkNodeProperties p = NXE.getNetworkNodeProperties();
 		
-		ArrayList<NetworkComponent> accessibleNodes = new ArrayList<NetworkComponent>();
+		ArrayList<NetworkNode> accessibleNodes = new ArrayList<NetworkNode>();
 		
 		accessibleNodes.addAll(p.inputChildrenNodes);
 		accessibleNodes.addAll(p.outputChildrenNodes);
@@ -42,7 +42,7 @@ public class ts implements TargetSelection {
 		
 		int targetIndex = (int) (new Random()).nextInt(accessibleNodes.size());
 		
-		NetworkComponent target = accessibleNodes.get(targetIndex);
+		NetworkNode target = accessibleNodes.get(targetIndex);
 		
 		return target;
 	}

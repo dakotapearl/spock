@@ -2,13 +2,10 @@ package dataDomain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import mechanismsDomain.Domain;
-
 import tools.Assert;
 import tools.Log;
 
-public class DataDomain extends Domain implements DataClientInterface {
+public class DataDomain {
 
 	public static final int DATUM_COUNT = 10;
 	
@@ -167,22 +164,18 @@ public class DataDomain extends Domain implements DataClientInterface {
 		}
 	}
 
-	@Override
 	public Long generateUniqueID() {
 		return generateUniqueIDStatic();
 	}
 
-	@Override
 	public Datum getDatum(int type, Object value) {
 		return getDatumStatic(type, value);
 	}
 
-	@Override
 	public Datum getDatum(long uniqueID) {
 		return getDatumStatic(uniqueID);
 	}
 
-	@Override
 	public void initialise() {
 		Log.write("Data domain initialised");
 	}

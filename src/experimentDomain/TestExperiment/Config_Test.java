@@ -1,20 +1,18 @@
-package experimentsDomain.test;
+package experimentDomain.test;
 
 import tools.Log;
-import environmentsDomain.Perception;
-import environmentsDomain.SensoryMotorSystem;
-import experimentsDomain.Experiment;
-import experimentsDomain.ExperimentsDomain;
-import experimentsDomain.test.extensions.*;
-import networkDomain.NetworkConfiguration;
+import environmentDomain.Perception;
+import environmentDomain.SensoryMotorSystem;
+import experimentDomain.Experiment;
+import experimentDomain.ExperimentDomain;
+import experimentDomain.TestExperiment.extensions.*;
 import networkDomain.NetworkNode;
 import networkDomain.extensions.*;
-import networkDomain.visitors.VisitorFillLayer;
 
 public class Config_Test implements NetworkConfiguration {
 
 	@Override
-	public void buildNetwork(ExperimentsDomain experimentsDomain) {
+	public void buildNetwork(ExperimentDomain experimentsDomain) {
 		
 		Experiment experiment = experimentsDomain.getExperiment();
 		
@@ -27,7 +25,7 @@ public class Config_Test implements NetworkConfiguration {
 												   ts.class, 
 												   gs.class, 
 												   ee.class, 
-												   clc.class, 
+												   lc.class, 
 												   dp.class, 
 												   tc.class);
 				

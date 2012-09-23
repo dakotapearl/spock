@@ -1,4 +1,4 @@
-package experimentsDomain.test.extensions;
+package experimentDomain.TestExperiment.extensions;
 
 import dataDomain.DataCell;
 import networkDomain.extensions.NodeExtensionEncapsulator;

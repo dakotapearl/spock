@@ -1,11 +1,11 @@
-package experimentsDomain;
+package experimentDomain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import tools.Assert;
 import networkDomain.NetworkNode;
 import networkDomain.extensions.NodeExtensionEncapsulator;
-import environmentsDomain.SensoryMotorSystem;
+import environmentDomain.SensoryMotorSystem;
 
 public class Experiment {
 	
@@ -57,7 +57,7 @@ public class Experiment {
 				 														   (environments.size() > 0));
 		
 		for (SensoryMotorSystem sms : environments)
-			sms.makePerceptionsAccessible();
+			sms.activatePerceptions();
 	}
 	
 }

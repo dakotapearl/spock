@@ -1,12 +1,10 @@
-package environmentsDomain;
+package environmentDomain;
 
 import java.util.ArrayList;
 
-import mechanismsDomain.ApplicationEventQueue;
-
 public abstract class SensoryMotorSystem {
 	
-	protected EnvironmentsDomain environmentsDomain;
+	protected EnvironmentDomain environmentDomain;
 	protected ArrayList<Action> actions;
 	protected ArrayList<Perception> perceptions;
 	
@@ -15,8 +13,8 @@ public abstract class SensoryMotorSystem {
 		perceptions = new ArrayList<Perception>();
 	}
 	
-	public void setEnvironmentsDomain(EnvironmentsDomain environmentsDomain) {
-		this.environmentsDomain = environmentsDomain;
+	public void setEnvironmentsDomain(EnvironmentDomain environmentDomain) {
+		this.environmentDomain = environmentDomain;
 	}
 	
 	public ArrayList<Action> getActions() {
@@ -35,10 +33,10 @@ public abstract class SensoryMotorSystem {
 		perceptions.add(p);
 	}
 	
-	public void makePerceptionsAccessible() {
+	public void activatePerceptions() {
 		for (Perception p : perceptions) {
-			if (p.isInitiallyAccessible())
-				ApplicationEventQueue.generateEvent(Perception.MAKE_ACCESSIBLE_EVENT, null, p);
+			if (p.isInitiallyAccessible());
+				//p.activate();
 		}
 	}
 	

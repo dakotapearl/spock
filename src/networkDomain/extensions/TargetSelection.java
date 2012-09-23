@@ -1,6 +1,6 @@
 package networkDomain.extensions;
 
-import networkDomain.NetworkComponent;
+import networkDomain.NetworkNode;
 import networkDomain.NetworkSignal;
 
 /**
@@ -11,6 +11,6 @@ import networkDomain.NetworkSignal;
 public interface TargetSelection {
 	
 	public void setNXE(NodeExtensionEncapsulator NXE);
-	public NetworkComponent selectTarget(NetworkSignal signal);
+	public NetworkNode selectTarget(NetworkSignal signal);
 	
 }
