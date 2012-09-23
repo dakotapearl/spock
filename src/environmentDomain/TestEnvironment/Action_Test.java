@@ -1,14 +1,16 @@
-package environmentsDomain.testing;
+package environmentDomain.TestEnvironment;
 
+import networkDomain.NetworkSignal;
 import dataDomain.DataCell;
 import tools.Log;
-import environmentsDomain.Action;
+import environmentDomain.Action;
 
 public class Action_Test extends Action {
 
 	@Override
-	public void performAction(DataCell dataCell) {
-		Log.write("ACTION PERFORMED: Test, with datum: " + dataCell.getDatum().getValue());
+	public void performAction(NetworkSignal signal) {
+		Log.write("ACTION PERFORMED: Test, with datum: " + signal.getData(null).getDatum().getValue());
+		
 	}
 
 }

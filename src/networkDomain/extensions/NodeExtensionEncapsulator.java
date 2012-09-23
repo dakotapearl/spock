@@ -13,7 +13,6 @@ public class NodeExtensionEncapsulator {
 	public NodeExtensionEncapsulator(FiringCondition firingCondition, TargetSelection targetSelection, GeneticSequence geneticSequence, EnergyEconomics energyEconomics, LifeCycle lifeCycle, DataProcessing dataProcessing, TransmissionContent transmissionContent) {
 		// TODO assert none are null.
 		
-		
 		this.firingCondition = firingCondition;
 		this.targetSelection = targetSelection;
 		this.geneticSequence = geneticSequence;

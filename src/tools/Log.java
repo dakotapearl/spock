@@ -28,8 +28,7 @@ public class Log {
 		return baseString;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public static void write(String message, Class c) {
+	public static void write(String message, @SuppressWarnings("rawtypes") Class c) {
 		write(c.getSimpleName() + ": " + message);
 	}
 	
@@ -38,8 +37,7 @@ public class Log {
 			write(message);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public static void created(Class c) {
+	public static void created(@SuppressWarnings("rawtypes") Class c) {
 		if (CreationLogsEnabled)
 			write(c.getSimpleName() + " created.");
 	}

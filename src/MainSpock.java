@@ -19,16 +19,18 @@ public class MainSpock {
 		
 		Log.write("Application (2): connecting domains");
 		// TODO write these methods
-		/*experimentDomain.setEnvironmentDomain(environmentDomain);
+		experimentDomain.setEnvironmentDomain(environmentDomain);
 		experimentDomain.setNetworkDomain(networkDomain);
-		environmentDomain.setExperimentsDomain(experimentDomain);
+		environmentDomain.setExperimentDomain(experimentDomain);
+		environmentDomain.setNetworkDomain(networkDomain);
 		environmentDomain.setDataDomain(dataDomain);
-		networkDomain.setExperimentsDomain(experimentDomain);
+		networkDomain.setEnvironmentDomain(environmentDomain);
+		networkDomain.setExperimentDomain(experimentDomain);
 		networkDomain.setDataDomain(dataDomain);
-		interfaceDomain.setExperimentsDomain(experimentDomain);
+		interfaceDomain.setExperimentDomain(experimentDomain);
 		interfaceDomain.setNetworkDomain(networkDomain);
 		interfaceDomain.setEnvironmentDomain(environmentDomain);
-		interfaceDomain.setDataDomain(dataDomain);*/
+		interfaceDomain.setDataDomain(dataDomain);
 		
 		Log.write("Application (3): selecting experiment");
 		//experimentsDomain.setExperiment(ExperimentsDomain.XID_TEXTUAL_ONE);
@@ -50,8 +52,8 @@ public class MainSpock {
 	public static void main(String[] args) {
 
 		Log.LoggingEnabled = true;
-		Log.CreationLogsEnabled = false;
-		Log.MechanismDebugEnabled = false;
+		Log.CreationLogsEnabled = true;
+		Log.MechanismDebugEnabled = true;
 		Log.TimeStampEnabled = true;
 		
 		new MainSpock().initialise();

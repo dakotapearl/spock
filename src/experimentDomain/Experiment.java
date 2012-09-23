@@ -7,7 +7,7 @@ import networkDomain.NetworkNode;
 import networkDomain.extensions.NodeExtensionEncapsulator;
 import environmentDomain.SensoryMotorSystem;
 
-public class Experiment {
+public abstract class Experiment {
 	
 	private ArrayList<SensoryMotorSystem> environments;
 	private NetworkNode network;
@@ -37,18 +37,9 @@ public class Experiment {
 		environments.add(environment);
 	}
 	
-	public void setNetwork(NetworkNode network) {
-		if (this.network == null)
-			this.network = network;
-	}
-	
 	
 	public ArrayList<SensoryMotorSystem> getEnvironments() {
 		return environments;
-	}
-	
-	public NetworkNode getNetwork() {
-		return network;
 	}
 	
 	public void readyExperiment() {

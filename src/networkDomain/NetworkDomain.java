@@ -1,35 +1,48 @@
 package networkDomain;
 
+import java.util.ArrayList;
+
 import tools.Log;
+import networkDomain.exceptions.InvalidNetworkException;
+import networkDomain.extensions.NetworkInitialiser;
 import networkDomain.extensions.NodeExtensionEncapsulator;
-import dataDomain.DataClientInterface;
 import dataDomain.DataDomain;
+import environmentDomain.EnvironmentDomain;
+import experimentDomain.ExperimentDomain;
 
 public class NetworkDomain {
+	
+	EnvironmentDomain environmentDomain;
+	ExperimentDomain experimentDomain;
+	DataDomain dataDomain;
+	ArrayList<NetworkNode> network;
 	
 	public void initialise() {
 		Log.write("Network domain initialised");
 	}
 	
-	private DataClientInterface dataEE;
-	
-	public void setDataEE(DataClientInterface dataEE) {
-		this.dataEE = dataEE;
+	public void setEnvironmentDomain(EnvironmentDomain environmentDomain) {
+		this.environmentDomain = environmentDomain;
 	}
 	
-	public DataDomain getDataDomain() {
-		return (DataDomain) dataEE;
+	public void setExperimentDomain(ExperimentDomain experimentDomain) {
+		this.experimentDomain = experimentDomain;
+	}
+	
+	public void setDataDomain(DataDomain dataDomain) {
+		this.dataDomain = dataDomain;
 	}
 
-	NetworkNode network;
-	
-	public NetworkNode getNetwork() {
+	public ArrayList<NetworkNode> getNetwork() {
 		return network;
 	}
 	
-	public NetworkNode newNetwork(NodeExtensionEncapsulator NXE) {
-		network = new NetworkNode();
-		return network;
+	public void initialiseNetwork(NetworkInitialiser initialiser) throws InvalidNetworkException {
+		network = initialiser.initialiseNetwork();
+		if (network == null)
+			throw new InvalidNetworkException();
+		if (network.size() == 0)
+			throw new InvalidNetworkException();
 	}
 	
 }

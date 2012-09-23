@@ -6,6 +6,7 @@ public class ImpulseSignal implements NetworkSignal {
 
 	private DataCell dataCell;
 	
+	// Needs to be able to cope with null value for networknode
 	@Override
 	public DataCell getData(NetworkNode currentComponent) {
 		return dataCell;
