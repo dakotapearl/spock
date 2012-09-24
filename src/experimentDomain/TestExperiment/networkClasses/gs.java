@@ -1,4 +1,4 @@
-package experimentDomain.TestExperiment.extensions;
+package experimentDomain.TestExperiment.networkClasses;
 
 import networkDomain.extensions.GeneticSequence;
 import networkDomain.extensions.NodeExtensionEncapsulator;

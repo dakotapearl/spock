@@ -1,4 +1,4 @@
-package experimentDomain.TestExperiment.extensions;
+package experimentDomain.TestExperiment.networkClasses;
 
 import java.util.ArrayList;
 import java.util.Random;

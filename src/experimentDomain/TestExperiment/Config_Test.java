@@ -6,6 +6,13 @@ import environmentDomain.SensoryMotorSystem;
 import experimentDomain.Experiment;
 import experimentDomain.ExperimentDomain;
 import experimentDomain.TestExperiment.extensions.*;
+import experimentDomain.TestExperiment.networkClasses.dp;
+import experimentDomain.TestExperiment.networkClasses.ee;
+import experimentDomain.TestExperiment.networkClasses.fc;
+import experimentDomain.TestExperiment.networkClasses.gs;
+import experimentDomain.TestExperiment.networkClasses.lc;
+import experimentDomain.TestExperiment.networkClasses.tc;
+import experimentDomain.TestExperiment.networkClasses.ts;
 import networkDomain.NetworkNode;
 import networkDomain.extensions.*;
 

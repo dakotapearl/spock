@@ -1,4 +1,4 @@
-package experimentDomain.TestExperiment.extensions;
+package experimentDomain.TestExperiment.networkClasses;
 
 import networkDomain.extensions.FiringCondition;
 import networkDomain.extensions.NodeExtensionEncapsulator;
