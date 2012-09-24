@@ -2,7 +2,8 @@ package experimentDomain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import tools.Assert;
+
+import tools.errorChecking.Assert;
 import networkDomain.NetworkNode;
 import networkDomain.extensions.NodeExtensionEncapsulator;
 import environmentDomain.SensoryMotorSystem;
@@ -16,7 +17,7 @@ public abstract class Experiment {
 	public Experiment() {
 		environments = new ArrayList<SensoryMotorSystem>();
 		NXETemplates = new HashMap<String, NXETemplate>();
-		tools.Log.created(this.getClass());
+		tools.errorChecking.Log.created(this.getClass());
 	}
 	
 	@SuppressWarnings("unchecked")

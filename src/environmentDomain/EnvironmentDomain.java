@@ -3,7 +3,7 @@ package environmentDomain;
 import networkDomain.NetworkDomain;
 import dataDomain.DataDomain;
 import experimentDomain.ExperimentDomain;
-import tools.Log;
+import tools.errorChecking.Log;
 
 public class EnvironmentDomain {
 	

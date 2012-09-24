@@ -1,16 +1,8 @@
 package experimentDomain.TestExperiment.networkClasses;
 
 import networkDomain.extensions.EnergyEconomics;
-import networkDomain.extensions.NodeExtensionEncapsulator;
 
-public class ee implements EnergyEconomics {
-
-	NodeExtensionEncapsulator NXE;
-	
-	@Override
-	public void setNXE(NodeExtensionEncapsulator NXE) {
-		this.NXE = NXE;
-	}
+public class ee extends EnergyEconomics {
 
 	@Override
 	public boolean continueFiring() {

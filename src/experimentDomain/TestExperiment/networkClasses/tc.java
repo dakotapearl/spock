@@ -1,29 +1,22 @@
 package experimentDomain.TestExperiment.networkClasses;
 
 import dataDomain.DataCell;
-import networkDomain.extensions.NodeExtensionEncapsulator;
+import networkDomain.NetworkSignal;
 import networkDomain.extensions.TransmissionContent;
 
-public class tc implements TransmissionContent {
+public class tc extends TransmissionContent {
 
-	NodeExtensionEncapsulator NXE;
-	
 	@Override
-	public void setNXE(NodeExtensionEncapsulator NXE) {
-		this.NXE = NXE;
-	}
-	
-	@Override
-	public DataCell nextDataCellToFire() {
+	public NetworkSignal nextSignalToFire() {
 		//tools.Log.write("Test Extension: TransmissionContent received nextDataCellToFire command");
 		
-		return NXE.getNetworkNodeProperties().processedDataCells.popItem();
+		return null; //parent.processedDataCells.popItem();
 	}
 
 	@Override
-	public boolean dataRemains() {
+	public boolean signalsRemain() {
 		//tools.Log.write("Test Extension: TransmissionContent received dataRemains command");
-		return NXE.getNetworkNodeProperties().processedDataCells.viewFirstItem() != null;
+		return false; //parent.processedDataCells.viewFirstItem() != null;
 	}
 
 }

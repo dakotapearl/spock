@@ -4,7 +4,7 @@ import dataDomain.DataDomain;
 import networkDomain.NetworkDomain;
 import environmentDomain.EnvironmentDomain;
 import experimentDomain.ExperimentDomain;
-import tools.Log;
+import tools.errorChecking.Log;
 
 public class InterfaceDomain {
 

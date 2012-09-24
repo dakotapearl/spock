@@ -1,7 +1,7 @@
 package dataDomain;
 
-import tools.Assert;
-import tools.Log;
+import tools.errorChecking.Assert;
+import tools.errorChecking.Log;
 
 public class DataCell {
 	

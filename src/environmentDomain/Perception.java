@@ -1,6 +1,7 @@
 package environmentDomain;
 
 import java.util.ArrayList;
+
 import dataDomain.DataDomain;
 import networkDomain.NetworkNode;
 import networkDomain.NetworkSignal;
@@ -14,7 +15,7 @@ public abstract class Perception {
 		this.dataDomain = dataDomain;
 		sensors = new ArrayList<NetworkNode>();
 		
-		tools.Log.created(this.getClass());
+		tools.errorChecking.Log.created(this.getClass());
 	}
 	
 	public void registerNodes(ArrayList<NetworkNode> newSensor) {

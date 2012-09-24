@@ -1,7 +1,6 @@
-package networkDomain.extensions;
+package networkDomain;
 
 import java.util.ArrayList;
-import networkDomain.NetworkNode;
 
 public interface NetworkInitialiser {
 	

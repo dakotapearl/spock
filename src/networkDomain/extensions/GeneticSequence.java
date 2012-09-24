@@ -1,13 +1,17 @@
 package networkDomain.extensions;
 
+import networkDomain.NetworkNode;
+
 
 /**
  * Instantiated for each node
  * @author Loren
  *
  */
-public interface GeneticSequence {
+public abstract class GeneticSequence {
 	
-	public void setNXE(NodeExtensionEncapsulator NXE);
+	NetworkNode parent;
+	
+	public void declareParent(NetworkNode parent) { this.parent = parent; }
 	
 }

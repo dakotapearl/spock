@@ -2,8 +2,9 @@ package dataDomain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import tools.Assert;
-import tools.Log;
+
+import tools.errorChecking.Assert;
+import tools.errorChecking.Log;
 
 public class DataDomain {
 

@@ -1,5 +1,7 @@
-package networkDomain;
+package signals;
 
+import networkDomain.NetworkNode;
+import networkDomain.NetworkSignal;
 import dataDomain.DataCell;
 
 public class ImpulseSignal implements NetworkSignal {

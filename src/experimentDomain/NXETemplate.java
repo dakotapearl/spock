@@ -1,6 +1,6 @@
 package experimentDomain;
 
-import tools.Assert;
+import tools.errorChecking.Assert;
 import networkDomain.extensions.*;
 
 public class NXETemplate {

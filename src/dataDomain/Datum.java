@@ -1,6 +1,6 @@
 package dataDomain;
 
-import tools.Log;
+import tools.errorChecking.Log;
 
 public class Datum {
 	

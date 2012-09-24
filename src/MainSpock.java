@@ -1,6 +1,6 @@
 
 import interfaceDomain.InterfaceDomain;
-import tools.Log;
+import tools.errorChecking.Log;
 import dataDomain.DataDomain;
 import environmentDomain.EnvironmentDomain;
 import experimentDomain.ExperimentDomain;

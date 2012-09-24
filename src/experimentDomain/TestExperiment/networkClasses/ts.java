@@ -5,27 +5,19 @@ import java.util.Random;
 import dataDomain.DataCell;
 import networkDomain.NetworkNode;
 import networkDomain.NetworkSignal;
-import networkDomain.extensions.NodeExtensionEncapsulator;
 import networkDomain.extensions.TargetSelection;
 
-public class ts implements TargetSelection {
-
-	NodeExtensionEncapsulator NXE;
-	
-	@Override
-	public void setNXE(NodeExtensionEncapsulator NXE) {
-		this.NXE = NXE;
-	}
+public class ts extends TargetSelection {
 
 	@Override
 	public NetworkNode selectTarget(NetworkSignal signal) {
 		//tools.Log.write("Test Extension: TargetingSelection received selectTarget command");
 		
-		NetworkNodeProperties p = NXE.getNetworkNodeProperties();
+		//NetworkNodeProperties p = NXE.getNetworkNodeProperties();
 		
 		ArrayList<NetworkNode> accessibleNodes = new ArrayList<NetworkNode>();
 		
-		accessibleNodes.addAll(p.inputChildrenNodes);
+		/*accessibleNodes.addAll(p.inputChildrenNodes);
 		accessibleNodes.addAll(p.outputChildrenNodes);
 		accessibleNodes.addAll(p.standardChildrenNodes);
 		
@@ -38,7 +30,7 @@ public class ts implements TargetSelection {
 			
 			if (p.isOutputNode)
 				accessibleNodes.add(p.parentNode);
-		}
+		}*/
 		
 		int targetIndex = (int) (new Random()).nextInt(accessibleNodes.size());
 		

@@ -2,10 +2,8 @@ package networkDomain;
 
 import java.util.ArrayList;
 
-import tools.Log;
+import tools.errorChecking.Log;
 import networkDomain.exceptions.InvalidNetworkException;
-import networkDomain.extensions.NetworkInitialiser;
-import networkDomain.extensions.NodeExtensionEncapsulator;
 import dataDomain.DataDomain;
 import environmentDomain.EnvironmentDomain;
 import experimentDomain.ExperimentDomain;

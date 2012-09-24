@@ -1,15 +1,19 @@
 package networkDomain.extensions;
 
+import networkDomain.NetworkNode;
+
 /**
  * Instantiated for each node
  * @author Loren
  *
  */
-public interface FiringCondition {
+public abstract class FiringCondition {
 	
-	public void setNXE(NodeExtensionEncapsulator NXE);
-	public boolean readyToFire();
-	public boolean continueFiring();
-	public void notifyNodeBecameInactive();
+	NetworkNode parent;
+	
+	public void declareParent(NetworkNode parent) { this.parent = parent; }
+	public abstract boolean readyToFire();
+	public abstract boolean continueFiring();
+	public abstract void notifyNodeBecameInactive();
 	
 }

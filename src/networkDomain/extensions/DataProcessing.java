@@ -1,10 +1,13 @@
 package networkDomain.extensions;
 
+import networkDomain.NetworkNode;
 import dataDomain.DataCell;
 
-public interface DataProcessing {
+public abstract class DataProcessing {
 
-	public void setNXE(NodeExtensionEncapsulator NXE);
-	public DataCell processData(DataCell dataCell);
+	NetworkNode parent;
+	
+	public void declareParent(NetworkNode parent) { this.parent = parent; }
+	public abstract DataCell processData(DataCell dataCell);
 	
 }

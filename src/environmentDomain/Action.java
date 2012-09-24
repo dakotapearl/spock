@@ -1,7 +1,7 @@
 package environmentDomain;
 
-import tools.Log;
 import networkDomain.NetworkSignal;
+import tools.errorChecking.Log;
 
 public abstract class Action {
 

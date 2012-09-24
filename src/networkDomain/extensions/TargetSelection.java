@@ -8,9 +8,11 @@ import networkDomain.NetworkSignal;
  * @author Loren
  *
  */
-public interface TargetSelection {
+public abstract class TargetSelection {
 	
-	public void setNXE(NodeExtensionEncapsulator NXE);
-	public NetworkNode selectTarget(NetworkSignal signal);
+	NetworkNode parent;
+	
+	public void declareParent(NetworkNode parent) { this.parent = parent; }
+	public abstract NetworkNode selectTarget(NetworkSignal signal);
 	
 }

@@ -1,22 +1,16 @@
 package experimentDomain.TestExperiment.networkClasses;
 
 import networkDomain.extensions.FiringCondition;
-import networkDomain.extensions.NodeExtensionEncapsulator;
 
 //TODO: implements timer
-public class fc implements FiringCondition {
+public class fc extends FiringCondition {
 	
-	NodeExtensionEncapsulator NXE;
-	
-	@Override
-	public void setNXE(NodeExtensionEncapsulator NXE) {
-		this.NXE = NXE;
-	}
+
 	
 	@Override
 	public boolean readyToFire() {
 		//tools.Log.write("Test Extension: FiringCondition received readyToFire request");
-		return NXE.getNetworkNodeProperties().processedDataCells.viewFirstItem() != null;
+		return false; //NXE.getNetworkNodeProperties().processedDataCells.viewFirstItem() != null;
 	}
 
 	@Override

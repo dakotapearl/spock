@@ -1,9 +1,9 @@
-package environmentsDomain.testing;
+package environmentDomain.TestEnvironment;
 
 import dataDomain.DataCell;
 import dataDomain.DataDomain;
 import dataDomain.Datum;
-import environmentsDomain.Perception;
+import environmentDomain.Perception;
 import networkDomain.NetworkNode;
 
 public class Perception_Test extends Perception {
@@ -31,20 +31,4 @@ public class Perception_Test extends Perception {
 		}
 	}
 
-	@Override
-	protected void accessibilityFunction() {
-		tools.Log.write("Perception made accessible!");
-		go();
-	}
-
-	@Override
-	protected void inaccessibilityFunction() {
-		
-	}
-
-	@Override
-	public boolean isInitiallyAccessible() {
-		return true;
-	}
-	
 }

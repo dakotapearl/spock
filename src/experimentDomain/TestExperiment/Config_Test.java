@@ -1,6 +1,6 @@
 package experimentDomain.test;
 
-import tools.Log;
+import tools.errorChecking.Log;
 import environmentDomain.Perception;
 import environmentDomain.SensoryMotorSystem;
 import experimentDomain.Experiment;

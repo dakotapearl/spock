@@ -1,8 +1,7 @@
 package environmentDomain.TestEnvironment;
 
 import networkDomain.NetworkSignal;
-import dataDomain.DataCell;
-import tools.Log;
+import tools.errorChecking.Log;
 import environmentDomain.Action;
 
 public class Action_Test extends Action {
