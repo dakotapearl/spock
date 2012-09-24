@@ -6,10 +6,12 @@ import tools.errorChecking.Log;
 
 public class ExperimentDomain {
 
-	EnvironmentDomain environmentDomain;
-	NetworkDomain networkDomain;
+	public EnvironmentDomain environmentDomain;
+	public NetworkDomain networkDomain;
 	
 	public void initialise() {
+		// check that all relevant domains are linked
+		
 		Log.write("Experiment domain initialised");
 	}
 	

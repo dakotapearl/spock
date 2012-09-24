@@ -10,12 +10,14 @@ import experimentDomain.ExperimentDomain;
 
 public class NetworkDomain {
 	
-	EnvironmentDomain environmentDomain;
-	ExperimentDomain experimentDomain;
-	DataDomain dataDomain;
+	public EnvironmentDomain environmentDomain;
+	public ExperimentDomain experimentDomain;
+	public DataDomain dataDomain;
 	ArrayList<NetworkNode> network;
 	
 	public void initialise() {
+		// check that all relevant domains are linked
+		
 		Log.write("Network domain initialised");
 	}
 	

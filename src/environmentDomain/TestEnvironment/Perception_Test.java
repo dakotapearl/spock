@@ -17,7 +17,7 @@ public class Perception_Test extends Perception {
 		Datum d = dataDomain.getDatum(DataDomain.DATUM_TYPE_BOOLEAN, true);
 		DataCell dc = new DataCell(1, d);
 		for (NetworkNode s : sensors) {
-			s.acceptData(dc, null);
+			s.acceptSignal(dc, null);
 		}
 		try {
 			this.wait(2000);
@@ -27,8 +27,14 @@ public class Perception_Test extends Perception {
 		d = dataDomain.getDatum(DataDomain.DATUM_TYPE_BOOLEAN, false);
 		dc = new DataCell(1, d);
 		for (NetworkNode s : sensors) {
-			s.acceptData(dc, null);
+			s.acceptSignal(dc, null);
 		}
+	}
+
+	@Override
+	public boolean isInitiallyAccessible() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

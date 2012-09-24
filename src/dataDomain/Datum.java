@@ -7,10 +7,12 @@ public class Datum {
 	private int type;
 	private Object value;
 	private long uniqueID;
+	private int energyMeasure;
 	
-	public Datum(int type, Object value) {
+	public Datum(int type, Object value, int energyMeasure) {
 		this.type = type;
 		this.value = value;
+		this.energyMeasure = energyMeasure;
 		
 		Log.created(this.getClass());
 		Log.write("Value: " + value.toString());
@@ -29,6 +31,10 @@ public class Datum {
 	
 	public Object getValue() {
 		return value;
+	}
+	
+	public int getEnergyMeasure() {
+		return energyMeasure;
 	}
 	
 }

@@ -8,10 +8,14 @@ import networkDomain.NetworkNode;
  * @author Loren
  *
  */
-public abstract class GeneticSequence {
+public abstract class GeneticSequence extends Thread {
 	
-	NetworkNode parent;
+	protected NetworkNode parent;
 	
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
+	//public abstract void setProperty(...);
+	//public abstract ... getProperty(...);
+	//public abstract void mutate(...);
+	//public abstract ... splice(...);
 	
 }

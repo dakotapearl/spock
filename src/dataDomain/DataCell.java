@@ -1,17 +1,20 @@
 package dataDomain;
 
+import java.util.UUID;
+
 import tools.errorChecking.Assert;
-import tools.errorChecking.Log;
+//import tools.errorChecking.Log;
 
 public class DataCell {
 	
-	private int dimension;
-	private DataCell dataCell;
+	//private int dimension;
+	//private DataCell dataCell;
 	private Datum datum;
-	private DataCell[][] neighbours;
-	private boolean isContainer;
+	//private DataCell[][] neighbours;
+	//private boolean isContainer;
+	private UUID uuid;
 	
-	public DataCell(int dimension, DataCell dataCell) {
+	/*public DataCell(int dimension, DataCell dataCell) {
 		Assert.CriticalAssertTrue("dimension parameter value greater than 0", dimension > 0);
 		Assert.CriticalAssertTrue("dataCell parameter not null", dataCell != null);
 		this.dimension = dimension;
@@ -21,38 +24,40 @@ public class DataCell {
 		neighbours = new DataCell[dimension][2];
 		
 		Log.created(this.getClass());
-	}
+	}*/
 	
 	public DataCell(int dimension, Datum datum) {
 		Assert.CriticalAssertTrue("dimension value greater than 0", dimension > 0);
 		Assert.CriticalAssertTrue("datum parameter not null", datum != null);
-		this.dimension = dimension;
+		//this.dimension = dimension;
 		this.datum = datum;
-		this.isContainer = false;
+		//this.isContainer = false;
 		
-		neighbours = new DataCell[dimension][2];
+		//neighbours = new DataCell[dimension][2];
+		
+		uuid = UUID.randomUUID();
 	}
 	
-	public int getDimension() {
+	/*public int getDimension() {
 		return dimension;
-	}
+	}*/
 	
-	public DataCell getDataCell() {
+	/*public DataCell getDataCell() {
 		return dataCell;
-	}
+	}*/
 	
 	public Datum getDatum() {
 		return datum;
 	}
 	
-	public boolean isContainer() {
+	/*public boolean isContainer() {
 		return isContainer;
-	}
+	}*/
 	
 	/**
 	 * @return null cell not set
 	 */
-	public DataCell getLowerNeighbouringDataCell(int dimension) {
+	/*public DataCell getLowerNeighbouringDataCell(int dimension) {
 		Assert.CriticalAssertTrue("dimension value within bounds", (dimension > 0) && (dimension <= this.dimension));
 				
 		return neighbours[0][dimension];
@@ -74,6 +79,14 @@ public class DataCell {
 		Assert.CriticalAssertTrue("dimension value within bounds", (dimension > 0) && (dimension <= this.dimension));
 		
 		neighbours[1][dimension] = dataCell;
+	}*/
+	
+	public int getEnergy() {
+		return datum.getEnergyMeasure();
+	}
+	
+	public UUID getUUID() {
+		return uuid;
 	}
 	
 }

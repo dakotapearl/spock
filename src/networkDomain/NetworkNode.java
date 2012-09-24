@@ -22,6 +22,7 @@ public class NetworkNode {
 	public InputProcess inputProcess;
 	public OutputProcess outputProcess;
 	public StorageProcess storageProcess;
+	
 	public FiringCondition firingCondition;
 	public TargetSelection targetSelection;
 	public GeneticSequence geneticSequence;
@@ -30,7 +31,10 @@ public class NetworkNode {
 	public DataProcessing dataProcessing;
 	public TransmissionContent transmissionContent;
 	
-	public NetworkNode(FiringCondition firingCondition, 
+	public NetworkNode(InputProcess inputProcess,
+					   OutputProcess outputProcess,
+					   StorageProcess storageProcess,
+					   FiringCondition firingCondition, 
 					   TargetSelection targetSelection, 
 					   GeneticSequence geneticSequence, 
 					   EnergyEconomics energyEconomics, 
@@ -39,6 +43,10 @@ public class NetworkNode {
 					   TransmissionContent transmissionContent) {
 		// TODO assert none are null.
 		
+		this.inputProcess = inputProcess;
+		this.outputProcess = outputProcess;
+		this.storageProcess = storageProcess;
+		
 		this.firingCondition = firingCondition;
 		this.targetSelection = targetSelection;
 		this.geneticSequence = geneticSequence;
@@ -46,6 +54,10 @@ public class NetworkNode {
 		this.lifeCycle = lifeCycle;
 		this.dataProcessing = dataProcessing;
 		this.transmissionContent = transmissionContent;
+		
+		inputProcess.declareParent(this);
+		outputProcess.declareParent(this);
+		storageProcess.declareParent(this);
 		
 		firingCondition.declareParent(this);
 		targetSelection.declareParent(this);
@@ -57,6 +69,21 @@ public class NetworkNode {
 		
 	}
 	
-	// Consider moving entire NXE functionality here
+	public void acceptSignal(NetworkSignal signal, NetworkNode sender) {
+		inputProcess.acceptSignal(signal, sender);
+	}
+	
+	public void start() {
+		firingCondition.start();
+		targetSelection.start();
+		geneticSequence.start();
+		energyEconomics.start();
+		lifeCycle.start();
+		dataProcessing.start();
+		transmissionContent.start();
+		
+		inputProcess.start();
+		outputProcess.start();
+	}
 	
 }

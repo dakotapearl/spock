@@ -4,7 +4,7 @@ import dataDomain.DataCell;
 
 public interface NetworkSignal {
 	
-	public DataCell getData(NetworkNode currentComponent);
-	public void setData(DataCell dataCell, NetworkNode modifyingNode);
+	public DataCell getData();
+	public void setData(DataCell dataCell);
 	
 }

@@ -3,9 +3,9 @@ package networkDomain.extensions;
 import networkDomain.NetworkNode;
 import networkDomain.NetworkSignal;
 
-public abstract class TransmissionContent {
+public abstract class TransmissionContent extends Thread {
 	
-	NetworkNode parent;
+	protected NetworkNode parent;
 	
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
 	public abstract NetworkSignal nextSignalToFire();

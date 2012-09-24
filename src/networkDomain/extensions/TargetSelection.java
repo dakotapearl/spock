@@ -8,9 +8,9 @@ import networkDomain.NetworkSignal;
  * @author Loren
  *
  */
-public abstract class TargetSelection {
+public abstract class TargetSelection extends Thread {
 	
-	NetworkNode parent;
+	protected NetworkNode parent;
 	
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
 	public abstract NetworkNode selectTarget(NetworkSignal signal);

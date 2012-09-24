@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import tools.errorChecking.Assert;
 import networkDomain.NetworkNode;
-import networkDomain.extensions.NodeExtensionEncapsulator;
 import environmentDomain.SensoryMotorSystem;
 
 public abstract class Experiment {

@@ -119,7 +119,9 @@ public class DataDomain {
 		if (!isSetup)
 			setup();
 		
-		Datum d = new Datum(type, value); 
+		// For now there is only a uniform energy measure.
+		// TODO Define structs in a separate class to property manage data properties
+		Datum d = new Datum(type, value, 1); 
 		data[type].add(d);
 		dataByUID.put(d.getUniqueID(), d);
 		return d;

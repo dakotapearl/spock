@@ -7,13 +7,36 @@ import networkDomain.NetworkNode;
  * @author Loren
  *
  */
-public abstract class FiringCondition {
+public abstract class FiringCondition extends Thread {
 	
-	NetworkNode parent;
+	private boolean ready = false;
+	protected NetworkNode parent;
 	
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
-	public abstract boolean readyToFire();
-	public abstract boolean continueFiring();
-	public abstract void notifyNodeBecameInactive();
+	
+	//public abstract boolean continueFiring();
+	
+	// Block until ready, return false if interrupted 
+	public boolean waitUntilReadyToFire() {
+		if (ready) {
+			return true;
+		} else {
+			try {
+				wait();
+				return true;
+			} catch (InterruptedException e) {
+				return false;
+			}
+		}
+	}
+	
+	protected void setNotReadyToFire() {
+		ready = false;
+	}
+	
+	protected void setReadyToFire() {
+		ready = true;
+		notify();
+	}
 	
 }

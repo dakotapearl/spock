@@ -1,6 +1,5 @@
 package experimentDomain.TestExperiment.networkClasses;
 
-import dataDomain.DataCell;
 import networkDomain.NetworkSignal;
 import networkDomain.extensions.TransmissionContent;
 
@@ -10,7 +9,12 @@ public class tc extends TransmissionContent {
 	public NetworkSignal nextSignalToFire() {
 		//tools.Log.write("Test Extension: TransmissionContent received nextDataCellToFire command");
 		
-		return null; //parent.processedDataCells.popItem();
+		// pop item and store
+		//parent.processedDataCells.popItem();
+		
+		((fc) parent.firingCondition).update();
+		
+		return null; //return values
 	}
 
 	@Override
