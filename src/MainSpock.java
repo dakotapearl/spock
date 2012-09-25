@@ -1,9 +1,12 @@
 
+import goalDomain.GoalDomain;
 import interfaceDomain.InterfaceDomain;
 import tools.errorChecking.Log;
 import dataDomain.DataDomain;
 import environmentDomain.EnvironmentDomain;
+import experimentDomain.Experiment;
 import experimentDomain.ExperimentDomain;
+import experimentDomain.TestExperiment.TestExperiment;
 import networkDomain.*;
 
 public class MainSpock {
@@ -15,6 +18,7 @@ public class MainSpock {
 		EnvironmentDomain environmentDomain = new EnvironmentDomain();
 		NetworkDomain networkDomain  = new NetworkDomain();
 		DataDomain dataDomain = new DataDomain();
+		GoalDomain goalDomain = new GoalDomain();
 		InterfaceDomain interfaceDomain = new InterfaceDomain();
 		
 		Log.write("Application (2): connecting domains");
@@ -24,6 +28,7 @@ public class MainSpock {
 		environmentDomain.setExperimentDomain(experimentDomain);
 		environmentDomain.setNetworkDomain(networkDomain);
 		environmentDomain.setDataDomain(dataDomain);
+		environmentDomain.setGoalDomain(goalDomain);
 		networkDomain.setEnvironmentDomain(environmentDomain);
 		networkDomain.setExperimentDomain(experimentDomain);
 		networkDomain.setDataDomain(dataDomain);
@@ -33,19 +38,21 @@ public class MainSpock {
 		interfaceDomain.setDataDomain(dataDomain);
 		
 		Log.write("Application (3): selecting experiment");
-		//experimentsDomain.setExperiment(ExperimentsDomain.XID_TEXTUAL_ONE);
+		Experiment exp = new TestExperiment(experimentDomain);
 		
 		Log.write("Application (4): initialising domains");
 		environmentDomain.initialise();
 		networkDomain.initialise();
 		experimentDomain.initialise();
 		dataDomain.initialise();
+		interfaceDomain.initialise();
+		goalDomain.initialise();
 		
 		Log.write("Application (5): setting parameters");
 		
 		
 		Log.write("Application (6): start threads");
-		// TODO
+		exp.start();
 		
 	}
 	
@@ -53,7 +60,7 @@ public class MainSpock {
 
 		Log.LoggingEnabled = true;
 		Log.CreationLogsEnabled = true;
-		Log.MechanismDebugEnabled = true;
+		Log.MechanismDebugEnabled = false;
 		Log.TimeStampEnabled = true;
 		
 		new MainSpock().initialise();

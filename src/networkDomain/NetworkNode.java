@@ -17,7 +17,7 @@ import networkDomain.extensions.TransmissionContent;
  * @author Loren Chorley
  *
  */
-public class NetworkNode {
+public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 	
 	public InputProcess inputProcess;
 	public OutputProcess outputProcess;
@@ -69,7 +69,7 @@ public class NetworkNode {
 		
 	}
 	
-	public void acceptSignal(NetworkSignal signal, NetworkNode sender) {
+	public void acceptSignal(NetworkSignal signal, NetworkTransmitter sender) {
 		inputProcess.acceptSignal(signal, sender);
 	}
 	
@@ -84,6 +84,30 @@ public class NetworkNode {
 		
 		inputProcess.start();
 		outputProcess.start();
+	}
+	
+	public NetworkNode replicateNode() {
+		
+		// Make new node and direct all vital functions to current node
+		NetworkNode newNode = new NetworkNode(inputProcess, 
+				                              outputProcess, 
+				                              storageProcess, 
+				                              firingCondition, 
+				                              targetSelection, 
+				                              geneticSequence, 
+				                              energyEconomics, 
+				                              lifeCycle, 
+				                              dataProcessing, 
+				                              transmissionContent);
+		
+		// Start new node
+		// ?
+		
+		// Let node functions divide themselves and direct the new version to the new node
+		
+		
+		
+		return newNode;
 	}
 	
 }

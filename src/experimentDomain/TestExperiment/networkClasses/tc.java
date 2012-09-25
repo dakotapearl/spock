@@ -1,26 +1,35 @@
 package experimentDomain.TestExperiment.networkClasses;
 
+import dataDomain.DataCell;
 import networkDomain.NetworkSignal;
 import networkDomain.extensions.TransmissionContent;
+import networkDomain.signals.ImpulseSignal;
 
 public class tc extends TransmissionContent {
 
 	@Override
 	public NetworkSignal nextSignalToFire() {
 		//tools.Log.write("Test Extension: TransmissionContent received nextDataCellToFire command");
-		
-		// pop item and store
-		//parent.processedDataCells.popItem();
-		
-		((fc) parent.firingCondition).update();
-		
-		return null; //return values
+		while (true) {
+			try {
+				DataCell dc = parent.storageProcess.retrieveDataCell();
+				ImpulseSignal s = new ImpulseSignal();
+				s.setData(dc);
+				return s; //return values
+			} catch (InterruptedException e) {}
+		}
 	}
 
 	@Override
 	public boolean signalsRemain() {
 		//tools.Log.write("Test Extension: TransmissionContent received dataRemains command");
-		return false; //parent.processedDataCells.viewFirstItem() != null;
+		return parent.storageProcess.hasData();
+	}
+
+	@Override
+	public TransmissionContent replicate() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

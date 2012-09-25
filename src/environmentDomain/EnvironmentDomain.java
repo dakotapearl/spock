@@ -3,6 +3,7 @@ package environmentDomain;
 import networkDomain.NetworkDomain;
 import dataDomain.DataDomain;
 import experimentDomain.ExperimentDomain;
+import goalDomain.GoalDomain;
 import tools.errorChecking.Log;
 
 public class EnvironmentDomain {
@@ -10,6 +11,7 @@ public class EnvironmentDomain {
 	public ExperimentDomain experimentDomain;
 	public NetworkDomain networkDomain;
 	public DataDomain dataDomain;
+	public GoalDomain goalDomain;
 	
 	public void initialise() {
 		// check that all relevant domains are linked
@@ -28,5 +30,10 @@ public class EnvironmentDomain {
 	public void setDataDomain(DataDomain dataDomain) {
 		this.dataDomain = dataDomain;
 	}
+	
+	public void setGoalDomain(GoalDomain goalDomain) {
+		this.goalDomain = goalDomain;
+	}
+	
 	
 }

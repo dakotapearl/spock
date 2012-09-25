@@ -1,36 +1,26 @@
 package environmentDomain;
 
-import java.util.ArrayList;
-
-import dataDomain.DataDomain;
-import networkDomain.NetworkNode;
+import java.util.Observable;
 import networkDomain.NetworkSignal;
+import networkDomain.NetworkTransmitter;
 
-public abstract class Perception {
-
-	protected DataDomain dataDomain;
-	protected ArrayList<NetworkNode> sensors;
+// Observable?
+// Separate process in InputProcess to deal with observables
+public abstract class Perception extends Observable implements NetworkTransmitter {
 	
-	public Perception(DataDomain dataDomain) {
-		this.dataDomain = dataDomain;
-		sensors = new ArrayList<NetworkNode>();
+	public EnvironmentDomain environmentDomain;
+	
+	public Perception(EnvironmentDomain environmentDomain) {
+		this.environmentDomain = environmentDomain;
 		
 		tools.errorChecking.Log.created(this.getClass());
 	}
 	
-	public void registerNodes(ArrayList<NetworkNode> newSensor) {
-		sensors.addAll(newSensor);
+	protected void sendSignalToNetwork(NetworkSignal signal) {
+		setChanged();
+		notifyObservers(signal);
 	}
 	
-	public void registerNode(NetworkNode newSensor) {
-		sensors.add(newSensor);
-	}
-	
-	protected void sendSignalToSensors(NetworkSignal signal) {
-		for (NetworkNode s : sensors);
-			//s.acceptSignal(signal, (NetworkNode) this);
-	}
-	
-	public abstract boolean isInitiallyAccessible();
+	public abstract void start();
 	
 }

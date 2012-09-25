@@ -11,4 +11,10 @@ public class dp extends DataProcessing {
 		return dataCell;
 	}
 
+	@Override
+	public DataProcessing replicate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

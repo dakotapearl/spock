@@ -2,53 +2,86 @@ package experimentDomain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import tools.errorChecking.Assert;
+import networkDomain.Network;
 import networkDomain.NetworkNode;
-import environmentDomain.SensoryMotorSystem;
+import networkDomain.NetworkNodeTemplate;
+import environmentDomain.Environment;
+import environmentDomain.EnvironmentDomain;
 
 public abstract class Experiment {
 	
-	private ArrayList<SensoryMotorSystem> environments;
-	private NetworkNode network;
-	private HashMap<String, NXETemplate> NXETemplates;
+	public ExperimentDomain experimentDomain;
+	private ArrayList<Environment> environments;
+	private Network network;
+	private HashMap<String, NetworkNodeTemplate> networkNodeTemplates;
 	
-	public Experiment() {
-		environments = new ArrayList<SensoryMotorSystem>();
-		NXETemplates = new HashMap<String, NXETemplate>();
+	public Experiment(ExperimentDomain experimentDomain) {
+		this.experimentDomain = experimentDomain;
+		environments = new ArrayList<Environment>();
+		networkNodeTemplates = new HashMap<String, NetworkNodeTemplate>();
+		network = new Network();
+		
+		initialiseExperiment();
+		
 		tools.errorChecking.Log.created(this.getClass());
 	}
 	
-	@SuppressWarnings("unchecked")
-	public void addNXETemplate(String templateIdenifier, Class classFiringCondition, Class classTargetSelection, Class classGeneticSequence, Class classEnergyEconomics, Class classCellularLifeCycle, Class classDataProcessing, Class classTransmissionContent) {
-		Assert.CriticalAssertTrue("NXETemplate identifier is valid", (templateIdenifier != null) && !templateIdenifier.equals(""));
+	@SuppressWarnings({ "rawtypes" })
+	public void addNodeTemplate(String templateIdenifier, Class classInputProcess,
+                                                          Class classOutputProcess,
+                                                          Class classStorageProcess,
+			                                              Class classFiringCondition, 
+			                                              Class classTargetSelection, 
+			                                              Class classGeneticSequence, 
+			                                              Class classEnergyEconomics, 
+			                                              Class classLifeCycle, 
+			                                              Class classDataProcessing, 
+			                                              Class classTransmissionContent) {
+		Assert.CriticalAssertTrue("NetworkNodeTemplate identifier is valid", (templateIdenifier != null) && !templateIdenifier.equals(""));
 
-		NXETemplate newTemplate = new NXETemplate(classFiringCondition, classTargetSelection, classGeneticSequence, classEnergyEconomics, classCellularLifeCycle, classDataProcessing, classTransmissionContent);
-		NXETemplates.put(templateIdenifier, newTemplate);
+		NetworkNodeTemplate newTemplate = new NetworkNodeTemplate(classInputProcess, 
+												  				  classOutputProcess, 
+												  				  classStorageProcess, 
+												  				  classFiringCondition, 
+												  				  classTargetSelection, 
+												  				  classGeneticSequence, 
+												  				  classEnergyEconomics, 
+												  				  classLifeCycle, 
+												  				  classDataProcessing, 
+												  				  classTransmissionContent);
+		networkNodeTemplates.put(templateIdenifier, newTemplate);
 	}
 	
-	public NodeExtensionEncapsulator newNXE(String templateIdentifier) {
-		Assert.CriticalAssertTrue("Valid NXE template key was passed to newNXE", NXETemplates.containsKey(templateIdentifier));
+	public NetworkNode addNewNode(String templateIdentifier) {
+		Assert.CriticalAssertTrue("Valid node template key was passed to newNode", networkNodeTemplates.containsKey(templateIdentifier));
 		
-		return NXETemplates.get(templateIdentifier).newInstance();
+		NetworkNode n = networkNodeTemplates.get(templateIdentifier).newInstance();
+		network.nodes.add(n);
+		
+		return n;
 	}
 	
-	public void addEnvironment(SensoryMotorSystem environment) {
+	public void addEnvironment(Environment environment) {
 		environments.add(environment);
 	}
 	
-	
-	public ArrayList<SensoryMotorSystem> getEnvironments() {
+	public ArrayList<Environment> getEnvironments() {
 		return environments;
 	}
 	
-	public void readyExperiment() {
-		Assert.CriticalAssertTrue("All required experiment variables set", (NXETemplates.size() > 0) &&
+	public void start() {
+		Assert.CriticalAssertTrue("All required experiment variables set", (networkNodeTemplates.size() > 0) &&
 				 														   (network != null) &&
 				 														   (environments.size() > 0));
 		
-		for (SensoryMotorSystem sms : environments)
-			sms.activatePerceptions();
+		network.start();
+		
+		for (Environment env : environments)
+			env.start();
+		
 	}
+	
+	public abstract void initialiseExperiment();
 	
 }
