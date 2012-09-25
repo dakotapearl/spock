@@ -6,6 +6,7 @@ import dataDomain.DataDomain;
 import environmentDomain.EnvironmentDomain;
 import experimentDomain.Experiment;
 import experimentDomain.ExperimentDomain;
+import experimentDomain.Binary.BinaryAND;
 import experimentDomain.TestExperiment.TestExperiment;
 import networkDomain.*;
 
@@ -38,7 +39,7 @@ public class MainSpock {
 		interfaceDomain.setDataDomain(dataDomain);
 		
 		Log.write("Application (3): selecting experiment");
-		Experiment exp = new TestExperiment(experimentDomain);
+		Experiment exp = new BinaryAND(experimentDomain);
 		
 		Log.write("Application (4): initialising domains");
 		environmentDomain.initialise();

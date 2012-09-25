@@ -16,7 +16,7 @@ public abstract class Perception extends Observable implements NetworkTransmitte
 		tools.errorChecking.Log.created(this.getClass());
 	}
 	
-	protected void sendSignalToNetwork(NetworkSignal signal) {
+	public void sendSignalToNetwork(NetworkSignal signal) {
 		setChanged();
 		notifyObservers(signal);
 	}

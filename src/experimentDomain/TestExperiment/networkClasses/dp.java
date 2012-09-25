@@ -8,7 +8,7 @@ public class dp extends DataProcessing {
 	@Override
 	public DataCell processData(DataCell dataCell) {
 		//tools.Log.write("Test Extension: DataProcessing received processData command");
-		return dataCell;
+		return new DataCell(1, dataCell.getDatum());
 	}
 
 	@Override
