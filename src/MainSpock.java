@@ -33,21 +33,23 @@ public class MainSpock {
 		networkDomain.setEnvironmentDomain(environmentDomain);
 		networkDomain.setExperimentDomain(experimentDomain);
 		networkDomain.setDataDomain(dataDomain);
+		networkDomain.setGoalDomain(goalDomain);
 		interfaceDomain.setExperimentDomain(experimentDomain);
 		interfaceDomain.setNetworkDomain(networkDomain);
 		interfaceDomain.setEnvironmentDomain(environmentDomain);
 		interfaceDomain.setDataDomain(dataDomain);
+		interfaceDomain.setGoalDomain(goalDomain);
 		
-		Log.write("Application (3): selecting experiment");
-		Experiment exp = new BinaryAND(experimentDomain);
-		
-		Log.write("Application (4): initialising domains");
+		Log.write("Application (3): initialising domains");
 		environmentDomain.initialise();
 		networkDomain.initialise();
 		experimentDomain.initialise();
 		dataDomain.initialise();
 		interfaceDomain.initialise();
 		goalDomain.initialise();
+		
+		Log.write("Application (4): selecting experiment");
+		Experiment exp = new BinaryAND(experimentDomain);
 		
 		Log.write("Application (5): setting parameters");
 		

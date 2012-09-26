@@ -17,6 +17,8 @@ public abstract class Experiment {
 	private HashMap<String, NetworkNodeTemplate> networkNodeTemplates;
 	
 	public Experiment(ExperimentDomain experimentDomain) {
+		Assert.AssertTrue("ExperimentDomain correctly passed to Experiment", experimentDomain != null);
+		
 		this.experimentDomain = experimentDomain;
 		environments = new ArrayList<Environment>();
 		networkNodeTemplates = new HashMap<String, NetworkNodeTemplate>();
@@ -40,7 +42,8 @@ public abstract class Experiment {
 			                                              Class classTransmissionContent) {
 		Assert.CriticalAssertTrue("NetworkNodeTemplate identifier is valid", (templateIdenifier != null) && !templateIdenifier.equals(""));
 
-		NetworkNodeTemplate newTemplate = new NetworkNodeTemplate(classInputProcess, 
+		NetworkNodeTemplate newTemplate = new NetworkNodeTemplate(experimentDomain.networkDomain,
+																  classInputProcess, 
 												  				  classOutputProcess, 
 												  				  classStorageProcess, 
 												  				  classFiringCondition, 

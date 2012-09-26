@@ -44,6 +44,8 @@ public class InputProcess extends Thread implements Observer {
 	
 	// note that here the sending node is ignored, but may be used if this class is extended.
 	public void acceptSignal(NetworkSignal signal, NetworkTransmitter sender) {
+		Log.writeForMechanisms("InputProcess: Accepted signal with datum: " + signal.getData().getDatum().getValue().toString());
+		
 		port.send(signal);
 	}
 
@@ -54,20 +56,26 @@ public class InputProcess extends Thread implements Observer {
 		
 		while (true) {
 			try {
+				Log.writeForMechanisms("InputProcess: Waiting for port to receive");
 				signalReceived = port.receive();
 				Assert.AssertTrue("dataCell is always not null", signalReceived != null);
+				Log.writeForMechanisms("InputProcess: Received signal from port with datum: " + signalReceived.getData().getDatum().getValue().toString());
 				
 				// Process
 				ProcessedData = parent.dataProcessing.processData(signalReceived.getData());
+				Log.writeForMechanisms("InputProcess: Processed data into: " + ProcessedData.getDatum().getValue().toString());
+				
 				// check that it's a different dataCell object that's returned
 				Assert.AssertTrue("Data Processing returns new data cell", signalReceived.getData().getUUID() != ProcessedData.getUUID());
 				
 				// Store
+				Log.writeForMechanisms("InputProcess: Sending data to be stored");
 				parent.storageProcess.storeDataCell(ProcessedData);
 				
 				// Add energy received (originalEnergyValue)
 				// Plus modify energy level to account for energy lost or gained in processing
 				parent.energyEconomics.offsetEnergy(2 * signalReceived.getData().getEnergy() - ProcessedData.getEnergy());
+				Log.writeForMechanisms("InputProcess: Added energy from signal");
 				
 			} catch (InterruptedException e) {/*Ignore and repeat*/}
 		}
@@ -79,9 +87,13 @@ public class InputProcess extends Thread implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		Assert.AssertTrue("Observable is Perception", arg0 instanceof Perception);
 		Assert.AssertTrue("Object is Signal", arg1 instanceof NetworkSignal);
+		
+		Log.writeForMechanisms("InputProcess: Received signal via observable - started");
+		
 		acceptSignal((NetworkSignal) arg1, (Perception) arg0);
 		
-		Log.writeForMechanisms("Received signal via observable");
+		Log.writeForMechanisms("InputProcess: Received signal via observable - finished");
+		
 	}
 	
 	

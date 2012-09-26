@@ -12,7 +12,7 @@ public abstract class DataProcessing extends Thread {
 	private class replicator extends Thread {
 		@SuppressWarnings("unused") DataProcessing newFunction;
 		public replicator(DataProcessing newFunction) { this.newFunction = newFunction; }
-		@Override public void run() { newFunction = replicate(); }
+		@Override public void run() { newFunction = replicate(); /*TODO assert all went well*/ }
 	}
 	public void replicateFunction(DataProcessing newFunction) { (new replicator(newFunction)).start(); }
 	public abstract DataProcessing replicate();

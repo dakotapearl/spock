@@ -1,4 +1,4 @@
-package experimentDomain.TestExperiment.environmentClasses;
+package environmentDomain.TestEnvironment;
 
 import networkDomain.NetworkSignal;
 import tools.errorChecking.Log;

@@ -1,4 +1,4 @@
-package experimentDomain.TestExperiment.environmentClasses;
+package environmentDomain.TestEnvironment;
 
 import environmentDomain.EnvironmentDomain;
 import environmentDomain.types.SensoryMotorSystem;

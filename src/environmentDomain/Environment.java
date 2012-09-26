@@ -1,10 +1,14 @@
 package environmentDomain;
 
+import tools.errorChecking.Assert;
+
 public abstract class Environment {
 
-	EnvironmentDomain environmentDomain;
+	public EnvironmentDomain environmentDomain;
 	
 	public Environment(EnvironmentDomain environmentDomain) {
+		Assert.AssertTrue("EnvironmentDomain correctly passed to Environment", environmentDomain != null);
+		
 		this.environmentDomain = environmentDomain;
 	}
 	

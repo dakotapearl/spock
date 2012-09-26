@@ -1,4 +1,4 @@
-package experimentDomain.TestExperiment.networkClasses;
+package networkDomain.extensions.implementations.Test;
 
 import dataDomain.DataCell;
 import networkDomain.extensions.DataProcessing;

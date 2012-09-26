@@ -14,6 +14,8 @@ import tools.errorChecking.Assert;
 
 public class NetworkNodeTemplate {
 	
+	public NetworkDomain networkDomain;
+	
 	@SuppressWarnings("rawtypes")
 	private Class classInputProcess;
 	@SuppressWarnings("rawtypes")
@@ -37,7 +39,8 @@ public class NetworkNodeTemplate {
 	private Class classTransmissionContent;
 	
 	@SuppressWarnings("rawtypes")
-	public NetworkNodeTemplate(Class classInputProcess,
+	public NetworkNodeTemplate(NetworkDomain networkDomain,
+							   Class classInputProcess,
 			                   Class classOutputProcess,
 			                   Class classStorageProcess,
 			    		       Class classFiringCondition, 
@@ -58,6 +61,10 @@ public class NetworkNodeTemplate {
 																							 		 (classLifeCycle != null) &&
 																							 		 (classTransmissionContent != null));
 		
+		Assert.AssertTrue("NetworkDomain correctly passed to NetworkNodeTemplate", networkDomain != null);
+		
+		this.networkDomain = networkDomain;
+		
 		this.classInputProcess = classInputProcess;
 		this.classOutputProcess = classOutputProcess;
 		this.classStorageProcess = classStorageProcess;
@@ -73,7 +80,8 @@ public class NetworkNodeTemplate {
 	}
 	
 	public NetworkNode newInstance() {
-		return new NetworkNode(newInputProcess(),
+		return new NetworkNode(networkDomain,
+							   newInputProcess(),
 							   newOutputProcess(),
 							   newStorageProcess(),
 				               newFiringCondition(), 

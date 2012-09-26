@@ -1,4 +1,4 @@
-package experimentDomain.TestExperiment.environmentClasses;
+package environmentDomain.TestEnvironment;
 
 import tools.errorChecking.Assert;
 import dataDomain.DataCell;

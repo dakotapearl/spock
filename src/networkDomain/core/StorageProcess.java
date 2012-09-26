@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import tools.errorChecking.Log;
+
 import dataDomain.DataCell;
 import environmentDomain.Action;
 import networkDomain.NetworkNode;
@@ -47,6 +49,9 @@ public class StorageProcess {
 	public void storeDataCell(DataCell dataCell) {
 		synchronized (this) {
 			data.add(dataCell);
+			
+			Log.writeForMechanisms("StorageProcess: storing data: " + dataCell.getDatum().getValue().toString());
+			
 			notifyAll();
 		}
 		parent.firingCondition.refresh(); // Not sure about this
@@ -55,6 +60,8 @@ public class StorageProcess {
 	public DataCell retrieveDataCell() throws InterruptedException {
 		synchronized (this) {
 			while (data.size() == 0) wait();
+			
+			Log.writeForMechanisms("StorageProcess: retreiving data:" + data.peek().getDatum().getValue().toString());
 			
 			return data.remove();
 		}

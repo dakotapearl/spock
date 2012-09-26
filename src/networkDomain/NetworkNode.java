@@ -1,5 +1,6 @@
 package networkDomain;
 
+import tools.errorChecking.Assert;
 import networkDomain.core.InputProcess;
 import networkDomain.core.OutputProcess;
 import networkDomain.core.StorageProcess;
@@ -19,6 +20,8 @@ import networkDomain.extensions.TransmissionContent;
  */
 public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 	
+	public NetworkDomain networkDomain;
+	
 	public InputProcess inputProcess;
 	public OutputProcess outputProcess;
 	public StorageProcess storageProcess;
@@ -31,7 +34,8 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 	public DataProcessing dataProcessing;
 	public TransmissionContent transmissionContent;
 	
-	public NetworkNode(InputProcess inputProcess,
+	public NetworkNode(NetworkDomain networkDomain,
+			           InputProcess inputProcess,
 					   OutputProcess outputProcess,
 					   StorageProcess storageProcess,
 					   FiringCondition firingCondition, 
@@ -41,7 +45,19 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 					   LifeCycle lifeCycle, 
 					   DataProcessing dataProcessing, 
 					   TransmissionContent transmissionContent) {
-		// TODO assert none are null.
+		Assert.CriticalAssertTrue("Non-null classes were passed to NetworkNode", (inputProcess != null) &&
+				 																 (outputProcess != null) &&	
+				 																 (storageProcess != null) &&
+				 																 (firingCondition != null) &&
+				 																 (targetSelection != null) &&
+																				 (geneticSequence != null) &&
+																				 (energyEconomics != null) &&
+																				 (dataProcessing != null) &&
+																				 (lifeCycle != null) &&
+																				 (transmissionContent != null));
+		Assert.AssertTrue("NetworkDomain correctly passed to NetworkNode", networkDomain != null);
+		
+		this.networkDomain = networkDomain;
 		
 		this.inputProcess = inputProcess;
 		this.outputProcess = outputProcess;
@@ -89,7 +105,8 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 	public NetworkNode replicateNode() {
 		
 		// Make new node and direct all vital functions to current node
-		NetworkNode newNode = new NetworkNode(inputProcess, 
+		NetworkNode newNode = new NetworkNode(networkDomain,
+				                              inputProcess, 
 				                              outputProcess, 
 				                              storageProcess, 
 				                              firingCondition, 
@@ -101,11 +118,20 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 				                              transmissionContent);
 		
 		// Start new node
-		// ?
+		newNode.start();
 		
 		// Let node functions divide themselves and direct the new version to the new node
+		inputProcess.replicateFunction(newNode.inputProcess);
+		outputProcess.replicateFunction(newNode.outputProcess);
+		storageProcess.replicateFunction(newNode.storageProcess);
 		
-		
+		firingCondition.replicateFunction(newNode.firingCondition);
+		targetSelection.replicateFunction(newNode.targetSelection);
+		geneticSequence.replicateFunction(newNode.geneticSequence);
+		energyEconomics.replicateFunction(newNode.energyEconomics);
+		lifeCycle.replicateFunction(newNode.lifeCycle);
+		dataProcessing.replicateFunction(newNode.dataProcessing);
+		transmissionContent.replicateFunction(newNode.transmissionContent);
 		
 		return newNode;
 	}

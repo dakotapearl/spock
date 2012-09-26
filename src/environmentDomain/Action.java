@@ -13,6 +13,8 @@ public abstract class Action implements NetworkTargetable {
 	
 	@Override
 	public void acceptSignal(NetworkSignal signal, NetworkTransmitter sender) {
+		Log.writeForMechanisms("Action: Accepted signal with datum: " + signal.getData().getDatum().getValue().toString());
+		
 		performAction(signal);
 	}
 	

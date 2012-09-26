@@ -2,6 +2,7 @@ package experimentDomain;
 
 import networkDomain.NetworkDomain;
 import environmentDomain.EnvironmentDomain;
+import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
 
 public class ExperimentDomain {
@@ -10,7 +11,8 @@ public class ExperimentDomain {
 	public NetworkDomain networkDomain;
 	
 	public void initialise() {
-		// check that all relevant domains are linked
+		Assert.AssertTrue("ExperimentDomain: EnvironmentDomain is connected", environmentDomain != null);
+		Assert.AssertTrue("ExperimentDomain: NetworkDomain is connected", networkDomain != null);
 		
 		Log.write("Experiment domain initialised");
 	}

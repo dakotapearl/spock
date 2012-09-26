@@ -54,6 +54,7 @@ public class OutputProcess extends Thread {
 				Log.writeForMechanisms("OutputProcess: Selected target");
 				
 				// Fire
+				Log.write("Node firing signal with datum: " + signal.getData().getDatum().getValue().toString());
 				target.acceptSignal(signal, parent);
 				
 				Log.writeForMechanisms("OutputProcess: Sent signal");

@@ -8,22 +8,21 @@ import goalDomain.Goal;
 
 import java.util.ArrayList;
 
+import tools.errorChecking.Assert;
+
 public abstract class SensoryMotorSystem extends Environment {
 	
-	protected EnvironmentDomain environmentDomain;
 	protected ArrayList<Action> actions;
 	protected ArrayList<Perception> perceptions;
 	protected ArrayList<Goal> goals;
 	
 	public SensoryMotorSystem(EnvironmentDomain environmentDomain) {
 		super(environmentDomain);
+		Assert.AssertTrue("EnvironmentDomain correctly passed to SensoryMotorSystem", environmentDomain != null);
+		
 		actions = new ArrayList<Action>();
 		perceptions = new ArrayList<Perception>();
 		goals = new ArrayList<Goal>();
-	}
-	
-	public void setEnvironmentsDomain(EnvironmentDomain environmentDomain) {
-		this.environmentDomain = environmentDomain;
 	}
 	
 	public ArrayList<Action> getActions() {
@@ -39,6 +38,8 @@ public abstract class SensoryMotorSystem extends Environment {
 	}
 	
 	public void start() {
+		Assert.AssertTrue("SensoryMotorSystem started with environmentDomain not null", environmentDomain != null);
+		
 		for (Goal g : goals)
 			g.start();
 		for (Action a : actions)

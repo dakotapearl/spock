@@ -1,6 +1,8 @@
 package environmentDomain;
 
 import java.util.Observable;
+
+import tools.errorChecking.Log;
 import networkDomain.NetworkSignal;
 import networkDomain.NetworkTransmitter;
 
@@ -17,6 +19,8 @@ public abstract class Perception extends Observable implements NetworkTransmitte
 	}
 	
 	public void sendSignalToNetwork(NetworkSignal signal) {
+		Log.writeForMechanisms("Perception sent signal with datum: " + signal.getData().getDatum().getValue().toString());
+		
 		setChanged();
 		notifyObservers(signal);
 	}

@@ -4,6 +4,7 @@ import networkDomain.NetworkDomain;
 import dataDomain.DataDomain;
 import experimentDomain.ExperimentDomain;
 import goalDomain.GoalDomain;
+import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
 
 public class EnvironmentDomain {
@@ -14,7 +15,10 @@ public class EnvironmentDomain {
 	public GoalDomain goalDomain;
 	
 	public void initialise() {
-		// check that all relevant domains are linked
+		Assert.AssertTrue("EnvironmentDomain: ExperimentDomain is connected", experimentDomain != null);
+		Assert.AssertTrue("EnvironmentDomain: NetworkDomain is connected", networkDomain != null);
+		Assert.AssertTrue("EnvironmentDomain: DataDomain is connected", dataDomain != null);
+		Assert.AssertTrue("EnvironmentDomain: GoalDomain is connected", goalDomain != null);
 		
 		Log.write("Environment domain initialised");
 	}

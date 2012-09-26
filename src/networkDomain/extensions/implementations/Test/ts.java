@@ -1,4 +1,4 @@
-package experimentDomain.TestExperiment.networkClasses;
+package networkDomain.extensions.implementations.Test;
 
 import networkDomain.NetworkSignal;
 import networkDomain.NetworkTargetable;

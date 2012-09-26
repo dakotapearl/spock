@@ -1,24 +1,26 @@
 package experimentDomain.Binary;
 
+import tools.errorChecking.Assert;
 import networkDomain.NetworkNode;
 import networkDomain.core.InputProcess;
 import networkDomain.core.OutputProcess;
 import networkDomain.core.StorageProcess;
+import networkDomain.extensions.implementations.Test.dp;
+import networkDomain.extensions.implementations.Test.ee;
+import networkDomain.extensions.implementations.Test.fc;
+import networkDomain.extensions.implementations.Test.gs;
+import networkDomain.extensions.implementations.Test.lc;
+import networkDomain.extensions.implementations.Test.tc;
+import networkDomain.extensions.implementations.Test.ts;
 import environmentDomain.binary.AND.BinaryANDEnvironment;
 import experimentDomain.Experiment;
 import experimentDomain.ExperimentDomain;
-import experimentDomain.TestExperiment.networkClasses.dp;
-import experimentDomain.TestExperiment.networkClasses.ee;
-import experimentDomain.TestExperiment.networkClasses.fc;
-import experimentDomain.TestExperiment.networkClasses.gs;
-import experimentDomain.TestExperiment.networkClasses.lc;
-import experimentDomain.TestExperiment.networkClasses.tc;
-import experimentDomain.TestExperiment.networkClasses.ts;
 
 public class BinaryAND extends Experiment {
 
 	public BinaryAND(ExperimentDomain experimentDomain) {
 		super(experimentDomain);
+		Assert.AssertTrue("ExperimentDomain correctly passed to BinaryAND", experimentDomain != null);
 	}
 
 	@Override
