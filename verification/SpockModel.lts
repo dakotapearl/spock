@@ -1,0 +1,46 @@
+const N = 3
+const C = 2
+const E = 2
+const FALSE = 0
+const TRUE = 1
+range Nodes = 1..N
+range Cont = 1..C
+range Energy = 0..E
+range B = FALSE..TRUE
+
+FiringCondition = FiringCondition[FALSE],
+FiringCondition[b:B] = ( fc.isReadyToFire[b] -> FiringCondition[b]
+                       | when (b==TRUE) fc.fire -> ee.use -> FiringCondition[b]
+                       | fc.setReadyToFire -> FiringCondition[TRUE]
+                       | fc.setNotReadyToFire -> FiringCondition[FALSE]).
+
+TargetSelection = (ts.selectTarget[Nodes] -> TargetSelection).
+
+TransmissionContent = (tc.findContent -> s.getData[c:Cont] -> tc.returnContent[c] -> TransmissionContent).
+
+//GeneticSequence = (getProperty -> GeneticSequence).
+
+//CellularLifeCycle = CellularLifeCycle[FALSE],
+//CellularLifeCycle[d:B] = ( readyToDivide[d] -> CellularLifeCycle[d]
+//                         | setReadyToDivide -> CellularLifeCycle[TRUE]
+//                         | setNotReadyToDivide -> CellularLifeCycle[FALSE]).
+
+DataProcessing = (dp.process[c:Cont] -> ee.receive -> dp.processed[c%C+1] -> DataProcessing).
+
+EnergyEconomics = EnergyEconomics[1],
+EnergyEconomics[e:Energy] = ( when (e<E) ee.receive -> EnergyEconomics[e+1]
+                            | when (e>0) fc.setReadyToFire -> EnergyEconomics[e]
+                            | when (e>0) ee.use -> EnergyEconomics[e-1]).
+
+InputProcess = (n[n:Nodes].transmission[c:Cont] -> dp.process[c] -> dp.processed[d:Cont] -> s.setData[d] -> InputProcess).
+
+StorageProcess = StorageProcess[1],
+StorageProcess[c:Cont] = ( s.setData[d:Cont] -> StorageProcess[d]
+                         | s.getData[c] -> StorageProcess[c]).
+
+OutputProcess = (fc.isReadyToFire[b:B] -> if (b==TRUE) then FIRE else OutputProcess),
+FIRE = (ts.selectTarget[n:Nodes] -> tc.findContent -> tc.returnContent[c:Cont] -> fc.fire -> n[n].sendTransmission[c] -> OutputProcess).
+
+||NODES = (n[Nodes]:FiringCondition || n[Nodes]:TargetSelection || n[Nodes]:TransmissionContent || n[Nodes]:DataProcessing || 
+//          n[Nodes]:GeneticSequence || n[Nodes]:CellularLifeCycle || 
+          n[Nodes]:InputProcess || n[Nodes]:StorageProcess || n[Nodes]:OutputProcess || n[Nodes]:EnergyEconomics) /{n[n:Nodes].n[m:Nodes].transmission[c:Cont]/n[m].n[n].sendTransmission[c]}.
