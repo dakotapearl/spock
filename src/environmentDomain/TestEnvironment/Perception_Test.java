@@ -9,6 +9,9 @@ import environmentDomain.Perception;
 import networkDomain.NetworkSignal;
 import networkDomain.signals.ImpulseSignal;
 
+/**
+ * @author Loren Chorley
+ */
 public class Perception_Test extends Perception {
 
 	public Perception_Test(EnvironmentDomain environmentDomain) {

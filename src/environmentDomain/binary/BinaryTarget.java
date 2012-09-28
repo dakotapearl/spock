@@ -1,7 +1,8 @@
 package environmentDomain.binary;
 
-import dataDomain.Datum;
-
+/**
+ * @author Loren Chorley
+ */
 public interface BinaryTarget {
 	
 	public void acceptBit(int channel, boolean bit);

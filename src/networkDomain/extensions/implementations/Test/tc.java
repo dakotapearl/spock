@@ -5,6 +5,9 @@ import networkDomain.NetworkSignal;
 import networkDomain.extensions.TransmissionContent;
 import networkDomain.signals.ImpulseSignal;
 
+/**
+ * @author Loren Chorley
+ */
 public class tc extends TransmissionContent {
 
 	@Override
@@ -30,6 +33,12 @@ public class tc extends TransmissionContent {
 	public TransmissionContent replicate() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

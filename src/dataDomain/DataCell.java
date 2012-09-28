@@ -5,6 +5,9 @@ import java.util.UUID;
 import tools.errorChecking.Assert;
 //import tools.errorChecking.Log;
 
+/**
+ * @author Loren Chorley
+ */
 public class DataCell {
 	
 	//private int dimension;

@@ -6,6 +6,9 @@ import java.util.HashMap;
 import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
 
+/**
+ * @author Loren Chorley
+ */
 public class DataDomain {
 
 	public static final int DATUM_COUNT = 10;

@@ -2,6 +2,9 @@ package dataDomain;
 
 import tools.errorChecking.Log;
 
+/**
+ * @author Loren Chorley
+ */
 public class Datum {
 	
 	private int type;

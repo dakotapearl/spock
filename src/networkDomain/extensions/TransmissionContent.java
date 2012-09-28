@@ -3,8 +3,12 @@ package networkDomain.extensions;
 import networkDomain.NetworkNode;
 import networkDomain.NetworkSignal;
 
-public abstract class TransmissionContent extends Thread {
+/**
+ * @author Loren Chorley
+ */
+public abstract class TransmissionContent implements Runnable {
 	
+	public Thread thread = new Thread(this);
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
 	

@@ -3,6 +3,9 @@ package networkDomain.signals;
 import networkDomain.NetworkSignal;
 import dataDomain.DataCell;
 
+/**
+ * @author Loren Chorley
+ */
 public class ImpulseSignal implements NetworkSignal {
 
 	private DataCell dataCell;

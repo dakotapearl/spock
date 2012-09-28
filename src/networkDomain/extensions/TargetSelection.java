@@ -5,12 +5,11 @@ import networkDomain.NetworkSignal;
 import networkDomain.NetworkTargetable;
 
 /**
- * Instantiated once for whole network
- * @author Loren
- *
+ * @author Loren Chorley
  */
-public abstract class TargetSelection extends Thread {
+public abstract class TargetSelection implements Runnable {
 	
+	public Thread thread = new Thread(this);
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
 	

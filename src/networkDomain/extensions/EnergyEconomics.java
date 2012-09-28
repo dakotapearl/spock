@@ -3,12 +3,11 @@ package networkDomain.extensions;
 import networkDomain.NetworkNode;
 
 /**
- * Instantiated once for whole network
- * @author Loren
- *
+ * @author Loren Chorley
  */
-public abstract class EnergyEconomics extends Thread {
+public abstract class EnergyEconomics implements Runnable {
 
+	public Thread thread = new Thread(this);
 	private int energy = 0;
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }

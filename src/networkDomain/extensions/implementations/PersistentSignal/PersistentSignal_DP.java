@@ -1,9 +1,18 @@
-package networkDomain.extensions.implementations.DE1;
+package networkDomain.extensions.implementations.PersistentSignal;
 
 import dataDomain.DataCell;
 import networkDomain.extensions.DataProcessing;
 
-public class DP_DE1 extends DataProcessing {
+/**
+ * @author Loren Chorley
+ */
+public class PersistentSignal_DP extends DataProcessing {
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public DataCell processData(DataCell dataCell) {

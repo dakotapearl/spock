@@ -3,6 +3,9 @@ package environmentDomain.TestEnvironment;
 import environmentDomain.EnvironmentDomain;
 import environmentDomain.types.SensoryMotorSystem;
 
+/**
+ * @author Loren Chorley
+ */
 public class TestingSystem extends SensoryMotorSystem {
 
 	public TestingSystem(EnvironmentDomain environmentDomain) {

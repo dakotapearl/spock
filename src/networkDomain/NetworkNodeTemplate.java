@@ -12,6 +12,9 @@ import networkDomain.extensions.TargetSelection;
 import networkDomain.extensions.TransmissionContent;
 import tools.errorChecking.Assert;
 
+/**
+ * @author Loren Chorley
+ */
 public class NetworkNodeTemplate {
 	
 	public NetworkDomain networkDomain;

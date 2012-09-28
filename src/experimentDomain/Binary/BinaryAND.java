@@ -16,6 +16,9 @@ import environmentDomain.binary.AND.BinaryANDEnvironment;
 import experimentDomain.Experiment;
 import experimentDomain.ExperimentDomain;
 
+/**
+ * @author Loren Chorley
+ */
 public class BinaryAND extends Experiment {
 
 	public BinaryAND(ExperimentDomain experimentDomain) {

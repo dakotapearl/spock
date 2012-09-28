@@ -2,6 +2,9 @@ package goalDomain;
 
 import tools.errorChecking.Log;
 
+/**
+ * @author Loren Chorley
+ */
 public class GoalDomain {
 	
 	public void initialise() {

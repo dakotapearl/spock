@@ -9,6 +9,9 @@ import networkDomain.NetworkNodeTemplate;
 import environmentDomain.Environment;
 import environmentDomain.EnvironmentDomain;
 
+/**
+ * @author Loren Chorley
+ */
 public abstract class Experiment {
 	
 	public ExperimentDomain experimentDomain;

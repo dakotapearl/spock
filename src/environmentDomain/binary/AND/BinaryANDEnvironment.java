@@ -12,6 +12,9 @@ import environmentDomain.binary.BitAction;
 import environmentDomain.binary.BitPerception;
 import environmentDomain.types.SensoryMotorSystem;
 
+/**
+ * @author Loren Chorley
+ */
 public class BinaryANDEnvironment extends SensoryMotorSystem implements BinaryTarget {
 	
 	boolean bit1 = false;

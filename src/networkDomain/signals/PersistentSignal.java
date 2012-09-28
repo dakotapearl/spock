@@ -5,6 +5,9 @@ import networkDomain.NetworkSignal;
 import networkDomain.NetworkTargetable;
 import networkDomain.NetworkTransmitter;
 
+/**
+ * @author Loren Chorley
+ */
 public class PersistentSignal implements NetworkSignal, NetworkTargetable {
 
 	@Override

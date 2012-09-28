@@ -3,8 +3,12 @@ package networkDomain.extensions;
 import networkDomain.NetworkNode;
 import dataDomain.DataCell;
 
-public abstract class DataProcessing extends Thread {
+/**
+ * @author Loren Chorley
+ */
+public abstract class DataProcessing implements Runnable {
 
+	public Thread thread = new Thread(this);
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
 	public abstract DataCell processData(DataCell dataCell); // Make sure that it's a different object that gets returned

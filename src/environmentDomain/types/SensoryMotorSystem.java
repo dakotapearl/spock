@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 import tools.errorChecking.Assert;
 
+/**
+ * @author Loren Chorley
+ */
 public abstract class SensoryMotorSystem extends Environment {
 	
 	protected ArrayList<Action> actions;

@@ -10,6 +10,9 @@ import dataDomain.DataCell;
 import environmentDomain.Action;
 import networkDomain.NetworkNode;
 
+/**
+ * @author Loren Chorley
+ */
 public class StorageProcess {
 	
 	// Storage of data, continuous signals, and other nodes that are connected to this one, including actions

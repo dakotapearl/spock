@@ -6,6 +6,9 @@ import tools.errorChecking.Log;
 import networkDomain.NetworkSignal;
 import environmentDomain.Action;
 
+/**
+ * @author Loren Chorley
+ */
 public class BitAction extends Action {
 
 	BinaryTarget target;

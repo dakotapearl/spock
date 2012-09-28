@@ -5,6 +5,9 @@ import environmentDomain.EnvironmentDomain;
 import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
 
+/**
+ * @author Loren Chorley
+ */
 public class ExperimentDomain {
 
 	public EnvironmentDomain environmentDomain;

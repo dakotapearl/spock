@@ -13,10 +13,7 @@ import networkDomain.extensions.TargetSelection;
 import networkDomain.extensions.TransmissionContent;
 
 /**
- * 
- * 
  * @author Loren Chorley
- *
  */
 public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 	
@@ -90,13 +87,13 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 	}
 	
 	public void start() {
-		firingCondition.start();
-		targetSelection.start();
-		geneticSequence.start();
-		energyEconomics.start();
-		lifeCycle.start();
-		dataProcessing.start();
-		transmissionContent.start();
+		firingCondition.thread.start();
+		targetSelection.thread.start();
+		geneticSequence.thread.start();
+		energyEconomics.thread.start();
+		lifeCycle.thread.start();
+		dataProcessing.thread.start();
+		transmissionContent.thread.start();
 		
 		inputProcess.start();
 		outputProcess.start();

@@ -3,12 +3,11 @@ package networkDomain.extensions;
 import networkDomain.NetworkNode;
 
 /**
- * Instantiated for each node
- * @author Loren
- *
+ * @author Loren Chorley
  */
-public abstract class FiringCondition extends Thread {
+public abstract class FiringCondition implements Runnable {
 	
+	public Thread thread = new Thread(this);
 	private boolean ready = false;
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }

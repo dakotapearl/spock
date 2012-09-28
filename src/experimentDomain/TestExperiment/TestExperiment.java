@@ -13,6 +13,9 @@ import environmentDomain.TestEnvironment.TestingSystem;
 import experimentDomain.Experiment;
 import experimentDomain.ExperimentDomain;
 
+/**
+ * @author Loren Chorley
+ */
 public class TestExperiment extends Experiment {
 
 	public TestExperiment(ExperimentDomain experimentDomain) {

@@ -6,8 +6,9 @@ import tools.errorChecking.Log;
 import networkDomain.NetworkSignal;
 import networkDomain.NetworkTransmitter;
 
-// Observable?
-// Separate process in InputProcess to deal with observables
+/**
+ * @author Loren Chorley
+ */
 public abstract class Perception extends Observable implements NetworkTransmitter {
 	
 	public EnvironmentDomain environmentDomain;

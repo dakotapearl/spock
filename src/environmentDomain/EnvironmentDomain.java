@@ -7,6 +7,9 @@ import goalDomain.GoalDomain;
 import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
 
+/**
+ * @author Loren Chorley
+ */
 public class EnvironmentDomain {
 	
 	public ExperimentDomain experimentDomain;

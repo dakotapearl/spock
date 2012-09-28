@@ -1,4 +1,4 @@
-package networkDomain.extensions.implementations.Test;
+package networkDomain.extensions.implementations.NeuralEcosystem;
 
 import networkDomain.NetworkSignal;
 import networkDomain.NetworkTargetable;
@@ -7,13 +7,12 @@ import networkDomain.extensions.TargetSelection;
 /**
  * @author Loren Chorley
  */
-public class ts extends TargetSelection {
+public class NeuralEcosystem_TS extends TargetSelection {
 
 	@Override
-	public NetworkTargetable selectTarget(NetworkSignal signal) {
-		//tools.Log.write("Test Extension: TargetingSelection received selectTarget command");
+	public void run() {
+		// TODO Auto-generated method stub
 		
-		return parent.storageProcess.getAction(0);
 	}
 
 	@Override
@@ -23,9 +22,9 @@ public class ts extends TargetSelection {
 	}
 
 	@Override
-	public void run() {
+	public NetworkTargetable selectTarget(NetworkSignal signal) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }

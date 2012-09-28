@@ -5,6 +5,9 @@ import networkDomain.NetworkNode;
 import networkDomain.NetworkSignal;
 import networkDomain.NetworkTargetable;
 
+/**
+ * @author Loren Chorley
+ */
 public class OutputProcess extends Thread {
 	
 	NetworkNode parent;

@@ -5,8 +5,9 @@ import java.util.Observer;
 
 import goalDomain.Goal;
 
-/*
+/**
  * Note: May be combined with GeneralGoal for better flexibility
+ * @author Loren Chorley
  */
 public abstract class NotifyGoal extends Observable implements Goal {
 

@@ -1,5 +1,8 @@
 package dataDomain;
 
+/**
+ * @author Loren Chorley
+ */
 public interface DataClientInterface {
 
 	public Datum getDatum(int type, Object value);

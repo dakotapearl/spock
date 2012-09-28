@@ -9,6 +9,9 @@ import environmentDomain.EnvironmentDomain;
 import experimentDomain.ExperimentDomain;
 import goalDomain.GoalDomain;
 
+/**
+ * @author Loren Chorley
+ */
 public class NetworkDomain {
 	
 	public EnvironmentDomain environmentDomain;

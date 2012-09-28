@@ -2,8 +2,12 @@ package networkDomain.extensions;
 
 import networkDomain.NetworkNode;
 
-public abstract class LifeCycle extends Thread {
+/**
+ * @author Loren Chorley
+ */
+public abstract class LifeCycle implements Runnable {
 	
+	public Thread thread = new Thread(this);
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
 	

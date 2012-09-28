@@ -1,8 +1,17 @@
-package networkDomain.extensions.implementations.DE1;
+package networkDomain.extensions.implementations.PersistentSignal;
 
 import networkDomain.extensions.FiringCondition;
 
-public class FC_DE1 extends FiringCondition {
+/**
+ * @author Loren Chorley
+ */
+public class PersistentSignal_FC extends FiringCondition {
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public FiringCondition replicate() {

@@ -2,6 +2,9 @@ package environmentDomain;
 
 import tools.errorChecking.Assert;
 
+/**
+ * @author Loren Chorley
+ */
 public abstract class Environment {
 
 	public EnvironmentDomain environmentDomain;

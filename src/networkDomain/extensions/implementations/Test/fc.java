@@ -2,7 +2,9 @@ package networkDomain.extensions.implementations.Test;
 
 import networkDomain.extensions.FiringCondition;
 
-//TODO: implements timer
+/**
+ * @author Loren Chorley
+ */
 public class fc extends FiringCondition {
 	
 	public void refresh() {
@@ -16,6 +18,12 @@ public class fc extends FiringCondition {
 	public FiringCondition replicate() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

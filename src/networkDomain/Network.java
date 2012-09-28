@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import tools.errorChecking.Assert;
 
+/**
+ * @author Loren Chorley
+ */
 public class Network {
 	
 	public ArrayList<NetworkNode> nodes;

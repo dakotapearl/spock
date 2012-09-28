@@ -6,6 +6,9 @@ import tools.errorChecking.Assert;
 import static java.lang.Math.*;
 import goalDomain.flavours.SpikeAndDecayGoal;
 
+/**
+ * @author Loren Chorley
+ */
 public class ExponentialDecayGoal extends SpikeAndDecayGoal {
 
 	//Decay passes through the point:

@@ -11,6 +11,9 @@ import tools.concurrency.Port;
 import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
 
+/**
+ * @author Loren Chorley
+ */
 public class InputProcess extends Thread implements Observer {
 	
 	private Port<NetworkSignal> port;

@@ -4,6 +4,9 @@ import goalDomain.Goal;
 
 import java.util.Date;
 
+/**
+ * @author Loren Chorley
+ */
 public abstract class SpikeAndDecayGoal implements Goal {
 
 	protected double lastReward;

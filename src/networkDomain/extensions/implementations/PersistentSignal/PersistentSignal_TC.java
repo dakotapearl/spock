@@ -1,9 +1,18 @@
-package networkDomain.extensions.implementations.DE1;
+package networkDomain.extensions.implementations.PersistentSignal;
 
 import networkDomain.NetworkSignal;
 import networkDomain.extensions.TransmissionContent;
 
-public class TC_DE1 extends TransmissionContent {
+/**
+ * @author Loren Chorley
+ */
+public class PersistentSignal_TC extends TransmissionContent {
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public TransmissionContent replicate() {

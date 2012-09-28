@@ -5,6 +5,9 @@ import networkDomain.NetworkTargetable;
 import networkDomain.NetworkTransmitter;
 import tools.errorChecking.Log;
 
+/**
+ * @author Loren Chorley
+ */
 public abstract class Action implements NetworkTargetable {
 
 	public Action() {

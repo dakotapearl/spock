@@ -10,6 +10,9 @@ import experimentDomain.Binary.BinaryAND;
 import experimentDomain.TestExperiment.TestExperiment;
 import networkDomain.*;
 
+/**
+ * @author Loren Chorley
+ */
 public class MainSpock {
 	
 	public void initialise() {
