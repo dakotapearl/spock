@@ -64,13 +64,11 @@ public class DataDomain {
 	public static final int LETTER_SHAPE_MORE_ROUNDED = 0;
 	public static final int LETTER_SHAPE_MORE_SHARP_EDGED = 1;
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	private static ArrayList[] data;
 	private static HashMap<Long, Datum> dataByUID;
 	
-	private static boolean isSetup = false;
-	
-	private static void setup() {
+	private void setup() {
 
 		data = new ArrayList[DATUM_COUNT];
 		dataByUID = new HashMap<Long,Datum>();
@@ -85,16 +83,13 @@ public class DataDomain {
 		data[DATUM_TYPE_LETTER] = new ArrayList<Integer>();
 		data[DATUM_TYPE_LETTER_SHAPE] = new ArrayList<Integer>();
 		data[DATUM_TYPE_LETTER_HEIGHT] = new ArrayList<Integer>();
-		
-		isSetup = true;
+
 	}
 	
 	/**
 	 * @return instantiated datum or null if not instantiated
 	 */
-	private static Datum isDatumInstantiated(int type, Object value) {
-		if (!isSetup)
-			setup();
+	private Datum isDatumInstantiated(int type, Object value) {
 		
 		int i = data[type].indexOf(value);
 		if (i == -1) {
@@ -105,9 +100,7 @@ public class DataDomain {
 		
 	}
 	
-	private static Datum isDatumInstantiated(long uniqueID) {
-		if (!isSetup)
-			setup();
+	private Datum isDatumInstantiated(long uniqueID) {
 		
 		if (dataByUID.containsKey(uniqueID)) {
 			return dataByUID.get(uniqueID);
@@ -118,22 +111,18 @@ public class DataDomain {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private static Datum instantiateDatum(int type, Object value) {
-		if (!isSetup)
-			setup();
+	private Datum instantiateDatum(int type, Object value) {
 		
 		// For now there is only a uniform energy measure.
 		// TODO Define structs in a separate class to property manage data properties
-		Datum d = new Datum(type, value, 1); 
+		Datum d = new Datum(type, value, 1, generateUniqueID()); 
 		data[type].add(d);
 		dataByUID.put(d.getUniqueID(), d);
 		return d;
 		
 	}
 	
-	public static Datum getDatumStatic(int type, Object value) {
-		if (!isSetup)
-			setup();
+	public Datum getDatum(int type, Object value) {
 		
 		Datum d = isDatumInstantiated(type, value);
 		if (d == null) {
@@ -144,10 +133,8 @@ public class DataDomain {
 		
 	}
 	
-	public static Datum getDatumStatic(long uniqueID) {
-		if (!isSetup)
-			setup();
-		
+	public Datum getDatum(long uniqueID) {
+
 		Datum d = isDatumInstantiated(uniqueID);
 		if (d == null) {
 			return null;
@@ -159,7 +146,7 @@ public class DataDomain {
 	
 	private static long lastID = 0;
 	
-	public static Long generateUniqueIDStatic() {
+	public Long generateUniqueID() {
 		long ID = lastID + 1;
 		
 		if (ID == 0) {
@@ -170,19 +157,21 @@ public class DataDomain {
 		}
 	}
 
-	public Long generateUniqueID() {
+	/*public Long generateUniqueID() {
 		return generateUniqueIDStatic();
-	}
+	}*/
 
-	public Datum getDatum(int type, Object value) {
+	/*public Datum getDatum(int type, Object value) {
 		return getDatumStatic(type, value);
 	}
 
 	public Datum getDatum(long uniqueID) {
 		return getDatumStatic(uniqueID);
-	}
+	}*/
 
 	public void initialise() {
+		setup();
+		
 		Log.write("Data domain initialised");
 	}
 	

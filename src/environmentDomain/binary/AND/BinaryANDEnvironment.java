@@ -1,6 +1,7 @@
 package environmentDomain.binary.AND;
 
 import networkDomain.signals.ImpulseSignal;
+import tools.concurrency.Port;
 import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
 import dataDomain.DataCell;
@@ -20,6 +21,7 @@ public class BinaryANDEnvironment extends SensoryMotorSystem implements BinaryTa
 	boolean bit1 = false;
 	boolean bit2 = false;
 	boolean result = false;
+	Port<Boolean> actionsPerformed;
 	
 	public BinaryANDEnvironment(EnvironmentDomain environmentDomain) {
 		super(environmentDomain);
@@ -28,11 +30,23 @@ public class BinaryANDEnvironment extends SensoryMotorSystem implements BinaryTa
 		actions.add(new BitAction(this, 1));
 		actions.add(new BitAction(this, 2));
 		perceptions.add(new BitPerception(environmentDomain));
+		actionsPerformed = new Port<Boolean>();
 	}
 
 	@Override
 	public void startEnvironment() {
-		refresh();
+		boolean bitReveived;
+		while (true) {
+			refresh();
+			
+			try {
+				actionsPerformed.receive();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	@Override

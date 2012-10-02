@@ -2,12 +2,13 @@ package networkDomain;
 
 import java.util.ArrayList;
 
+import metricDomain.MetricDomain;
+
 import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
 import dataDomain.DataDomain;
 import environmentDomain.EnvironmentDomain;
 import experimentDomain.ExperimentDomain;
-import goalDomain.GoalDomain;
 
 /**
  * @author Loren Chorley
@@ -17,14 +18,14 @@ public class NetworkDomain {
 	public EnvironmentDomain environmentDomain;
 	public ExperimentDomain experimentDomain;
 	public DataDomain dataDomain;
-	public GoalDomain goalDomain;
+	public MetricDomain metricDomain;
 	ArrayList<NetworkNode> network;
 	
 	public void initialise() {
 		Assert.AssertTrue("NetworkDomain: EnvironmentDomain is connected", environmentDomain != null);
 		Assert.AssertTrue("NetworkDomain: ExperimentDomain is connected", experimentDomain != null);
 		Assert.AssertTrue("NetworkDomain: DataDomain is connected", dataDomain != null);
-		Assert.AssertTrue("NetworkDomain: GoalDomain is connected", goalDomain != null);
+		Assert.AssertTrue("NetworkDomain: MetricDomain is connected", metricDomain != null);
 		
 		Log.write("Network domain initialised");
 	}
@@ -41,8 +42,8 @@ public class NetworkDomain {
 		this.dataDomain = dataDomain;
 	}
 
-	public void setGoalDomain(GoalDomain goalDomain) {
-		this.goalDomain = goalDomain;
+	public void setMetricDomain(MetricDomain metricDomain) {
+		this.metricDomain = metricDomain;
 	}
 	
 	public ArrayList<NetworkNode> getNetwork() {

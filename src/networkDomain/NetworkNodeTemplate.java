@@ -13,6 +13,7 @@ import networkDomain.extensions.TransmissionContent;
 import tools.errorChecking.Assert;
 
 /**
+ * Allows for the creation of an arbitrary number of nodes with the same behaviour
  * @author Loren Chorley
  */
 public class NetworkNodeTemplate {

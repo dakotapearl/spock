@@ -1,6 +1,7 @@
 package networkDomain.exceptions;
 
 /**
+ * deprecated
  * @author Loren Chorley
  */
 public class InvalidNetworkException extends Exception {

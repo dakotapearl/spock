@@ -1,6 +1,7 @@
-package goalDomain.flavours;
+package metricDomain.goals.flavours;
 
-import goalDomain.Goal;
+import metricDomain.goals.Goal;
+
 
 /**
  * @author Loren Chorley

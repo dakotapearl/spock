@@ -12,15 +12,14 @@ public class Datum {
 	private long uniqueID;
 	private int energyMeasure;
 	
-	public Datum(int type, Object value, int energyMeasure) {
+	public Datum(int type, Object value, int energyMeasure, long uniqueID) {
 		this.type = type;
 		this.value = value;
 		this.energyMeasure = energyMeasure;
+		this.uniqueID = uniqueID; 
 		
 		Log.created(this.getClass());
 		Log.write("Value: " + value.toString());
-		
-		uniqueID = DataDomain.generateUniqueIDStatic();
 		
 	}
 	

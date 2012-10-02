@@ -1,5 +1,5 @@
 
-import goalDomain.GoalDomain;
+import metricDomain.MetricDomain;
 import interfaceDomain.InterfaceDomain;
 import tools.errorChecking.Log;
 import dataDomain.DataDomain;
@@ -7,7 +7,6 @@ import environmentDomain.EnvironmentDomain;
 import experimentDomain.Experiment;
 import experimentDomain.ExperimentDomain;
 import experimentDomain.Binary.BinaryAND;
-import experimentDomain.TestExperiment.TestExperiment;
 import networkDomain.*;
 
 /**
@@ -22,7 +21,7 @@ public class MainSpock {
 		EnvironmentDomain environmentDomain = new EnvironmentDomain();
 		NetworkDomain networkDomain  = new NetworkDomain();
 		DataDomain dataDomain = new DataDomain();
-		GoalDomain goalDomain = new GoalDomain();
+		MetricDomain metricDomain = new MetricDomain();
 		InterfaceDomain interfaceDomain = new InterfaceDomain();
 		
 		Log.write("Application (2): connecting domains");
@@ -32,16 +31,16 @@ public class MainSpock {
 		environmentDomain.setExperimentDomain(experimentDomain);
 		environmentDomain.setNetworkDomain(networkDomain);
 		environmentDomain.setDataDomain(dataDomain);
-		environmentDomain.setGoalDomain(goalDomain);
+		environmentDomain.setMetricDomain(metricDomain);
 		networkDomain.setEnvironmentDomain(environmentDomain);
 		networkDomain.setExperimentDomain(experimentDomain);
 		networkDomain.setDataDomain(dataDomain);
-		networkDomain.setGoalDomain(goalDomain);
+		networkDomain.setMetricDomain(metricDomain);
 		interfaceDomain.setExperimentDomain(experimentDomain);
 		interfaceDomain.setNetworkDomain(networkDomain);
 		interfaceDomain.setEnvironmentDomain(environmentDomain);
 		interfaceDomain.setDataDomain(dataDomain);
-		interfaceDomain.setGoalDomain(goalDomain);
+		interfaceDomain.setMetricDomain(metricDomain);
 		
 		Log.write("Application (3): initialising domains");
 		environmentDomain.initialise();
@@ -49,7 +48,7 @@ public class MainSpock {
 		experimentDomain.initialise();
 		dataDomain.initialise();
 		interfaceDomain.initialise();
-		goalDomain.initialise();
+		metricDomain.initialise();
 		
 		Log.write("Application (4): selecting experiment");
 		Experiment exp = new BinaryAND(experimentDomain);

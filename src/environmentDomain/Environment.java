@@ -5,7 +5,7 @@ import tools.errorChecking.Assert;
 /**
  * @author Loren Chorley
  */
-public abstract class Environment {
+public abstract class Environment extends Thread {
 
 	public EnvironmentDomain environmentDomain;
 	

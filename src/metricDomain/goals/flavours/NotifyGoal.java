@@ -1,9 +1,10 @@
-package goalDomain.flavours;
+package metricDomain.goals.flavours;
 
 import java.util.Observable;
 import java.util.Observer;
 
-import goalDomain.Goal;
+import metricDomain.goals.Goal;
+
 
 /**
  * Note: May be combined with GeneralGoal for better flexibility

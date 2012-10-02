@@ -1,10 +1,10 @@
 package interfaceDomain;
 
 import dataDomain.DataDomain;
+import metricDomain.MetricDomain;
 import networkDomain.NetworkDomain;
 import environmentDomain.EnvironmentDomain;
 import experimentDomain.ExperimentDomain;
-import goalDomain.GoalDomain;
 import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
 
@@ -17,13 +17,13 @@ public class InterfaceDomain {
 	ExperimentDomain experimentDomain;
 	NetworkDomain networkDomain;
 	DataDomain dataDomain;
-	GoalDomain goalDomain;
+	MetricDomain metricDomain;
 	
 	public void initialise() {
 		Assert.AssertTrue("InterfaceDomain: EnvironmentDomain is connected", environmentDomain != null);
 		Assert.AssertTrue("InterfaceDomain: ExperimentDomain is connected", experimentDomain != null);
 		Assert.AssertTrue("InterfaceDomain: DataDomain is connected", dataDomain != null);
-		Assert.AssertTrue("InterfaceDomain: GoalDomain is connected", goalDomain != null);
+		Assert.AssertTrue("InterfaceDomain: MetricDomain is connected", metricDomain != null);
 		Assert.AssertTrue("InterfaceDomain: NetworkDomain is connected", networkDomain != null);
 		
 		// Applet perhaps, that can display relevant details as well as pick, control, start, restart and stop experiments
@@ -48,8 +48,8 @@ public class InterfaceDomain {
 		this.dataDomain = dataDomain;
 	}
 	
-	public void setGoalDomain(GoalDomain goalDomain) {
-		this.goalDomain = goalDomain;
+	public void setMetricDomain(MetricDomain metricDomain) {
+		this.metricDomain = metricDomain;
 	}
 	
 }

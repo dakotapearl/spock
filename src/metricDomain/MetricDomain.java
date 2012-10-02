@@ -1,11 +1,8 @@
-package goalDomain;
+package metricDomain;
 
 import tools.errorChecking.Log;
 
-/**
- * @author Loren Chorley
- */
-public class GoalDomain {
+public class MetricDomain {
 	
 	public void initialise() {
 		// check that all relevant domains are linked

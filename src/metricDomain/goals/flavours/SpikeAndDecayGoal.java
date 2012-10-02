@@ -1,8 +1,9 @@
-package goalDomain.flavours;
+package metricDomain.goals.flavours;
 
-import goalDomain.Goal;
 
 import java.util.Date;
+
+import metricDomain.goals.Goal;
 
 /**
  * @author Loren Chorley

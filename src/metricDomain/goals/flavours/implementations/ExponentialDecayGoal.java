@@ -1,10 +1,11 @@
-package goalDomain.flavours.implementations;
+package metricDomain.goals.flavours.implementations;
 
 import java.util.Date;
 
+import metricDomain.goals.flavours.SpikeAndDecayGoal;
+
 import tools.errorChecking.Assert;
 import static java.lang.Math.*;
-import goalDomain.flavours.SpikeAndDecayGoal;
 
 /**
  * @author Loren Chorley
@@ -36,9 +37,5 @@ public class ExponentialDecayGoal extends SpikeAndDecayGoal {
 		return lastReward * exp(coefficient * elapsed);
 	}
 
-	@Override
-	public void start() {
-		
-	}
 
 }
