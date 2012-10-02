@@ -3,9 +3,7 @@
 */
 package tools.concurrency;
 
-import java.awt.*;
 import java.util.*;
-import java.applet.*;
 
 public class Select {
     ArrayList<Selectable> list = new ArrayList<Selectable>(2);

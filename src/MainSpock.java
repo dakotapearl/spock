@@ -42,6 +42,7 @@ public class MainSpock {
 		interfaceDomain.setDataDomain(dataDomain);
 		interfaceDomain.setMetricDomain(metricDomain);
 		
+		// Serialised, so that preconditions can be set up
 		Log.write("Application (3): initialising domains");
 		environmentDomain.initialise();
 		networkDomain.initialise();
@@ -55,7 +56,7 @@ public class MainSpock {
 		
 		Log.write("Application (5): setting parameters");
 		
-		
+		// Concurrent, no ordering after this point start call can be guaranteed 
 		Log.write("Application (6): start threads");
 		exp.start();
 		

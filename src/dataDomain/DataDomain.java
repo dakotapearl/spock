@@ -157,18 +157,6 @@ public class DataDomain {
 		}
 	}
 
-	/*public Long generateUniqueID() {
-		return generateUniqueIDStatic();
-	}*/
-
-	/*public Datum getDatum(int type, Object value) {
-		return getDatumStatic(type, value);
-	}
-
-	public Datum getDatum(long uniqueID) {
-		return getDatumStatic(uniqueID);
-	}*/
-
 	public void initialise() {
 		setup();
 		

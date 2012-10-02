@@ -3,10 +3,10 @@
 package tools.concurrency.examples;
 import java.awt.*;
 import java.awt.event.*;
-import java.applet.*;
 
 /********************************************************/
 
+@SuppressWarnings("serial")
 public class ThreadPanel extends Panel {
 
     Button run;
@@ -174,6 +174,7 @@ class DisplayThread extends Thread {
 
 /********************************************************/
 
+@SuppressWarnings("serial")
 class GraphicCanvas extends Canvas {
     int angle_ = 0;
     String title_;

@@ -7,6 +7,7 @@ import java.applet.*;
 import tools.concurrency.Channel;
 import tools.concurrency.Select;
 
+@SuppressWarnings("serial")
 public class SelectMsgDemo extends Applet {
 
     ThreadPanel arrivals;

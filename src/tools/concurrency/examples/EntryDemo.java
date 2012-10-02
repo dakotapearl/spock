@@ -6,6 +6,7 @@ import java.applet.*;
 
 import tools.concurrency.Entry;
 
+@SuppressWarnings("serial")
 public class EntryDemo extends Applet {
 
     ThreadPanel clA,clB,sv;

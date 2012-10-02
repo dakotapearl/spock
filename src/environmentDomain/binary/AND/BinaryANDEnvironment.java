@@ -21,7 +21,13 @@ public class BinaryANDEnvironment extends SensoryMotorSystem implements BinaryTa
 	boolean bit1 = false;
 	boolean bit2 = false;
 	boolean result = false;
-	Port<Boolean> actionsPerformed;
+	Port<actionSet> actionsPerformed;
+	
+	private class actionSet {
+		public actionSet(boolean argb, int argc) {b = argb; c = argc;}
+		boolean b;
+		int c;
+	}
 	
 	public BinaryANDEnvironment(EnvironmentDomain environmentDomain) {
 		super(environmentDomain);
@@ -30,21 +36,35 @@ public class BinaryANDEnvironment extends SensoryMotorSystem implements BinaryTa
 		actions.add(new BitAction(this, 1));
 		actions.add(new BitAction(this, 2));
 		perceptions.add(new BitPerception(environmentDomain));
-		actionsPerformed = new Port<Boolean>();
+		actionsPerformed = new Port<actionSet>();
 	}
 
 	@Override
 	public void startEnvironment() {
-		boolean bitReveived;
+		actionSet bitReveived = null;
+		
+		// Send initial configuration
+		refresh();
+		
 		while (true) {
-			refresh();
 			
 			try {
-				actionsPerformed.receive();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				bitReveived = actionsPerformed.receive();
+			} catch (InterruptedException e) {}
+			
+			if (bitReveived != null) {
+				
+				if (bitReveived.c == 1) {
+					bit1 = bitReveived.b;
+				} else if (bitReveived.c == 2) {
+					bit2 = bitReveived.b;
+				} else
+					Assert.CriticalAssertTrue("Should not reach here", false);
+				
+				refresh();
+				
 			}
+			
 		}
 		
 	}
@@ -53,14 +73,8 @@ public class BinaryANDEnvironment extends SensoryMotorSystem implements BinaryTa
 	public void acceptBit(int channel, boolean bit) {
 		Log.write("BinaryTarget: received " + (bit ? "true" : "false") + " via channel " + String.valueOf(channel));
 		
-		if (channel == 1) {
-			bit1 = bit;
-		} else if (channel == 2) {
-			bit2 = bit;
-		} else
-			Assert.CriticalAssertTrue("Should not reach here", false);
+		actionsPerformed.send(new actionSet(bit,channel));
 		
-		refresh();
 	}
 
 	public void refresh() {
@@ -73,3 +87,5 @@ public class BinaryANDEnvironment extends SensoryMotorSystem implements BinaryTa
 	}
 	
 }
+
+

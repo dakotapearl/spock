@@ -7,7 +7,6 @@ import networkDomain.Network;
 import networkDomain.NetworkNode;
 import networkDomain.NetworkNodeTemplate;
 import environmentDomain.Environment;
-import environmentDomain.EnvironmentDomain;
 
 /**
  * @author Loren Chorley

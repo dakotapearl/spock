@@ -6,6 +6,7 @@ import java.applet.*;
 
 import tools.concurrency.Port;
 
+@SuppressWarnings("serial")
 public class AsynchMsgDemo extends Applet {
 
     ThreadPanel tx1,tx2,rx;

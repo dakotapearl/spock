@@ -29,6 +29,8 @@ public class InterfaceDomain {
 		// Applet perhaps, that can display relevant details as well as pick, control, start, restart and stop experiments
 		// turn off and on various logging comments
 		
+		// Check system type or check arguments to see what kind of interface is desired
+		
 		Log.write("Interface domain initialised");
 	}
 	

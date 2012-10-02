@@ -5,8 +5,8 @@
 package tools.concurrency.examples;
 
 import java.awt.*;
-import java.applet.*;
 
+@SuppressWarnings("serial")
 public class NumberCanvas extends Canvas {
     int value_ = 0;
     String title_;

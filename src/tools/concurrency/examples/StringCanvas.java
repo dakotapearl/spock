@@ -3,8 +3,8 @@
 package tools.concurrency.examples;
 
 import java.awt.*;
-import java.applet.*;
 
+@SuppressWarnings("serial")
 public class StringCanvas extends Canvas {
     String value_ = "";
     String title_;

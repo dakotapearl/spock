@@ -3,10 +3,6 @@
 */
 package tools.concurrency;
 
-import java.awt.*;
-import java.util.*;
-import java.applet.*;
-
 /* ********************Entry**************************** */
 // The definition of entry assumes that there can be many clients
 // but only one server
@@ -30,6 +26,7 @@ public class Entry<R,P> extends Port<R> {
     cm.replychan.send(res);
   }
 
+  @SuppressWarnings("hiding")
   private class CallMsg<R,P> {
     R  request;
     Channel<P> replychan;

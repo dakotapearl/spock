@@ -4,11 +4,11 @@
 package tools.concurrency.examples;
 
 import java.awt.*;
-import java.applet.*;
 
 
 /**************************************************************/
 
+@SuppressWarnings("serial")
 public class SlotCanvas extends Canvas {
     String title_;
     int slots_;

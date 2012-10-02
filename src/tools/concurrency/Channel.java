@@ -3,10 +3,6 @@
 */
 package tools.concurrency;
 
-import java.awt.*;
-import java.util.*;
-import java.applet.*;
-
 /* ********************CHANNEL**************************** */
 // The definition of channel assumes that there is exactly one
 // sender and one receiver.

@@ -6,6 +6,7 @@ import java.applet.*;
 
 import tools.concurrency.Channel;
 
+@SuppressWarnings("serial")
 public class SynchMsgDemo extends Applet {
 
     ThreadPanel tx;

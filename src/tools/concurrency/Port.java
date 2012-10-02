@@ -3,9 +3,7 @@
 */
 package tools.concurrency;
 
-import java.awt.*;
 import java.util.*;
-import java.applet.*;
 
 /* ********************Port**************************** */
 // The definition of channel assumes that there can be many sender
