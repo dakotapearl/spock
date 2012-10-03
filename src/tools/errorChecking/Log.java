@@ -9,6 +9,7 @@ public class Log {
 	public static boolean TimeStampEnabled = false;
 	public static boolean CreationLogsEnabled = false;
 	public static boolean MechanismDebugEnabled = false;
+	public static boolean ThreadCreationEnabled = false;
 	public static PrintStream OutputStream = System.out;
 	public static long StartTime = (new Date()).getTime();
 	private static int timeLength = 10;
@@ -35,6 +36,11 @@ public class Log {
 	public static void writeForMechanisms(String message) {
 		if (MechanismDebugEnabled)
 			write(message);
+	}
+	
+	public static void writeForThreadCreation(String message) {
+		if (ThreadCreationEnabled)
+			write("Thread started: " + message);
 	}
 	
 	public static void created(@SuppressWarnings("rawtypes") Class c) {

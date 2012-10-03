@@ -1,6 +1,7 @@
 package networkDomain;
 
 import tools.errorChecking.Assert;
+import tools.errorChecking.Log;
 import networkDomain.core.InputProcess;
 import networkDomain.core.OutputProcess;
 import networkDomain.core.StorageProcess;

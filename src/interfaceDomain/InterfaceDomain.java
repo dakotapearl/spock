@@ -1,5 +1,6 @@
 package interfaceDomain;
 
+import interfaceDomain.swing.SwingInterface;
 import dataDomain.DataDomain;
 import metricDomain.MetricDomain;
 import networkDomain.NetworkDomain;
@@ -13,11 +14,13 @@ import tools.errorChecking.Log;
  */
 public class InterfaceDomain {
 
-	EnvironmentDomain environmentDomain;
-	ExperimentDomain experimentDomain;
-	NetworkDomain networkDomain;
-	DataDomain dataDomain;
-	MetricDomain metricDomain;
+	public EnvironmentDomain environmentDomain;
+	public ExperimentDomain experimentDomain;
+	public NetworkDomain networkDomain;
+	public DataDomain dataDomain;
+	public MetricDomain metricDomain;
+	
+	Interface i;
 	
 	public void initialise() {
 		Assert.AssertTrue("InterfaceDomain: EnvironmentDomain is connected", environmentDomain != null);
@@ -30,6 +33,8 @@ public class InterfaceDomain {
 		// turn off and on various logging comments
 		
 		// Check system type or check arguments to see what kind of interface is desired
+		i = new SwingInterface(this);
+		i.initialise();
 		
 		Log.write("Interface domain initialised");
 	}
@@ -52,6 +57,11 @@ public class InterfaceDomain {
 	
 	public void setMetricDomain(MetricDomain metricDomain) {
 		this.metricDomain = metricDomain;
+	}
+
+	public void start() {
+		i.start(); // (starts it's own thread of execution)
+		// End of main thread
 	}
 	
 }

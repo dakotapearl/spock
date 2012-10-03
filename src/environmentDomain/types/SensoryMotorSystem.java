@@ -7,6 +7,7 @@ import environmentDomain.Perception;
 import java.util.ArrayList;
 import metricDomain.Metric;
 import tools.errorChecking.Assert;
+import tools.errorChecking.Log;
 
 /**
  * @author Loren Chorley
@@ -40,6 +41,9 @@ public abstract class SensoryMotorSystem extends Environment {
 	
 	public void start() {
 		Assert.AssertTrue("SensoryMotorSystem started with environmentDomain not null", environmentDomain != null);
+		
+		Log.writeForThreadCreation("Environment");
+		Assert.CriticalAssertTrue("Environment node thread started", this.isAlive());
 		
 		for (Metric m : metrics)
 			m.start();

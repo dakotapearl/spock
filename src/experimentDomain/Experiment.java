@@ -3,6 +3,7 @@ package experimentDomain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import tools.errorChecking.Assert;
+import tools.errorChecking.Log;
 import networkDomain.Network;
 import networkDomain.NetworkNode;
 import networkDomain.NetworkNodeTemplate;
@@ -11,7 +12,7 @@ import environmentDomain.Environment;
 /**
  * @author Loren Chorley
  */
-public abstract class Experiment {
+public abstract class Experiment extends Thread {
 	
 	public ExperimentDomain experimentDomain;
 	private ArrayList<Environment> environments;
@@ -75,10 +76,14 @@ public abstract class Experiment {
 		return environments;
 	}
 	
+	@Override
 	public void start() {
 		Assert.CriticalAssertTrue("All required experiment variables set", (networkNodeTemplates.size() > 0) &&
 				 														   (network != null) &&
 				 														   (environments.size() > 0));
+		
+		Log.writeForThreadCreation("Experiment");
+		Assert.CriticalAssertTrue("Experiment thread started", this.isAlive());
 		
 		network.start();
 		

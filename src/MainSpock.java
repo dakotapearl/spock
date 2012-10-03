@@ -4,9 +4,7 @@ import interfaceDomain.InterfaceDomain;
 import tools.errorChecking.Log;
 import dataDomain.DataDomain;
 import environmentDomain.EnvironmentDomain;
-import experimentDomain.Experiment;
 import experimentDomain.ExperimentDomain;
-import experimentDomain.Binary.BinaryAND;
 import networkDomain.*;
 
 /**
@@ -16,7 +14,7 @@ public class MainSpock {
 	
 	public void initialise() {
 		
-		Log.write("Application (1): initialising domains");
+		Log.write("Application (1): instantiating domains");
 		ExperimentDomain experimentDomain = new ExperimentDomain();
 		EnvironmentDomain environmentDomain = new EnvironmentDomain();
 		NetworkDomain networkDomain  = new NetworkDomain();
@@ -25,7 +23,6 @@ public class MainSpock {
 		InterfaceDomain interfaceDomain = new InterfaceDomain();
 		
 		Log.write("Application (2): connecting domains");
-		// TODO write these methods
 		experimentDomain.setEnvironmentDomain(environmentDomain);
 		experimentDomain.setNetworkDomain(networkDomain);
 		environmentDomain.setExperimentDomain(experimentDomain);
@@ -43,31 +40,29 @@ public class MainSpock {
 		interfaceDomain.setMetricDomain(metricDomain);
 		
 		// Serialised, so that preconditions can be set up
+		// Note that start() methods are not serialised!
+		// x.initialise() can be guarenteed to preceed x.start()
+		// but nothing more.
 		Log.write("Application (3): initialising domains");
 		environmentDomain.initialise();
 		networkDomain.initialise();
 		experimentDomain.initialise();
 		dataDomain.initialise();
-		interfaceDomain.initialise();
 		metricDomain.initialise();
+		interfaceDomain.initialise();
 		
-		Log.write("Application (4): selecting experiment");
-		Experiment exp = new BinaryAND(experimentDomain);
-		
-		Log.write("Application (5): setting parameters");
-		
-		// Concurrent, no ordering after this point start call can be guaranteed 
-		Log.write("Application (6): start threads");
-		exp.start();
+		Log.write("Application (4): starting interface");
+		interfaceDomain.start();
 		
 	}
 	
 	public static void main(String[] args) {
 
 		Log.LoggingEnabled = true;
-		Log.CreationLogsEnabled = true;
+		Log.CreationLogsEnabled = false;
 		Log.MechanismDebugEnabled = false;
 		Log.TimeStampEnabled = true;
+		Log.ThreadCreationEnabled = true;
 		
 		new MainSpock().initialise();
 		

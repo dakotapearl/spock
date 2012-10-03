@@ -1,6 +1,5 @@
 package experimentDomain.Binary;
 
-import tools.errorChecking.Assert;
 import networkDomain.NetworkNode;
 import networkDomain.core.InputProcess;
 import networkDomain.core.OutputProcess;
@@ -23,7 +22,6 @@ public class BinaryAND extends Experiment {
 
 	public BinaryAND(ExperimentDomain experimentDomain) {
 		super(experimentDomain);
-		Assert.AssertTrue("ExperimentDomain correctly passed to BinaryAND", experimentDomain != null);
 	}
 
 	@Override
