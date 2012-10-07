@@ -5,9 +5,8 @@ import networkDomain.NetworkNode;
 /**
  * @author Loren Chorley
  */
-public abstract class EnergyEconomics implements Runnable {
+public abstract class EnergyEconomics extends Thread {
 
-	public Thread thread = new Thread(this);
 	private int energy = 0;
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
@@ -19,7 +18,8 @@ public abstract class EnergyEconomics implements Runnable {
 	}
 	public void replicateFunction(EnergyEconomics newFunction) { (new replicator(newFunction)).start(); }
 	public abstract EnergyEconomics replicate();
-	
+	public abstract void run();
+
 	public void offsetEnergy(int value) {
 		energy = energy + value;
 	}

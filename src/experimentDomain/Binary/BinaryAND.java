@@ -1,16 +1,16 @@
 package experimentDomain.Binary;
 
 import networkDomain.NetworkNode;
+import networkDomain.behaviours.test.dp;
+import networkDomain.behaviours.test.ee;
+import networkDomain.behaviours.test.fc;
+import networkDomain.behaviours.test.lc;
+import networkDomain.behaviours.test.tc;
+import networkDomain.behaviours.test.ts;
 import networkDomain.core.InputProcess;
 import networkDomain.core.OutputProcess;
 import networkDomain.core.StorageProcess;
-import networkDomain.extensions.implementations.Test.dp;
-import networkDomain.extensions.implementations.Test.ee;
-import networkDomain.extensions.implementations.Test.fc;
-import networkDomain.extensions.implementations.Test.gs;
-import networkDomain.extensions.implementations.Test.lc;
-import networkDomain.extensions.implementations.Test.tc;
-import networkDomain.extensions.implementations.Test.ts;
+import networkDomain.core.GeneticSequence;
 import environmentDomain.binary.AND.BinaryANDEnvironment;
 import experimentDomain.Experiment;
 import experimentDomain.ExperimentDomain;
@@ -27,7 +27,7 @@ public class BinaryAND extends Experiment {
 	@Override
 	public void initialiseExperiment() {
 		addNodeTemplate("TestTemplate", InputProcess.class, OutputProcess.class, StorageProcess.class, 
-                						fc.class, ts.class, gs.class, ee.class, lc.class, dp.class, tc.class);
+                						fc.class, ts.class, GeneticSequence.class, ee.class, lc.class, dp.class, tc.class);
 
 		NetworkNode node = addNewNode("TestTemplate");
 		

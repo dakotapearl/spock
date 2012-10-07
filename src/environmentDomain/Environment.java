@@ -15,6 +15,6 @@ public abstract class Environment extends Thread {
 		this.environmentDomain = environmentDomain;
 	}
 	
-	public abstract void start();
+	public abstract void run();
 
 }

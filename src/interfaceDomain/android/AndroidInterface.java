@@ -17,7 +17,7 @@ public class AndroidInterface extends Interface {
 	}
 
 	@Override
-	public void start() {
+	public void run() {
 		// TODO Auto-generated method stub
 		
 	}

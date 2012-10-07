@@ -1,4 +1,4 @@
-package networkDomain.extensions.implementations.NeuralEcosystem;
+package networkDomain.behaviours.test;
 
 import dataDomain.DataCell;
 import networkDomain.extensions.DataProcessing;
@@ -6,12 +6,12 @@ import networkDomain.extensions.DataProcessing;
 /**
  * @author Loren Chorley
  */
-public class NeuralEcosystem_DP extends DataProcessing {
+public class dp extends DataProcessing {
 
 	@Override
 	public DataCell processData(DataCell dataCell) {
-		// TODO Auto-generated method stub
-		return null;
+		//tools.Log.write("Test Extension: DataProcessing received processData command");
+		return new DataCell(1, dataCell.getDatum());
 	}
 
 	@Override

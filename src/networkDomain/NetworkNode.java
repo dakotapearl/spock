@@ -2,13 +2,13 @@ package networkDomain;
 
 import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
+import networkDomain.core.GeneticSequence;
 import networkDomain.core.InputProcess;
 import networkDomain.core.OutputProcess;
 import networkDomain.core.StorageProcess;
 import networkDomain.extensions.DataProcessing;
 import networkDomain.extensions.EnergyEconomics;
 import networkDomain.extensions.FiringCondition;
-import networkDomain.extensions.GeneticSequence;
 import networkDomain.extensions.LifeCycle;
 import networkDomain.extensions.TargetSelection;
 import networkDomain.extensions.TransmissionContent;
@@ -88,13 +88,12 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 	}
 	
 	public void start() {
-		firingCondition.thread.start();
-		targetSelection.thread.start();
-		geneticSequence.thread.start();
-		energyEconomics.thread.start();
-		lifeCycle.thread.start();
-		dataProcessing.thread.start();
-		transmissionContent.thread.start();
+		firingCondition.start();
+		targetSelection.start();
+		energyEconomics.start();
+		lifeCycle.start();
+		dataProcessing.start();
+		transmissionContent.start();
 		
 		inputProcess.start();
 		outputProcess.start();

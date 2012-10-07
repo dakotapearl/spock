@@ -1,4 +1,4 @@
-package networkDomain.extensions.implementations.Test;
+package networkDomain.behaviours.test;
 
 import networkDomain.extensions.EnergyEconomics;
 

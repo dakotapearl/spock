@@ -6,9 +6,8 @@ import dataDomain.DataCell;
 /**
  * @author Loren Chorley
  */
-public abstract class DataProcessing implements Runnable {
+public abstract class DataProcessing extends Thread {
 
-	public Thread thread = new Thread(this);
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
 	public abstract DataCell processData(DataCell dataCell); // Make sure that it's a different object that gets returned
@@ -20,5 +19,6 @@ public abstract class DataProcessing implements Runnable {
 	}
 	public void replicateFunction(DataProcessing newFunction) { (new replicator(newFunction)).start(); }
 	public abstract DataProcessing replicate();
-		
+	public abstract void run();
+
 }

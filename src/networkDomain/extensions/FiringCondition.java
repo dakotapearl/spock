@@ -5,9 +5,8 @@ import networkDomain.NetworkNode;
 /**
  * @author Loren Chorley
  */
-public abstract class FiringCondition implements Runnable {
+public abstract class FiringCondition extends Thread {
 	
-	public Thread thread = new Thread(this);
 	private boolean ready = false;
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
@@ -19,7 +18,8 @@ public abstract class FiringCondition implements Runnable {
 	}
 	public void replicateFunction(FiringCondition newFunction) { (new replicator(newFunction)).start(); }
 	public abstract FiringCondition replicate();
-	
+	public abstract void run();
+
 	//public abstract boolean continueFiring();
 	
 	// Block until ready, return false if interrupted 

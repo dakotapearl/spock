@@ -82,7 +82,7 @@ public class SwingInterface extends Interface {
 	}
 
 	@Override
-	public void start() {
+	public void run() {
 		Log.writeForThreadCreation("Interface");
 		
 		frame.setVisible(true);

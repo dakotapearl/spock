@@ -1,4 +1,4 @@
-package networkDomain.extensions.implementations.PersistentSignal;
+package networkDomain.behaviours.persistantSignal;
 
 import networkDomain.NetworkSignal;
 import networkDomain.extensions.TransmissionContent;

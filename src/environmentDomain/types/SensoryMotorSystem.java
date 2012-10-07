@@ -39,7 +39,7 @@ public abstract class SensoryMotorSystem extends Environment {
 		return metrics;
 	}
 	
-	public void start() {
+	public void run() {
 		Assert.AssertTrue("SensoryMotorSystem started with environmentDomain not null", environmentDomain != null);
 		
 		Log.writeForThreadCreation("Environment");

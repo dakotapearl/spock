@@ -1,4 +1,4 @@
-package networkDomain.extensions.implementations.Test;
+package networkDomain.behaviours.test;
 
 import dataDomain.DataCell;
 import networkDomain.NetworkSignal;

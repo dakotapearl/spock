@@ -1,11 +1,11 @@
-package networkDomain.extensions.implementations.NeuralEcosystem;
+package networkDomain.behaviours.persistantSignal;
 
 import networkDomain.extensions.LifeCycle;
 
 /**
  * @author Loren Chorley
  */
-public class NeuralEcosystem_LC extends LifeCycle {
+public class PersistentSignal_LC extends LifeCycle {
 
 	@Override
 	public void run() {

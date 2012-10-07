@@ -1,4 +1,4 @@
-package networkDomain.extensions.implementations.NeuralEcosystem;
+package networkDomain.behaviours.neuralEcosystem;
 
 import networkDomain.NetworkSignal;
 import networkDomain.extensions.TransmissionContent;

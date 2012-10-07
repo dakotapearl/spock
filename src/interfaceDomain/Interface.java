@@ -9,6 +9,6 @@ public abstract class Interface extends Thread {
 	}
 	
 	public abstract void initialise();
-	public abstract void start();
+	public abstract void run();
 	
 }

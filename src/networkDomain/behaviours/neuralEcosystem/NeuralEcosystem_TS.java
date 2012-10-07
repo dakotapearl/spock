@@ -1,4 +1,4 @@
-package networkDomain.extensions.implementations.PersistentSignal;
+package networkDomain.behaviours.neuralEcosystem;
 
 import networkDomain.NetworkSignal;
 import networkDomain.NetworkTargetable;
@@ -7,7 +7,7 @@ import networkDomain.extensions.TargetSelection;
 /**
  * @author Loren Chorley
  */
-public class PersistentSignal_TS extends TargetSelection {
+public class NeuralEcosystem_TS extends TargetSelection {
 
 	@Override
 	public void run() {

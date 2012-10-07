@@ -7,9 +7,8 @@ import networkDomain.NetworkTargetable;
 /**
  * @author Loren Chorley
  */
-public abstract class TargetSelection implements Runnable {
+public abstract class TargetSelection extends Thread {
 	
-	public Thread thread = new Thread(this);
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
 	
@@ -22,5 +21,6 @@ public abstract class TargetSelection implements Runnable {
 	public abstract TargetSelection replicate();
 	
 	public abstract NetworkTargetable selectTarget(NetworkSignal signal);
+	public abstract void run();
 	
 }

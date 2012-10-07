@@ -6,9 +6,8 @@ import networkDomain.NetworkSignal;
 /**
  * @author Loren Chorley
  */
-public abstract class TransmissionContent implements Runnable {
+public abstract class TransmissionContent extends Thread {
 	
-	public Thread thread = new Thread(this);
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
 	
@@ -22,5 +21,6 @@ public abstract class TransmissionContent implements Runnable {
 	
 	public abstract NetworkSignal nextSignalToFire();
 	public abstract boolean signalsRemain();
+	public abstract void run();
 	
 }

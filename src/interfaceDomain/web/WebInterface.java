@@ -17,7 +17,7 @@ public class WebInterface extends Interface {
 	}
 
 	@Override
-	public void start() {
+	public void run() {
 		// TODO Auto-generated method stub
 		
 	}

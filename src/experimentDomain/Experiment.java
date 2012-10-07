@@ -15,6 +15,7 @@ import environmentDomain.Environment;
 public abstract class Experiment extends Thread {
 	
 	public ExperimentDomain experimentDomain;
+	public Thread thread;
 	private ArrayList<Environment> environments;
 	private Network network;
 	private HashMap<String, NetworkNodeTemplate> networkNodeTemplates;
@@ -77,7 +78,7 @@ public abstract class Experiment extends Thread {
 	}
 	
 	@Override
-	public void start() {
+	public void run() {
 		Assert.CriticalAssertTrue("All required experiment variables set", (networkNodeTemplates.size() > 0) &&
 				 														   (network != null) &&
 				 														   (environments.size() > 0));

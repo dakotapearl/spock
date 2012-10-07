@@ -1,12 +1,12 @@
 package networkDomain;
 
+import networkDomain.core.GeneticSequence;
 import networkDomain.core.InputProcess;
 import networkDomain.core.OutputProcess;
 import networkDomain.core.StorageProcess;
 import networkDomain.extensions.DataProcessing;
 import networkDomain.extensions.EnergyEconomics;
 import networkDomain.extensions.FiringCondition;
-import networkDomain.extensions.GeneticSequence;
 import networkDomain.extensions.LifeCycle;
 import networkDomain.extensions.TargetSelection;
 import networkDomain.extensions.TransmissionContent;

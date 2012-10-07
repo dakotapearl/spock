@@ -1,11 +1,11 @@
-package networkDomain.extensions.implementations.PersistentSignal;
+package networkDomain.behaviours.neuralEcosystem;
 
 import networkDomain.extensions.EnergyEconomics;
 
 /**
  * @author Loren Chorley
  */
-public class PersistentSignal_EE extends EnergyEconomics {
+public class NeuralEcosystem_EE extends EnergyEconomics {
 
 	@Override
 	public void run() {

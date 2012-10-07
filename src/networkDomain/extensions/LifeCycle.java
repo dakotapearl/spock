@@ -5,9 +5,8 @@ import networkDomain.NetworkNode;
 /**
  * @author Loren Chorley
  */
-public abstract class LifeCycle implements Runnable {
+public abstract class LifeCycle extends Thread {
 	
-	public Thread thread = new Thread(this);
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
 	
@@ -18,7 +17,8 @@ public abstract class LifeCycle implements Runnable {
 	}
 	public void replicateFunction(LifeCycle newFunction) { (new replicator(newFunction)).start(); }
 	public abstract LifeCycle replicate();
-	
+	public abstract void run();
+
 	// cell death condition
 	// neurogenic mitosis condition
 	
