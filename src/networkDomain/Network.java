@@ -16,7 +16,7 @@ public class Network extends Thread {
 		nodes = new ArrayList<NetworkNode>();
 	}
 	
-	public void start() {
+	public void run() {
 		Assert.AssertTrue("Starting network of positive size", networkSize() > 0);
 		
 		Log.writeForThreadCreation("Network");

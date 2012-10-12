@@ -1,5 +1,6 @@
 package interfaceDomain.swing;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +21,7 @@ import interfaceDomain.InterfaceDomain;
 public class SwingInterface extends Interface {
 
 	JFrame frame;
-	JPanel panel;
+	JPanel mainPanel, startStopPanel;
 	Experiment exp;
 	
 	private class startButtonListener implements ActionListener {
@@ -63,19 +64,23 @@ public class SwingInterface extends Interface {
 		frame = new JFrame("HelloWorldSwing");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		panel = new JPanel();
-		panel.setLayout(new GridLayout(3, 1));
-		frame.getContentPane().add(panel);
+		mainPanel = new JPanel();
+		mainPanel.setLayout(new BorderLayout());
+		frame.getContentPane().add(mainPanel);
+		
+		startStopPanel = new JPanel();
+		startStopPanel.setLayout(new GridLayout(1, 2));
+		mainPanel.add(startStopPanel, BorderLayout.PAGE_END);
 		
 		JLabel label = new JLabel("Start?");
-		panel.add(label);
+		mainPanel.add(label);
         
         JButton startButton = new JButton("Start");
-        panel.add(startButton);
+        startStopPanel.add(startButton);
         startButton.addActionListener(new startButtonListener());
 		
         JButton exitButton = new JButton("Exit");
-        panel.add(exitButton);
+        startStopPanel.add(exitButton);
         exitButton.addActionListener(new exitButtonListener());
         
 		frame.pack();

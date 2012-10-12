@@ -8,7 +8,6 @@ import networkDomain.behaviours.test.lc;
 import networkDomain.behaviours.test.tc;
 import networkDomain.behaviours.test.ts;
 import networkDomain.core.*;
-import networkDomain.extensions.implementations.Test.gs;
 import environmentDomain.TestEnvironment.TestingSystem;
 import experimentDomain.Experiment;
 import experimentDomain.ExperimentDomain;
@@ -25,7 +24,7 @@ public class TestExperiment extends Experiment {
 	@Override
 	public void initialiseExperiment() {
 		addNodeTemplate("TestTemplate", InputProcess.class, OutputProcess.class, StorageProcess.class, 
-				                        fc.class, ts.class, gs.class, ee.class, lc.class, dp.class, tc.class);
+				                        fc.class, ts.class, GeneticSequence.class, ee.class, lc.class, dp.class, tc.class);
 		
 		NetworkNode node = addNewNode("TestTemplate");
 		

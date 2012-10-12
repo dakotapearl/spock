@@ -9,7 +9,7 @@ import networkDomain.NetworkNode;
 /**
  * @author Loren Chorley
  */
-public abstract class GeneticSequence {
+public class GeneticSequence {
 	
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }
@@ -56,10 +56,10 @@ public abstract class GeneticSequence {
 
 			@Override
 			public int compare(Object thisValue, Object otherValue) {
-				if (thisValue == otherValue)
+				if (Double.parseDouble(thisValue.toString()) == Double.parseDouble(otherValue.toString()))
 					return 0;
 				else
-					return Integer.parseInt(thisValue.toString()) > Integer.parseInt(otherValue.toString()) ? 1 : -1;
+					return Double.parseDouble(thisValue.toString()) > Double.parseDouble(otherValue.toString()) ? 1 : -1;
 			}
 			
 		});
@@ -80,8 +80,11 @@ public abstract class GeneticSequence {
 		p.fns = functions;
 		sequence.put(id, p);
 		
-		Assert.CriticalAssertTrue("New gene value is within bounds", p.fns.compare(p.value, p.fns.getLowerBound()) >= 0 &&
-																     p.fns.compare(p.value, p.fns.getUpperBound()) <= 0);
+		Assert.CriticalAssertTrue("New gene value (" + p.value 
+				                  + ") is within bounds [" + p.fns.getLowerBound()
+				                  + ", " + p.fns.getUpperBound() + "]", 
+				                  p.fns.compare(p.value, p.fns.getLowerBound()) >= 0 &&
+								  p.fns.compare(p.value, p.fns.getUpperBound()) <= 0);
 	}
 	
 	public void setGene(String id, Object value) {

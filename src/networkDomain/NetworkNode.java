@@ -1,7 +1,6 @@
 package networkDomain;
 
 import tools.errorChecking.Assert;
-import tools.errorChecking.Log;
 import networkDomain.core.GeneticSequence;
 import networkDomain.core.InputProcess;
 import networkDomain.core.OutputProcess;
