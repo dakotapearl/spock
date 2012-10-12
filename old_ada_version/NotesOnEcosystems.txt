@@ -1,0 +1,35 @@
+Inherient complexity is a necessity
+   Parasitic aspects
+
+Be clear about the energy exchanges within the systems.
+   eg Food provided by inputs
+   Evolutionary persuation previded by positive or negative re-enforcement of action-taking decisions
+
+Potentially successful models must be given the time they need to achieve success. 
+
+Lifecycle: Increased threat on survival could result in mutations or sub-speciation
+
+Measure of complexity: How highly coupled a system is.
+
+Could one species protect another? Would this provide any use?
+
+Many elements to an ecosystem:
+   Resources: Inputs
+   Species: Models
+   Population level: "
+   Competition: Raising and lowering the population via growth and conflicting species
+   Differences in species: Genetic algorithm to determine species' features
+   Tie to input/output modelling: Modelling efficiency proportional to efficiency within ecosystem. This allows efficent models to stay alive and breed and potentially develop even more efficent models. Also that the more efficent models with kill off the less efficent models, thereby making the system as a whole more efficent.
+   
+Global effects:
+   Similar to a burst of neurotransmitters in human brains
+   Affect the qualities of all parts of the system
+   eg A variable that raises as a beneficial input in received and then drops off gradually
+   
+Probabilty modelling idea:
+   Build e^x^2 type functions to 
+   
+Efficency is dependent on a number of factors:
+   Computational drain
+   Adherence to goal conditions
+   Model correctness

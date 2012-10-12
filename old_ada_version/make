@@ -1,0 +1,8 @@
+#!/bin/bash
+
+rm ./buildfiles/*;
+
+cp *.ads ./buildfiles/
+cp *.adb ./buildfiles/
+cd buildfiles
+gnatmake *
