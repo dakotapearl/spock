@@ -1,5 +1,9 @@
 package networkDomain;
 
+import interfaceDomain.InterfaceObservable;
+
+import java.util.HashMap;
+
 import tools.errorChecking.Assert;
 import networkDomain.core.GeneticSequence;
 import networkDomain.core.InputProcess;
@@ -30,6 +34,8 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 	public LifeCycle lifeCycle;
 	public DataProcessing dataProcessing;
 	public TransmissionContent transmissionContent;
+	
+	public HashMap<String, InterfaceObservable> interfaceObservables;
 	
 	public NetworkNode(NetworkDomain networkDomain,
 			           InputProcess inputProcess,
@@ -79,6 +85,11 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 		lifeCycle.declareParent(this);
 		dataProcessing.declareParent(this);
 		transmissionContent.declareParent(this);
+		
+		interfaceObservables = new HashMap<String, InterfaceObservable>();
+		
+		// Initialise interface variables
+		interfaceObservables.put("Node activations", new InterfaceObservable("Node activations"));
 		
 	}
 	

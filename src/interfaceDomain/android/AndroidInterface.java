@@ -1,5 +1,7 @@
 package interfaceDomain.android;
 
+import java.util.Observable;
+
 import interfaceDomain.Interface;
 import interfaceDomain.InterfaceDomain;
 
@@ -18,6 +20,12 @@ public class AndroidInterface extends Interface {
 
 	@Override
 	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		
 	}

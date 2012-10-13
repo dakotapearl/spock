@@ -1,5 +1,7 @@
 package experimentDomain;
 
+import interfaceDomain.InterfaceObservable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import tools.errorChecking.Assert;
@@ -19,6 +21,7 @@ public abstract class Experiment extends Thread {
 	private ArrayList<Environment> environments;
 	private Network network;
 	private HashMap<String, NetworkNodeTemplate> networkNodeTemplates;
+	public HashMap<String, InterfaceObservable> interfaceObservables;
 	
 	public Experiment(ExperimentDomain experimentDomain) {
 		Assert.AssertTrue("ExperimentDomain correctly passed to Experiment", experimentDomain != null);
@@ -26,7 +29,12 @@ public abstract class Experiment extends Thread {
 		this.experimentDomain = experimentDomain;
 		environments = new ArrayList<Environment>();
 		networkNodeTemplates = new HashMap<String, NetworkNodeTemplate>();
-		network = new Network();
+		network = new Network(experimentDomain.networkDomain);
+		experimentDomain.networkDomain.setNetwork(network);
+		interfaceObservables = new HashMap<String, InterfaceObservable>();
+		
+		// Initialise interface variables
+		
 		
 		initialiseExperiment();
 		

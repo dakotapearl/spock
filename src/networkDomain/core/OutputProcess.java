@@ -39,6 +39,8 @@ public class OutputProcess extends Thread {
 		NetworkSignal signal;
 		NetworkTargetable target;
 		
+		int c = 0;
+		
 		while (true) {
 			
 			Log.writeForMechanisms("OutputProcess: waiting for ready to fire");
@@ -61,6 +63,8 @@ public class OutputProcess extends Thread {
 				target.acceptSignal(signal, parent);
 				
 				Log.writeForMechanisms("OutputProcess: Sent signal");
+				
+				parent.interfaceObservables.get("Node activations").updateInterface(Integer.toString(++c));
 				
 			}
 			

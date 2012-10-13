@@ -1,6 +1,8 @@
 package interfaceDomain;
 
-public abstract class Interface extends Thread {
+import java.util.Observer;
+
+public abstract class Interface extends Thread implements Observer {
 	
 	public InterfaceDomain interfaceDomain;
 	

@@ -60,7 +60,7 @@ public class MainSpock {
 
 		Log.LoggingEnabled = true;
 		Log.CreationLogsEnabled = false;
-		Log.MechanismDebugEnabled = false;
+		Log.MechanismDebugEnabled = true;
 		Log.TimeStampEnabled = true;
 		Log.ThreadCreationEnabled = true;
 		

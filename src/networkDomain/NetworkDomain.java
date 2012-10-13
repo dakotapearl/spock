@@ -1,9 +1,6 @@
 package networkDomain;
 
-import java.util.ArrayList;
-
 import metricDomain.MetricDomain;
-
 import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
 import dataDomain.DataDomain;
@@ -19,7 +16,7 @@ public class NetworkDomain {
 	public ExperimentDomain experimentDomain;
 	public DataDomain dataDomain;
 	public MetricDomain metricDomain;
-	ArrayList<NetworkNode> network;
+	Network network;
 	
 	public void initialise() {
 		Assert.AssertTrue("NetworkDomain: EnvironmentDomain is connected", environmentDomain != null);
@@ -46,7 +43,11 @@ public class NetworkDomain {
 		this.metricDomain = metricDomain;
 	}
 	
-	public ArrayList<NetworkNode> getNetwork() {
+	public void setNetwork(Network network) {
+		this.network = network;
+	}
+	
+	public Network getNetwork() {
 		return network;
 	}
 	
