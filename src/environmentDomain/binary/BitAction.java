@@ -14,7 +14,8 @@ public class BitAction extends Action {
 	BinaryTarget target;
 	int channel;
 	
-	public BitAction(BinaryTarget target, int channel) {
+	public BitAction(int id, BinaryTarget target, int channel) {
+		super(id);
 		this.target = target;
 		this.channel = channel;
 	}

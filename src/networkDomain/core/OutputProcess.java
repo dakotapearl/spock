@@ -63,6 +63,7 @@ public class OutputProcess extends Thread {
 				Log.writeForMechanisms("OutputProcess: Sent signal");
 				
 				parent.networkDomain.getNetwork().nodeactivation();
+				parent.networkDomain.getNetwork().interfaceObservables.get("Latest transfer").updateInterface(Integer.toString(parent.getID()) + " -> " + Integer.toString(target.getID()));
 				
 			}
 			

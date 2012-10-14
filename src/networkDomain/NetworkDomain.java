@@ -19,6 +19,7 @@ public class NetworkDomain {
 	public MetricDomain metricDomain;
 	public InterfaceDomain interfaceDomain;
 	Network network;
+	int nodeUID = 0;
 	
 	public void initialise() {
 		Assert.AssertTrue("NetworkDomain: EnvironmentDomain is connected", environmentDomain != null);
@@ -55,6 +56,10 @@ public class NetworkDomain {
 
 	public void setInterfaceDomain(InterfaceDomain interfaceDomain) {
 		this.interfaceDomain = interfaceDomain;
+	}
+	
+	public synchronized int getUniqueNodeID() {
+		return nodeUID++;
 	}
 	
 }

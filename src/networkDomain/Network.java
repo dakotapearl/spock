@@ -34,6 +34,8 @@ public class Network extends Thread {
 		networkDomain.interfaceDomain.registerInterfaceObservable(interfaceObservables.get("Number of nodes"));
 		interfaceObservables.put("Node activations", new InterfaceObservable("Node activations"));
 		networkDomain.interfaceDomain.registerInterfaceObservable(interfaceObservables.get("Node activations"));
+		interfaceObservables.put("Latest transfer", new InterfaceObservable("Latest transfer"));
+		networkDomain.interfaceDomain.registerInterfaceObservable(interfaceObservables.get("Latest transfer"));
 	}
 	
 	public void run() {

@@ -33,8 +33,8 @@ public class BinaryANDEnvironment extends SensoryMotorSystem implements BinaryTa
 		super(environmentDomain);
 		Assert.AssertTrue("EnvironmentDomain correctly passed to BinaryANDEnvironment", environmentDomain != null);
 		
-		actions.add(new BitAction(this, 1));
-		actions.add(new BitAction(this, 2));
+		actions.add(new BitAction(environmentDomain.networkDomain.getUniqueNodeID(), this, 1));
+		actions.add(new BitAction(environmentDomain.networkDomain.getUniqueNodeID(), this, 2));
 		perceptions.add(new BitPerception(environmentDomain));
 		actionsPerformed = new Port<actionSet>();
 	}

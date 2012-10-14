@@ -6,9 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 
 import tools.errorChecking.Assert;
@@ -24,7 +26,7 @@ import interfaceDomain.InterfaceObservable;
 public class SwingInterface extends Interface {
 
 	JFrame frame;
-	JPanel mainPanel, startStopPanel;
+	JPanel mainPanel, lower, startStopPanel;
 	JLabel statusLabel;
 	JPanel expPanel, envPanel, netPanel;
 	JLabel expTitle, envTitle, netTitle;
@@ -32,6 +34,8 @@ public class SwingInterface extends Interface {
 	JLabel envname, envtype;
 	JLabel nodes,activenodes,establishedpathways;
 	JButton startButton, exitButton;
+	JList consolelist;
+	DefaultListModel console;
 	
 	Experiment exp;
 	
@@ -76,16 +80,25 @@ public class SwingInterface extends Interface {
 	
 	@Override
 	public void initialise() {
-		frame = new JFrame("HelloWorldSwing");
+		frame = new JFrame("Spock");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
 		frame.getContentPane().add(mainPanel);
 		
+		lower = new JPanel();
+		lower.setLayout(new GridLayout(2, 1));
+		mainPanel.add(lower, BorderLayout.PAGE_END);
+		
+		console = new DefaultListModel();
+		consolelist = new JList(console); //Not working
+		//console.setPreferredSize(console.getSize().width, 2000);
+		lower.add(consolelist);
+		
 		startStopPanel = new JPanel();
 		startStopPanel.setLayout(new GridLayout(1, 2));
-		mainPanel.add(startStopPanel, BorderLayout.PAGE_END);
+		lower.add(startStopPanel);
 		
 		
 		expPanel = new JPanel();
@@ -151,6 +164,8 @@ public class SwingInterface extends Interface {
 				nodes.setText("Nodes: " + (String) arg1);
 			} else if (((InterfaceObservable) arg0).getID() == "Node activations") {
 				activenodes.setText("Node activations: " + (String) arg1);
+			} else if (((InterfaceObservable) arg0).getID() == "Latest transfer") {
+				console.addElement((String) arg1);
 			}
 			
 			

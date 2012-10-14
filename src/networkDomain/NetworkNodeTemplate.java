@@ -84,7 +84,8 @@ public class NetworkNodeTemplate {
 	}
 	
 	public NetworkNode newInstance() {
-		return new NetworkNode(networkDomain,
+		return new NetworkNode(networkDomain.getUniqueNodeID(),
+							   networkDomain,
 							   newInputProcess(),
 							   newOutputProcess(),
 							   newStorageProcess(),

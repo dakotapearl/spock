@@ -10,8 +10,11 @@ import tools.errorChecking.Log;
  */
 public abstract class Action implements NetworkTargetable {
 
-	public Action() {
+	private int id;
+	
+	public Action(int id) {
 		Log.write("Action initialised: " + this.getClass().getSimpleName());
+		this.id = id;
 	}
 	
 	@Override
@@ -19,6 +22,10 @@ public abstract class Action implements NetworkTargetable {
 		Log.writeForMechanisms("Action: Accepted signal with datum: " + signal.getData().getDatum().getValue().toString());
 		
 		performAction(signal);
+	}
+	
+	public int getID() {
+		return id;
 	}
 	
 	public abstract void performAction(NetworkSignal signal);

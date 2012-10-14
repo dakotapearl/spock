@@ -10,6 +10,12 @@ import networkDomain.NetworkTransmitter;
  */
 public class PersistentSignal implements NetworkSignal, NetworkTargetable {
 
+	private int id;
+	
+	public PersistentSignal(int id) {
+		this.id = id;
+	}
+	
 	@Override
 	public DataCell getData() {
 		// TODO Auto-generated method stub
@@ -26,6 +32,11 @@ public class PersistentSignal implements NetworkSignal, NetworkTargetable {
 	public void acceptSignal(NetworkSignal signal, NetworkTransmitter sender) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int getID() {
+		return id;
 	}
 
 }

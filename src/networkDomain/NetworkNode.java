@@ -21,6 +21,8 @@ import networkDomain.extensions.TransmissionContent;
  */
 public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 	
+	private int id;
+	
 	public NetworkDomain networkDomain;
 	
 	public InputProcess inputProcess;
@@ -37,7 +39,8 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 	
 	public HashMap<String, InterfaceObservable> interfaceObservables;
 	
-	public NetworkNode(NetworkDomain networkDomain,
+	public NetworkNode(Integer id,
+					   NetworkDomain networkDomain,
 			           InputProcess inputProcess,
 					   OutputProcess outputProcess,
 					   StorageProcess storageProcess,
@@ -60,6 +63,8 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 																				 (transmissionContent != null));
 		Assert.AssertTrue("NetworkDomain correctly passed to NetworkNode", networkDomain != null);
 		
+		
+		this.id = id;
 		this.networkDomain = networkDomain;
 		
 		this.inputProcess = inputProcess;
@@ -93,6 +98,10 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 		
 	}
 	
+	public int getID() {
+		return id;
+	}
+	
 	public void acceptSignal(NetworkSignal signal, NetworkTransmitter sender) {
 		inputProcess.acceptSignal(signal, sender);
 	}
@@ -112,7 +121,8 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 	public NetworkNode replicateNode() {
 		
 		// Make new node and direct all vital functions to current node
-		NetworkNode newNode = new NetworkNode(networkDomain,
+		NetworkNode newNode = new NetworkNode(networkDomain.getUniqueNodeID(),
+											  networkDomain,
 				                              inputProcess, 
 				                              outputProcess, 
 				                              storageProcess, 

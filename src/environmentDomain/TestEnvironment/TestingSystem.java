@@ -10,7 +10,7 @@ public class TestingSystem extends SensoryMotorSystem {
 
 	public TestingSystem(EnvironmentDomain environmentDomain) {
 		super(environmentDomain);
-		actions.add(new Action_Test());
+		actions.add(new Action_Test(environmentDomain.networkDomain.getUniqueNodeID()));
 		perceptions.add(new Perception_Test(environmentDomain));
 	}
 
