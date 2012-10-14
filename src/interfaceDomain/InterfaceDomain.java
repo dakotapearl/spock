@@ -39,6 +39,11 @@ public class InterfaceDomain {
 		Log.write("Interface domain initialised");
 	}
 	
+	public void registerInterfaceObservable(InterfaceObservable io) {
+		Assert.CriticalAssertTrue("Interface is initialised when attempting to register interface observables", i != null);
+		io.addObserver(i);
+	}
+	
 	public void setEnvironmentDomain(EnvironmentDomain environmentDomain) {
 		this.environmentDomain = environmentDomain;
 	}

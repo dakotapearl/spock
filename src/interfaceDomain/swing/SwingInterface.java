@@ -31,32 +31,17 @@ public class SwingInterface extends Interface {
 	JLabel expname;
 	JLabel envname, envtype;
 	JLabel nodes,activenodes,establishedpathways;
+	JButton startButton, exitButton;
 	
 	Experiment exp;
-	
-	//TODO Might not synchronise properly with initialisation of componets, check 
-	private void setObservables() {
-		// Add all network interface variables
-		for (String id : interfaceDomain.networkDomain.getNetwork().interfaceObservables.keySet())
-			interfaceDomain.networkDomain.getNetwork().interfaceObservables.get(id).addObserver(this);
-		
-		// Add all network node interface variables
-		/*for (String id : exp..interfaceObservables.keySet())
-			interfaceDomain.networkDomain.getNetwork().interfaceObservables.get(id).addObserver(this);
-		
-		// Add all experiment interface variables
-		for (String id : interfaceDomain.networkDomain.getNetwork().interfaceObservables.keySet())
-			interfaceDomain.networkDomain.getNetwork().interfaceObservables.get(id).addObserver(this);
-		
-		// Add all environment interface variables
-		for (String id : interfaceDomain.networkDomain.getNetwork().interfaceObservables.keySet())
-			interfaceDomain.networkDomain.getNetwork().interfaceObservables.get(id).addObserver(this);*/
-	}
 	
 	private class startButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			startButton.setEnabled(false);
+			startButton.setText("Pause");
+			
 			Log.write("Interface (1): selecting experiment");
 			exp = new BinaryAND(interfaceDomain.experimentDomain);
 			
@@ -66,7 +51,6 @@ public class SwingInterface extends Interface {
 			Log.write("Interface (3): start threads");
 			statusLabel.setText("Status: Started");
 			exp.start();
-			setObservables();
 		}
 		
 	}
@@ -107,7 +91,7 @@ public class SwingInterface extends Interface {
 		expPanel = new JPanel();
 		expPanel.setLayout(new GridLayout(5, 1));
 		
-		expTitle = new JLabel("Experiment     ");
+		expTitle = new JLabel("Experiment          ");
 		expPanel.add(expTitle);
 		expname = new JLabel("Name: ");
 		expPanel.add(expname);
@@ -116,7 +100,7 @@ public class SwingInterface extends Interface {
 		envPanel = new JPanel();
 		envPanel.setLayout(new GridLayout(5, 1));
 		
-		envTitle = new JLabel("Environment    ");
+		envTitle = new JLabel("Environment         ");
 		envPanel.add(envTitle);
 		envname = new JLabel("Name: ");
 		envPanel.add(envname);
@@ -125,7 +109,7 @@ public class SwingInterface extends Interface {
 		netPanel = new JPanel();
 		netPanel.setLayout(new GridLayout(5, 1));
 		
-		netTitle = new JLabel("Network        ");
+		netTitle = new JLabel("Network             ");
 		netPanel.add(netTitle);
 		nodes = new JLabel("Nodes: 0");
 		netPanel.add(nodes);
@@ -141,12 +125,12 @@ public class SwingInterface extends Interface {
 		
 		statusLabel = new JLabel("Status: Stopped");
 		mainPanel.add(statusLabel, BorderLayout.PAGE_START);
-        
-        JButton startButton = new JButton("Start");
+		
+        startButton = new JButton("Start");
         startStopPanel.add(startButton);
         startButton.addActionListener(new startButtonListener());
 		
-        JButton exitButton = new JButton("Exit");
+        exitButton = new JButton("Exit");
         startStopPanel.add(exitButton);
         exitButton.addActionListener(new exitButtonListener());
         

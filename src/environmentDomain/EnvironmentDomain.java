@@ -1,5 +1,6 @@
 package environmentDomain;
 
+import interfaceDomain.InterfaceDomain;
 import metricDomain.MetricDomain;
 import networkDomain.NetworkDomain;
 import dataDomain.DataDomain;
@@ -16,6 +17,7 @@ public class EnvironmentDomain {
 	public NetworkDomain networkDomain;
 	public DataDomain dataDomain;
 	public MetricDomain metricDomain;
+	public InterfaceDomain interfaceDomain;
 	
 	public void initialise() {
 		Assert.AssertTrue("EnvironmentDomain: ExperimentDomain is connected", experimentDomain != null);
@@ -42,5 +44,8 @@ public class EnvironmentDomain {
 		this.metricDomain = metricDomain;
 	}
 	
+	public void setInterfaceDomain(InterfaceDomain interfaceDomain) {
+		this.interfaceDomain = interfaceDomain;
+	}
 	
 }

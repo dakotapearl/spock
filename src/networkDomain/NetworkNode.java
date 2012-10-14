@@ -89,7 +89,7 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 		interfaceObservables = new HashMap<String, InterfaceObservable>();
 		
 		// Initialise interface variables
-		interfaceObservables.put("Node activations", new InterfaceObservable("Node activations"));
+		
 		
 	}
 	
@@ -141,6 +141,14 @@ public class NetworkNode implements NetworkTargetable, NetworkTransmitter {
 		transmissionContent.replicateFunction(newNode.transmissionContent);
 		
 		return newNode;
+	}
+	
+	public void pauseNode() {
+		
+	}
+	
+	public void resumeNode() {
+		
 	}
 	
 }

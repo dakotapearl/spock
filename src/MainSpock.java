@@ -25,14 +25,17 @@ public class MainSpock {
 		Log.write("Application (2): connecting domains");
 		experimentDomain.setEnvironmentDomain(environmentDomain);
 		experimentDomain.setNetworkDomain(networkDomain);
+		experimentDomain.setInterfaceDomain(interfaceDomain);
 		environmentDomain.setExperimentDomain(experimentDomain);
 		environmentDomain.setNetworkDomain(networkDomain);
 		environmentDomain.setDataDomain(dataDomain);
 		environmentDomain.setMetricDomain(metricDomain);
+		environmentDomain.setInterfaceDomain(interfaceDomain);
 		networkDomain.setEnvironmentDomain(environmentDomain);
 		networkDomain.setExperimentDomain(experimentDomain);
 		networkDomain.setDataDomain(dataDomain);
 		networkDomain.setMetricDomain(metricDomain);
+		networkDomain.setInterfaceDomain(interfaceDomain);
 		interfaceDomain.setExperimentDomain(experimentDomain);
 		interfaceDomain.setNetworkDomain(networkDomain);
 		interfaceDomain.setEnvironmentDomain(environmentDomain);
@@ -58,9 +61,9 @@ public class MainSpock {
 	
 	public static void main(String[] args) {
 
-		Log.LoggingEnabled = true;
+		Log.LoggingEnabled = false;
 		Log.CreationLogsEnabled = false;
-		Log.MechanismDebugEnabled = true;
+		Log.MechanismDebugEnabled = false;
 		Log.TimeStampEnabled = true;
 		Log.ThreadCreationEnabled = true;
 		

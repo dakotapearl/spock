@@ -1,5 +1,6 @@
 package networkDomain;
 
+import interfaceDomain.InterfaceDomain;
 import metricDomain.MetricDomain;
 import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
@@ -16,6 +17,7 @@ public class NetworkDomain {
 	public ExperimentDomain experimentDomain;
 	public DataDomain dataDomain;
 	public MetricDomain metricDomain;
+	public InterfaceDomain interfaceDomain;
 	Network network;
 	
 	public void initialise() {
@@ -49,6 +51,10 @@ public class NetworkDomain {
 	
 	public Network getNetwork() {
 		return network;
+	}
+
+	public void setInterfaceDomain(InterfaceDomain interfaceDomain) {
+		this.interfaceDomain = interfaceDomain;
 	}
 	
 }

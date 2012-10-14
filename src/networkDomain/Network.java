@@ -17,6 +17,12 @@ public class Network extends Thread {
 	public ArrayList<NetworkNode> nodes;
 	public HashMap<String, InterfaceObservable> interfaceObservables;
 	
+	int c=0;
+	
+	public void nodeactivation() {
+		interfaceObservables.get("Node activations").updateInterface(Integer.toString(++c));
+	}
+	
 	public Network(NetworkDomain networkDomain) {
 		this.networkDomain = networkDomain;
 		
@@ -25,7 +31,9 @@ public class Network extends Thread {
 		
 		// Initialise interface variables
 		interfaceObservables.put("Number of nodes", new InterfaceObservable("Number of nodes"));
-		
+		networkDomain.interfaceDomain.registerInterfaceObservable(interfaceObservables.get("Number of nodes"));
+		interfaceObservables.put("Node activations", new InterfaceObservable("Node activations"));
+		networkDomain.interfaceDomain.registerInterfaceObservable(interfaceObservables.get("Node activations"));
 	}
 	
 	public void run() {
@@ -38,10 +46,21 @@ public class Network extends Thread {
 			n.start();
 		
 		interfaceObservables.get("Number of nodes").updateInterface(Integer.toString(nodes.size()));
+		
 	}
 	
 	public long networkSize() {
 		return nodes.size();
+	}
+	
+	public void pauseNetwork() {
+		for (NetworkNode n : nodes)
+			n.pauseNode();
+	}
+	
+	public void resumeNetwork() {
+		for (NetworkNode n : nodes)
+			n.resumeNode();
 	}
 	
 }

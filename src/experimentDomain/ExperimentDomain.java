@@ -1,5 +1,6 @@
 package experimentDomain;
 
+import interfaceDomain.InterfaceDomain;
 import networkDomain.NetworkDomain;
 import environmentDomain.EnvironmentDomain;
 import tools.errorChecking.Assert;
@@ -12,6 +13,7 @@ public class ExperimentDomain {
 
 	public EnvironmentDomain environmentDomain;
 	public NetworkDomain networkDomain;
+	public InterfaceDomain interfaceDomain;
 	
 	public void initialise() {
 		Assert.AssertTrue("ExperimentDomain: EnvironmentDomain is connected", environmentDomain != null);
@@ -26,6 +28,10 @@ public class ExperimentDomain {
 	
 	public void setNetworkDomain(NetworkDomain networkDomain) {
 		this.networkDomain = networkDomain;
+	}
+
+	public void setInterfaceDomain(InterfaceDomain interfaceDomain) {
+		this.interfaceDomain = interfaceDomain;
 	}
 	
 }
