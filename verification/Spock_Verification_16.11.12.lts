@@ -1,0 +1,79 @@
+const True = 1
+const False = 0
+range B = False..True
+
+// Node indices
+range Ni = 0..1
+
+// Datum indices
+const NullData = 3
+range Di = 3..5
+
+// Energy level
+range El = 0..2
+
+// ---Port with a buffer of size 2---
+set S = {[Di],[Di][Di]} // queue of up to three messages
+
+PORT = ( send[x:Di]-> PORT[x]), //empty state, only send permitted
+PORT[h:Di] = ( send[x:Di]-> PORT[x][h] //one message queued to port
+            | receive[h]-> PORT),
+PORT[t:S][h:Di] = ( receive[h]-> PORT[t]). //two or more messages queued to port
+// ----------------------------------
+
+// Monitor objects (passive entities)
+FCm = FCm[False],
+FCm[b:B] = ( setNotReadyToFire -> FCm[False]
+           | setReadyToFire -> FCm[True]
+           | when (b == True) waitUntilReadyToFire -> FCm[b]).
+
+TSm = (selectTargetTSm -> TSm) + {selectTarget[Ni]}.
+
+TCm = (retrieveDataCell[d:Di] -> selectContent[d] -> TCm).
+
+GSm = ( requestGene -> GSm
+      | setGene -> GSm
+      | getGene -> GSm
+      | mutate -> GSm
+      | splice -> GSm).
+
+EEm = EEm[1],
+EEm[e:El] = ( when (e < 2) offsetEnergy[1] -> EEm[e+1]
+            | when (e >= 2) offsetEnergy[1] -> EEm[e]
+            | when (e > 0) offsetEnergy[-1] -> EEm[e-1]
+            | when (e <= 0) offsetEnergy[-1] -> EEm[0]).
+
+DPm = (processData[d:Di] -> ( when (d == 4) processedData[5] -> DPm
+                            | when (d == 5) processedData[4] -> DPm
+                            | when (d != 4 && d != 5) processedData[d] -> ERROR)). // (for example)
+
+//LCm = (). Not used by default
+
+IPm = (acceptSignal[d:Di] -> send[d] -> IPm). //Add to port
+
+// Can only store one value at a time, functionally the same as storing n values
+SPm = SPm[4],
+SPm[d:Di] = ( when (d == NullData) storeDataCell[e:Di] -> if (e != NullData) then SPm[e] else ERROR //Should never receive null data
+            | when (d != NullData) retrieveDataCell[d] -> SPm[NullData]
+            | when (d == NullData) hasData[False] -> SPm[d]
+            | when (d != NullData) hasData[True] -> SPm[d]) + {retrieveDataCell[NullData]}.
+
+// Thread objects (active entites)
+//FCt = (). Not used by default
+//TSt = (). Not used by default
+//TCt = (). Not used by default
+//EEt = (). Not used by default
+//DPt = (). Not used by default
+//LCt = (). Not used by default
+
+IPt = (receive[d:Di] -> processData[d] -> processedData[e:Di] -> storeDataCell[e] -> offsetEnergy[1] -> IPt).
+
+OPt = (waitUntilReadyToFire -> selectContent[d:Di] -> selectTarget[n:Ni] -> sendSignal[n][d] -> OPt).
+
+progress P1 = {n[0].acceptSignal[4]}
+progress P2 = {n[0].acceptSignal[5]}
+progress P3 = {n[1].acceptSignal[4]}
+progress P4 = {n[1].acceptSignal[5]}
+
+||Node = (n[Ni]:(PORT || FCm || TSm || TCm || GSm || EEm || DPm || IPm || SPm || IPt || OPt)) / {n[1].acceptSignal[d:Di] / n[0].sendSignal[1][d], n[0].acceptSignal[d:Di] / n[1].sendSignal[0][d], n[n:Ni].selectTarget[(n+1)%2] / n[n].selectTargetTSm}.
+
