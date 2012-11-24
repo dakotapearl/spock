@@ -11,7 +11,7 @@ import networkDomain.signals.ImpulseSignal;
 public class tc extends TransmissionContent {
 
 	@Override
-	public NetworkSignal nextSignalToFire() {
+	public NetworkSignal selectContent() {
 		//tools.Log.write("Test Extension: TransmissionContent received nextDataCellToFire command");
 		while (true) {
 			try {

@@ -49,7 +49,7 @@ public class OutputProcess extends Thread {
 				Log.writeForMechanisms("OutputProcess: Firing Condition set");
 				
 				// Select signal to fire
-				signal = parent.transmissionContent.nextSignalToFire();
+				signal = parent.transmissionContent.selectContent();
 				Log.writeForMechanisms("OutputProcess: Selected signal");
 				
 				// Select target

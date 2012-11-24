@@ -21,7 +21,7 @@ public class NeuralEcosystem_TC extends TransmissionContent {
 	}
 
 	@Override
-	public NetworkSignal nextSignalToFire() {
+	public NetworkSignal selectContent() {
 		// TODO Auto-generated method stub
 		return null;
 	}

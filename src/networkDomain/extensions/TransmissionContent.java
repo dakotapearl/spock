@@ -19,7 +19,7 @@ public abstract class TransmissionContent extends Thread {
 	public void replicateFunction(TransmissionContent newFunction) { (new replicator(newFunction)).start(); }
 	public abstract TransmissionContent replicate();
 	
-	public abstract NetworkSignal nextSignalToFire();
+	public abstract NetworkSignal selectContent();
 	public abstract boolean signalsRemain();
 	public abstract void run();
 	

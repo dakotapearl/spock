@@ -3,13 +3,20 @@ package dataDomain;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import application.Domain;
+import application.DomainContainer;
+
 import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
 
 /**
  * @author Loren Chorley
  */
-public class DataDomain {
+public class DataDomain extends Domain {
+
+	public DataDomain(DomainContainer container) {
+		super(container);
+	}
 
 	public static final int DATUM_COUNT = 10;
 	
@@ -67,24 +74,6 @@ public class DataDomain {
 	@SuppressWarnings("rawtypes")
 	private static ArrayList[] data;
 	private static HashMap<Long, Datum> dataByUID;
-	
-	private void setup() {
-
-		data = new ArrayList[DATUM_COUNT];
-		dataByUID = new HashMap<Long,Datum>();
-		
-		data[DATUM_TYPE_CHARACTER] = new ArrayList<Character>();
-		data[DATUM_TYPE_NUMBER] = new ArrayList<Long>();
-		data[DATUM_TYPE_HUE] = new ArrayList<Short>();
-		data[DATUM_TYPE_SATURATION] = new ArrayList<Short>();
-		data[DATUM_TYPE_BRIGHTNESS] = new ArrayList<Short>();
-		data[DATUM_TYPE_BOOLEAN] = new ArrayList<Boolean>();
-		data[DATUM_TYPE_DIRECTION] = new ArrayList<Integer>();
-		data[DATUM_TYPE_LETTER] = new ArrayList<Integer>();
-		data[DATUM_TYPE_LETTER_SHAPE] = new ArrayList<Integer>();
-		data[DATUM_TYPE_LETTER_HEIGHT] = new ArrayList<Integer>();
-
-	}
 	
 	/**
 	 * @return instantiated datum or null if not instantiated
@@ -158,7 +147,19 @@ public class DataDomain {
 	}
 
 	public void initialise() {
-		setup();
+		data = new ArrayList[DATUM_COUNT];
+		dataByUID = new HashMap<Long,Datum>();
+		
+		data[DATUM_TYPE_CHARACTER] = new ArrayList<Character>();
+		data[DATUM_TYPE_NUMBER] = new ArrayList<Long>();
+		data[DATUM_TYPE_HUE] = new ArrayList<Short>();
+		data[DATUM_TYPE_SATURATION] = new ArrayList<Short>();
+		data[DATUM_TYPE_BRIGHTNESS] = new ArrayList<Short>();
+		data[DATUM_TYPE_BOOLEAN] = new ArrayList<Boolean>();
+		data[DATUM_TYPE_DIRECTION] = new ArrayList<Integer>();
+		data[DATUM_TYPE_LETTER] = new ArrayList<Integer>();
+		data[DATUM_TYPE_LETTER_SHAPE] = new ArrayList<Integer>();
+		data[DATUM_TYPE_LETTER_HEIGHT] = new ArrayList<Integer>();
 		
 		Log.write("Data domain initialised");
 	}
