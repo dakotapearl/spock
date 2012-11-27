@@ -9,7 +9,9 @@ import application.DomainContainer;
 import configurationDomain.ConfigurationDomain;
 import configurationDomain.exceptions.FileAlreadyLoadedException;
 import configurationDomain.exceptions.SectionAlreadyExistsException;
+import interfaceDomain.android.AndroidInterface;
 import interfaceDomain.swing.SwingInterface;
+import interfaceDomain.web.WebInterface;
 import dataDomain.DataDomain;
 import metricDomain.MetricDomain;
 import networkDomain.NetworkDomain;
@@ -40,9 +42,12 @@ public class InterfaceDomain extends Domain {
 	public MetricDomain metricDomain;
 	public ConfigurationDomain configurationDomain;
 	
-	Interface i;
+	Interface instance;
 	
 	public void initialise() {
+		
+		String interfaceType;
+		
 		// Applet perhaps, that can display relevant details as well as pick, control, start, restart and stop experiments
 		// turn off and on various logging comments
 		try {
@@ -50,6 +55,9 @@ public class InterfaceDomain extends Domain {
 		} catch (FileNotFoundException e) {
 			System.out.println("Interface settings file not found (config/interface.xml)");
 			System.exit(1);
+			
+			// TODO create default inteface config and save as interface.xml
+			
 		} catch (XMLStreamException e) {
 			System.out.println("Error found in interface settings file (config/interface.xml)");
 			System.out.println(e.getMessage());
@@ -62,8 +70,22 @@ public class InterfaceDomain extends Domain {
 		}
 		
 		// Check system type or check arguments to see what kind of interface is desired
-		i = new SwingInterface(this);
-		i.initialise();
+		
+		interfaceType = configurationDomain.getSetting("interface", "type"); 
+		
+		if (interfaceType.equals("swing")) {
+			instance = new SwingInterface(this);
+		} else if (interfaceType.equals("web")) {
+			instance = new WebInterface(this);
+		} else if (interfaceType.equals("android")) {
+			instance = new AndroidInterface(this);
+		//} else if (interfaceType.equals("swing")) {
+			//instance = new WebServiceInterface(this);
+		} else {
+			System.out.println("Unknown interface type");
+		}
+			
+		instance.initialise();
 		
 		Log.write("Interface domain initialised");
 	}

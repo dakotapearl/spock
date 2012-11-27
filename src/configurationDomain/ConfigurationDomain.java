@@ -4,11 +4,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.XMLEvent;
+
+import sun.security.krb5.Config;
 
 import configurationDomain.exceptions.FileAlreadyLoadedException;
 import configurationDomain.exceptions.SectionAlreadyExistsException;
@@ -20,8 +23,19 @@ import application.DomainContainer;
 
 public class ConfigurationDomain extends Domain {
 
-	private HashMap<String, HashMap<String, String>> settings;
-	private HashMap<String, String> sectionFiles;
+	//private HashMap<String, HashMap<String, String>> settings;
+	//private HashMap<String, String> sectionFiles;
+	
+	private HashSet<String> loadedFiles;
+	private HashMap<String, ConfigSection> allSettings;
+	
+	private class ConfigSection {
+		public HashMap<String, String> settings;
+		public String path;
+		public ConfigSection() {
+			settings = new HashMap<>();
+		}
+	}
 	
 	public ConfigurationDomain(DomainContainer container) {
 		super(container);
@@ -30,48 +44,51 @@ public class ConfigurationDomain extends Domain {
 	@Override
 	public void initialise() {
 		
-		settings = new HashMap<String, HashMap<String, String>>();
-		sectionFiles = new HashMap<String, String>();
+		//settings = new HashMap<String, HashMap<String, String>>();
+		//sectionFiles = new HashMap<String, String>();
+		
+		allSettings = new HashMap<String, ConfigSection>();
+		loadedFiles = new HashSet<>();
 		
 	}
 	
 	public String getSetting(String section, String name) throws SectionNotFoundException, SettingNotFoundException {
-		HashMap<String, String> sectionMap;
+		ConfigSection sectionMap;
 		
-		if (!settings.containsKey(section))
+		if (!allSettings.containsKey(section))
 			throw new SectionNotFoundException();
 		
-		sectionMap = settings.get(section);
+		sectionMap = allSettings.get(section);
 		
-		if (!sectionMap.containsKey(name))
+		if (!sectionMap.settings.containsKey(name))
 			throw new SettingNotFoundException();
 		
-		return settings.get(section).get(name);
+		return allSettings.get(section).settings.get(name);
 	}
 	
-	public HashMap<String, String> getSection(String section) throws SectionNotFoundException {
+	public ConfigSection getSection(String section) throws SectionNotFoundException {
 		
-		if (!settings.containsKey(section))
+		if (!allSettings.containsKey(section))
 			throw new SectionNotFoundException();
 		
-		return settings.get(section);
+		return allSettings.get(section);
 	}
 	
 	public void setSetting(String section, String name, String value) throws SectionNotFoundException {
 		
 	}
 	
-	public void makeSettingSection(String section) throws SectionAlreadyExistsException {
+	public void addSection(String section) throws SectionAlreadyExistsException {
 		
-		if (sectionFiles.containsKey(section))
+		if (allSettings.containsKey(section))
 			throw new SectionAlreadyExistsException();
 		
-		sectionFiles.put(key, value)
+		allSettings.put(section, new ConfigSection());
 		
 	}
 	
-	public void removeSettingSection(String section) throws SectionNotFoundException {
-		
+	public void removeSection(String section) throws SectionNotFoundException {
+		allSettings.remove(section);
 	}
 	
 	public void saveConfig(String section) {
@@ -80,8 +97,12 @@ public class ConfigurationDomain extends Domain {
 	
 	public void loadConfig(String filename, String newSection) throws FileAlreadyLoadedException, SectionAlreadyExistsException, XMLStreamException, FileNotFoundException {
 		
-		if (sectionFiles.containsValue(filename))
+		filename = "/home/loren/spock/" + filename; // TODO figure out relative pathing
+		
+		if (loadedFiles.contains(filename))
 			throw new FileAlreadyLoadedException();
+		
+		loadedFiles.add(filename);
 		
 		XMLInputFactory factory = XMLInputFactory.newInstance();
 		XMLEventReader r = factory.createXMLEventReader(filename, new FileInputStream(filename));
@@ -91,7 +112,7 @@ public class ConfigurationDomain extends Domain {
 		String upSection = newSection;
 		ArrayList<String> sectionList = new ArrayList<String>();
 		
-		makeSettingSection(newSection);
+		addSection(newSection);
 		
 		// Make sure the document has a <configuration> tag as the main tag
 		if (r.hasNext()) {
@@ -100,7 +121,7 @@ public class ConfigurationDomain extends Domain {
 				e = r.nextEvent();
 			} catch (XMLStreamException e1) {
 				try {
-					removeSettingSection(newSection);
+					removeSection(newSection);
 				} catch (SectionNotFoundException e2) {}
 				throw e1;
 			}
@@ -114,7 +135,7 @@ public class ConfigurationDomain extends Domain {
 				e = r.nextEvent();
 			} catch (XMLStreamException e1) {
 				try {
-					removeSettingSection(newSection);
+					removeSection(newSection);
 				} catch (SectionNotFoundException e2) {}
 				throw e1;
 			}
@@ -132,36 +153,47 @@ public class ConfigurationDomain extends Domain {
 				e = r.nextEvent();
 			} catch (XMLStreamException e1) {
 				try {
-					removeSettingSection(newSection);
+					removeSection(newSection);
 				} catch (SectionNotFoundException e2) {}
 				throw e1;
 			}
 		    
 		    switch (e.getEventType()) {
 		    case XMLEvent.START_ELEMENT:
+		    	
 		    	sectionList.add(e.asStartElement().getName().getLocalPart());
 		    	upSection = section;
 		    	section = section + "." + e.asStartElement().getName().getLocalPart();
+		    	
 		    	break;
+		    	
 		    case XMLEvent.END_ELEMENT:
+		    	
 		    	if (sectionList.size() > 0) {
 		    		section = upSection;
 		    		if (sectionList.size() > 1)
 		    			upSection = upSection.substring(0, section.length() - sectionList.get(sectionList.size() - 1).length()); 
 		    		sectionList.remove(sectionList.size() - 1);
 		    	}
+		    	
 		    	break;
+		    	
 		    case XMLEvent.CHARACTERS:
+		    	
 		    	if (!(e.isCharacters() && e.asCharacters().isWhiteSpace())) {
 		    		
-		    		if (!settings.containsKey(upSection)) {
-		    			settings.put(upSection, new HashMap<String, String>());
+		    		if (!allSettings.containsKey(upSection)) {
+		    			//allSettings.put(upSection, new HashMap<String, String>());
+		    			System.out.println("Should not happen!");
+		    			System.exit(1);
 		    		}
-		    		settings.get(upSection).put(sectionList.get(sectionList.size() - 1), e.asCharacters().getData());
 		    		
-		    			
+		    		allSettings.get(upSection).settings.put(sectionList.get(sectionList.size() - 1), e.asCharacters().getData());
+		    		
 		    	}
+		    	
 		    	break;
+		    	
 		    }
 		}
 
@@ -171,19 +203,18 @@ public class ConfigurationDomain extends Domain {
 	public static void main(String[] args) {
 		ConfigurationDomain c = new ConfigurationDomain(new DomainContainer());
 		
-		
 		c.initialise();
 		
 		try {
 			c.loadConfig("config/interface.xml", "interface");
 		} catch (Exception e) {
-		
+			e.printStackTrace();
 		}
 		
 		try {
 			System.out.println(c.getSetting("interface", "type"));
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 	
