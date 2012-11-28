@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<configuration>
+	<behaviour>
+		<name>test</name>
+		<path>src/networkDomain/behaviours/test/</path>
+		<fc>fc.java</fc>
+		<ts>ts.java</ts>
+		<tc>tc.java</tc>
+		<dp>dp.java</dp>
+		<ee>ee.java</ee>
+		<lc>lc.java</lc>
+	</behaviour>
+</configuration>

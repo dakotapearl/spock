@@ -3,6 +3,8 @@ package interfaceDomain.swing.listeners;
 import interfaceDomain.swing.SwingInterface;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import tools.errorChecking.Assert;
 import tools.errorChecking.Log;
 import experimentDomain.Binary.BinaryAND;
 
@@ -11,6 +13,8 @@ public class StartButtonListener implements ActionListener {
 	SwingInterface swingInterface;
 	
 	public StartButtonListener(SwingInterface swingInterface) {
+		Assert.AssertTrue("SwingInterface correctly passed to StartButtonListener", swingInterface != null);
+		
 		this.swingInterface = swingInterface;
 	}
 	
@@ -21,6 +25,7 @@ public class StartButtonListener implements ActionListener {
 		swingInterface.controlsPanel.startButton.setText("Pause");
 		
 		Log.write("Interface (1): selecting experiment");
+		
 		swingInterface.exp = new BinaryAND(swingInterface.interfaceDomain.experimentDomain);
 		
 		Log.write("Interface (2): setting parameters");

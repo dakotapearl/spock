@@ -35,10 +35,6 @@ public class NetworkDomain extends Domain {
 	Network network;
 	int nodeUID = 0;
 	
-	public void initialise() {
-		Log.write("Network domain initialised");
-	}
-	
 	public void setNetwork(Network network) {
 		this.network = network;
 	}
@@ -49,6 +45,23 @@ public class NetworkDomain extends Domain {
 	
 	public synchronized int getUniqueNodeID() {
 		return nodeUID++;
+	}
+
+	@Override
+	public void initialiseIndependent() {
+		environmentDomain = container.environmentDomain;
+		experimentDomain = container.experimentDomain;
+		interfaceDomain = container.interfaceDomain;
+		dataDomain = container.dataDomain;
+		metricDomain = container.metricDomain;
+		configurationDomain = container.configurationDomain;
+		
+		Log.write("Network domain initialised (independent)");
+	}
+
+	@Override
+	public void initialiseInterconnected() {
+		Log.write("Network domain initialised (interconnected)");
 	}
 	
 }

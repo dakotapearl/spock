@@ -1,5 +1,7 @@
 package experimentDomain;
 
+import experimentDomain.exceptions.ExtensionNotFound;
+
 /**
  * @author Loren Chorley
  */

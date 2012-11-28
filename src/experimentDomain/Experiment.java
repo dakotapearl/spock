@@ -17,7 +17,6 @@ import environmentDomain.Environment;
 public abstract class Experiment extends Thread {
 	
 	public ExperimentDomain experimentDomain;
-	public Thread thread;
 	private ArrayList<Environment> environments;
 	private Network network;
 	private HashMap<String, NetworkNodeTemplate> networkNodeTemplates;
@@ -29,12 +28,14 @@ public abstract class Experiment extends Thread {
 		this.experimentDomain = experimentDomain;
 		environments = new ArrayList<Environment>();
 		networkNodeTemplates = new HashMap<String, NetworkNodeTemplate>();
+		
+		System.out.println(experimentDomain.toString()); //TODO exp dom not properly passed
+		
 		network = new Network(experimentDomain.networkDomain);
 		experimentDomain.networkDomain.setNetwork(network);
 		interfaceObservables = new HashMap<String, InterfaceObservable>();
 		
-		// Initialise interface variables
-		
+		// TODO Initialise interface variables
 		
 		initialiseExperiment();
 		

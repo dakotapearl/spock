@@ -12,6 +12,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.XMLEvent;
 
 import sun.security.krb5.Config;
+import tools.errorChecking.Log;
 
 import configurationDomain.exceptions.FileAlreadyLoadedException;
 import configurationDomain.exceptions.SectionAlreadyExistsException;
@@ -42,14 +43,17 @@ public class ConfigurationDomain extends Domain {
 	}
 
 	@Override
-	public void initialise() {
-		
-		//settings = new HashMap<String, HashMap<String, String>>();
-		//sectionFiles = new HashMap<String, String>();
+	public void initialiseIndependent() {
 		
 		allSettings = new HashMap<String, ConfigSection>();
 		loadedFiles = new HashSet<>();
 		
+		Log.write("Configuration domain initialised (independent)");
+	}
+	
+	@Override
+	public void initialiseInterconnected() {
+		Log.write("Configuration domain initialised (interconnected)");
 	}
 	
 	public String getSetting(String section, String name) throws SectionNotFoundException, SettingNotFoundException {
@@ -203,7 +207,7 @@ public class ConfigurationDomain extends Domain {
 	public static void main(String[] args) {
 		ConfigurationDomain c = new ConfigurationDomain(new DomainContainer());
 		
-		c.initialise();
+		c.initialiseIndependent();
 		
 		try {
 			c.loadConfig("config/interface.xml", "interface");
@@ -217,5 +221,7 @@ public class ConfigurationDomain extends Domain {
 			e.printStackTrace();
 		}
 	}
+
+	
 	
 }

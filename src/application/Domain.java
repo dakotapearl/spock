@@ -9,6 +9,7 @@ public abstract class Domain {
 		this.container = container;
 	}
 	
-	public abstract void initialise();
+	public abstract void initialiseIndependent();
+	public abstract void initialiseInterconnected();
 	
 }

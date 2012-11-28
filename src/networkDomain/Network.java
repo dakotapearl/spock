@@ -17,7 +17,7 @@ public class Network extends Thread {
 	public ArrayList<NetworkNode> nodes;
 	public HashMap<String, InterfaceObservable> interfaceObservables;
 	
-	int c=0;
+	int c = 0;
 	
 	public void nodeactivation() {
 		interfaceObservables.get("Node activations").updateInterface(Integer.toString(++c));

@@ -17,12 +17,6 @@ public class EnvironmentDomain extends Domain {
 	
 	public EnvironmentDomain(DomainContainer container) {
 		super(container);
-		experimentDomain = container.experimentDomain;
-		networkDomain = container.networkDomain;
-		dataDomain = container.dataDomain;
-		metricDomain = container.metricDomain;
-		interfaceDomain = container.interfaceDomain;
-		configurationDomain = container.configurationDomain;
 	}
 
 	public ExperimentDomain experimentDomain;
@@ -32,8 +26,21 @@ public class EnvironmentDomain extends Domain {
 	public InterfaceDomain interfaceDomain;
 	public ConfigurationDomain configurationDomain;
 	
-	public void initialise() {
-		Log.write("Environment domain initialised");
+	@Override
+	public void initialiseIndependent() {
+		experimentDomain = container.experimentDomain;
+		networkDomain = container.networkDomain;
+		dataDomain = container.dataDomain;
+		metricDomain = container.metricDomain;
+		interfaceDomain = container.interfaceDomain;
+		configurationDomain = container.configurationDomain;
+		
+		Log.write("Environment domain initialised (indepentent)");
+	}
+
+	@Override
+	public void initialiseInterconnected() {
+		Log.write("Environment domain initialised (interconnected)");
 	}
 	
 }

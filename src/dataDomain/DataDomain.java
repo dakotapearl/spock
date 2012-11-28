@@ -146,7 +146,7 @@ public class DataDomain extends Domain {
 		}
 	}
 
-	public void initialise() {
+	public void initialiseIndependent() {
 		data = new ArrayList[DATUM_COUNT];
 		dataByUID = new HashMap<Long,Datum>();
 		
@@ -161,7 +161,12 @@ public class DataDomain extends Domain {
 		data[DATUM_TYPE_LETTER_SHAPE] = new ArrayList<Integer>();
 		data[DATUM_TYPE_LETTER_HEIGHT] = new ArrayList<Integer>();
 		
-		Log.write("Data domain initialised");
+		Log.write("Data domain initialised (independent)");
+	}
+
+	@Override
+	public void initialiseInterconnected() {
+		Log.write("Data domain initialised (interconnected)");
 	}
 	
 }

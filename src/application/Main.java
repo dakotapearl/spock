@@ -27,12 +27,13 @@ public class Main {
 		DomainContainer container = new DomainContainer();
 		
 		container.configurationDomain = new ConfigurationDomain(container);
+		container.interfaceDomain = new InterfaceDomain(container);
+		container.dataDomain = new DataDomain(container);
+		container.metricDomain = new MetricDomain(container);
 		container.experimentDomain = new ExperimentDomain(container);
 		container.environmentDomain = new EnvironmentDomain(container);
 		container.networkDomain  = new NetworkDomain(container);
-		container.dataDomain = new DataDomain(container);
-		container.metricDomain = new MetricDomain(container);
-		container.interfaceDomain = new InterfaceDomain(container);
+		
 		
 		/*
 		 * Note that the configuration domain is initialised before
@@ -43,13 +44,21 @@ public class Main {
 		 */
 		Log.write("Application (2): initialising domains");
 		
-		container.configurationDomain.initialise();
-		container.environmentDomain.initialise();
-		container.networkDomain.initialise();
-		container.experimentDomain.initialise();
-		container.dataDomain.initialise();
-		container.metricDomain.initialise();
-		container.interfaceDomain.initialise();
+		container.configurationDomain.initialiseIndependent();
+		container.interfaceDomain.initialiseIndependent();
+		container.environmentDomain.initialiseIndependent();
+		container.networkDomain.initialiseIndependent();
+		container.experimentDomain.initialiseIndependent();
+		container.dataDomain.initialiseIndependent();
+		container.metricDomain.initialiseIndependent();
+		
+		container.configurationDomain.initialiseInterconnected();
+		container.interfaceDomain.initialiseInterconnected();
+		container.environmentDomain.initialiseInterconnected();
+		container.networkDomain.initialiseInterconnected();
+		container.experimentDomain.initialiseInterconnected();
+		container.dataDomain.initialiseInterconnected();
+		container.metricDomain.initialiseInterconnected();
 		
 		Log.write("Application (3): starting interface");
 		container.interfaceDomain.start();

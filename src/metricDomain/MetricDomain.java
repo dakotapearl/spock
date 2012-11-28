@@ -9,13 +9,20 @@ public class MetricDomain extends Domain {
 	
 	public MetricDomain(DomainContainer container) {
 		super(container);
-		configurationDomain = container.configurationDomain;
 	}
 
 	public ConfigurationDomain configurationDomain;
 	
-	public void initialise() {
-		Log.write("Goal domain initialised");
+	@Override
+	public void initialiseIndependent() {
+		configurationDomain = container.configurationDomain;
+		
+		Log.write("Goal domain initialised (independent)");	
+	}
+
+	@Override
+	public void initialiseInterconnected() {
+		Log.write("Goal domain initialised (interconnected)");
 	}
 	
 }

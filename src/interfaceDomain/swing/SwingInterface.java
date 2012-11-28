@@ -29,6 +29,7 @@ public class SwingInterface extends Interface {
 	
 	public SwingInterface(InterfaceDomain interfaceDomain) {
 		super(interfaceDomain);
+		Assert.AssertTrue("InterfaceDomain correctly passed to SwingInterface", interfaceDomain != null);
 	}
 	
 	@Override

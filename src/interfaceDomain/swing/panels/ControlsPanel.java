@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import tools.errorChecking.Assert;
+
 public class ControlsPanel extends JPanel {
 
 	private static final long serialVersionUID = -312140961983129910L;
@@ -15,6 +17,7 @@ public class ControlsPanel extends JPanel {
 	public JButton startButton, exitButton;
 	
 	public ControlsPanel(SwingInterface swingInterface) {
+		Assert.AssertTrue("SwingInterface correctly passed to ControlsPanel", swingInterface != null);
 		this.swingInterface = swingInterface;
 		
 		setLayout(new GridLayout(1, 2));
