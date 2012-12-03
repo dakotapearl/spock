@@ -8,12 +8,13 @@ import tools.errorChecking.Log;
 
 import dataDomain.DataCell;
 import environmentDomain.Action;
+import networkDomain.NetworkBehaviour;
 import networkDomain.NetworkNode;
 
 /**
  * @author Loren Chorley
  */
-public class StorageProcess {
+public class StorageProcess implements NetworkBehaviour {
 	
 	// Storage of data, continuous signals, and other nodes that are connected to this one, including actions
 	NetworkNode parent;

@@ -61,6 +61,8 @@ public class NetworkDomain extends Domain {
 
 	@Override
 	public void initialiseInterconnected() {
+		configurationDomain.loadConfigWithStandardHandling("config/network.xml", "network");
+		
 		Log.write("Network domain initialised (interconnected)");
 	}
 	

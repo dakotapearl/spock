@@ -2,12 +2,7 @@ package experimentDomain.Binary;
 
 import tools.errorChecking.Assert;
 import networkDomain.NetworkNode;
-import networkDomain.behaviours.test.dp;
-import networkDomain.behaviours.test.ee;
-import networkDomain.behaviours.test.fc;
-import networkDomain.behaviours.test.lc;
-import networkDomain.behaviours.test.tc;
-import networkDomain.behaviours.test.ts;
+import networkDomain.behaviours.neuralEcosystem.*;
 import networkDomain.core.InputProcess;
 import networkDomain.core.OutputProcess;
 import networkDomain.core.StorageProcess;
@@ -28,16 +23,30 @@ public class BinaryAND extends Experiment {
 
 	@Override
 	public void initialiseExperiment() {
-		addNodeTemplate("TestTemplate", InputProcess.class, OutputProcess.class, StorageProcess.class, 
-                						fc.class, ts.class, GeneticSequence.class, ee.class, lc.class, dp.class, tc.class);
-
-		NetworkNode node = addNewNode("TestTemplate");
 		
+		// TODO condense into form network operation
+		addNodeTemplate("NeuralEcosystemTemplate", 
+				        InputProcess.class, 
+				        OutputProcess.class, 
+				        StorageProcess.class, 
+				        NeuralEcosystem_FC.class, 
+				        NeuralEcosystem_TS.class, 
+				        GeneticSequence.class, 
+				        NeuralEcosystem_EE.class, 
+				        NeuralEcosystem_LC.class, 
+				        NeuralEcosystem_DP.class, 
+				        NeuralEcosystem_TC.class);
+
+		NetworkNode node = addNewNode("NeuralEcosystemTemplate");
+		
+		// Create environment
 		BinaryANDEnvironment env = new BinaryANDEnvironment(experimentDomain.environmentDomain);
 		addEnvironment(env);
 		
+		// TODO condense into an EnvironmentOutputInterface operation 
 		env.getPerceptions().get(0).addObserver(node.inputProcess);
 		
+		// TODO condense into an EnvironmentInputInterface operation
 		node.storageProcess.registerAction(env.getActions().get(0));
 		node.storageProcess.registerAction(env.getActions().get(1));
 	}

@@ -1,6 +1,7 @@
 package networkDomain.core;
 
 import tools.errorChecking.Log;
+import networkDomain.NetworkBehaviour;
 import networkDomain.NetworkNode;
 import networkDomain.NetworkSignal;
 import networkDomain.NetworkTargetable;
@@ -8,7 +9,7 @@ import networkDomain.NetworkTargetable;
 /**
  * @author Loren Chorley
  */
-public class OutputProcess extends Thread {
+public class OutputProcess extends Thread implements NetworkBehaviour {
 	
 	NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }

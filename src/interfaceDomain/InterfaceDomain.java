@@ -71,24 +71,7 @@ public class InterfaceDomain extends Domain {
 		
 		// Applet perhaps, that can display relevant details as well as pick, control, start, restart and stop experiments
 		// turn off and on various logging comments
-		try {
-			configurationDomain.loadConfig("config/interface.xml", "interface");
-		} catch (FileNotFoundException e) {
-			System.out.println("Interface settings file not found (config/interface.xml)");
-			System.exit(1);
-			
-			// TODO create default inteface config and save as interface.xml
-			
-		} catch (XMLStreamException e) {
-			System.out.println("Error found in interface settings file (config/interface.xml)");
-			System.out.println(e.getMessage());
-			System.exit(1);
-		} catch (FileAlreadyLoadedException e) {
-			// Do nothing, all good
-		} catch (SectionAlreadyExistsException e) {
-			System.out.println("This configuration section has already been taken");
-			System.exit(1);
-		}
+		configurationDomain.loadConfigWithStandardHandling("config/interface.xml", "interface");
 		
 		// Check system type or check arguments to see what kind of interface is desired
 		

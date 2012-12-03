@@ -11,7 +11,6 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.XMLEvent;
 
-import sun.security.krb5.Config;
 import tools.errorChecking.Log;
 
 import configurationDomain.exceptions.FileAlreadyLoadedException;
@@ -24,18 +23,50 @@ import application.DomainContainer;
 
 public class ConfigurationDomain extends Domain {
 
-	//private HashMap<String, HashMap<String, String>> settings;
-	//private HashMap<String, String> sectionFiles;
-	
 	private HashSet<String> loadedFiles;
 	private HashMap<String, ConfigSection> allSettings;
+	private HashMap<String, BehaviourConfig> behaviours;
 	
 	private class ConfigSection {
 		public HashMap<String, String> settings;
+		@SuppressWarnings("unused")
 		public String path;
 		public ConfigSection() {
 			settings = new HashMap<>();
 		}
+	}
+	
+	@SuppressWarnings("unused")
+	private class BehaviourConfig {
+		
+		public String name = null;
+		public String path = null;
+		
+		public String fcPath = null;
+		public String tsPath = null;
+		public String tcPath = null;
+		public String dpPath = null;
+		public String eePath = null;
+		public String lcPath = null;
+		
+		public String ipPath = null;
+		public String opPath = null;
+		public String spPath = null;
+		public String gsPath = null;
+		
+		public boolean isValid() {
+			if (name != null && fcPath != null && tsPath != null && tcPath != null && dpPath != null && eePath != null && lcPath != null) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		public boolean filesExist() {
+			return false;
+			//TODO test each file name passed in
+		}
+		
 	}
 	
 	public ConfigurationDomain(DomainContainer container) {
@@ -47,6 +78,7 @@ public class ConfigurationDomain extends Domain {
 		
 		allSettings = new HashMap<String, ConfigSection>();
 		loadedFiles = new HashSet<>();
+		behaviours = new HashMap<String, BehaviourConfig>();
 		
 		Log.write("Configuration domain initialised (independent)");
 	}
@@ -99,6 +131,24 @@ public class ConfigurationDomain extends Domain {
 		
 	}
 	
+	public void loadConfigWithStandardHandling(String filename, String newSection) {
+		try {
+			loadConfig(filename, newSection);
+		} catch (FileNotFoundException e) {
+			System.out.println("The settings file for '" + newSection + " was not found (" + filename + ")");
+			// TODO create empty config and save
+			System.exit(1);
+		} catch (XMLStreamException e) {
+			System.out.println("An error was found in the settings file for '" + newSection + "' (" + filename + ")");
+			System.exit(1);
+		} catch (FileAlreadyLoadedException e) {
+			// Do nothing, all good
+		} catch (SectionAlreadyExistsException e) {
+			System.out.println("This configuration section name has already been taken (" + newSection + ")");
+			System.exit(1);
+		}
+	}
+	
 	public void loadConfig(String filename, String newSection) throws FileAlreadyLoadedException, SectionAlreadyExistsException, XMLStreamException, FileNotFoundException {
 		
 		filename = "/home/loren/spock/" + filename; // TODO figure out relative pathing
@@ -115,6 +165,8 @@ public class ConfigurationDomain extends Domain {
 		String section = newSection;
 		String upSection = newSection;
 		ArrayList<String> sectionList = new ArrayList<String>();
+		BehaviourConfig newBehaviour = null;
+		String behaviourProperty = null;
 		
 		addSection(newSection);
 		
@@ -165,25 +217,47 @@ public class ConfigurationDomain extends Domain {
 		    switch (e.getEventType()) {
 		    case XMLEvent.START_ELEMENT:
 		    	
-		    	sectionList.add(e.asStartElement().getName().getLocalPart());
-		    	upSection = section;
-		    	section = section + "." + e.asStartElement().getName().getLocalPart();
-		    	
+		    	if (e.asStartElement().getName().getLocalPart().equals("behaviour")) {
+		    		newBehaviour = new BehaviourConfig();
+		    	} else if (newBehaviour != null) { // enter behaviour property
+		    		behaviourProperty = e.asStartElement().getName().getLocalPart();
+		    	} else {
+			    	sectionList.add(e.asStartElement().getName().getLocalPart());
+			    	upSection = section;
+			    	section = section + "." + e.asStartElement().getName().getLocalPart();
+		    	}
+			    
 		    	break;
 		    	
 		    case XMLEvent.END_ELEMENT:
 		    	
-		    	if (sectionList.size() > 0) {
-		    		section = upSection;
-		    		if (sectionList.size() > 1)
-		    			upSection = upSection.substring(0, section.length() - sectionList.get(sectionList.size() - 1).length()); 
-		    		sectionList.remove(sectionList.size() - 1);
+		    	if (e.asEndElement().getName().getLocalPart().equals("behaviour")) {
+		    		if (newBehaviour.isValid()) {
+		    			behaviours.put(newBehaviour.name, newBehaviour);
+		    			newBehaviour = null;
+		    		} else { // invalid behaviour configuration
+		    			if (newBehaviour.name != null) {
+		    				System.out.println("Invalid behaviour config discarded: " + newBehaviour.name);
+		    			} else {
+		    				System.out.println("Invalid behaviour config discarded");
+		    			}
+		    			newBehaviour = null;
+		    		}
+		    	} else if (newBehaviour != null) { // leave behaviour property
+		    		behaviourProperty = null; 
+		    	} else {
+			    	if (sectionList.size() > 0) {
+			    		section = upSection;
+			    		if (sectionList.size() > 1)
+			    			upSection = upSection.substring(0, section.length() - sectionList.get(sectionList.size() - 1).length()); 
+			    		sectionList.remove(sectionList.size() - 1);
+			    	} // TODO Check that this is right
 		    	}
-		    	
 		    	break;
 		    	
 		    case XMLEvent.CHARACTERS:
 		    	
+		    	// If not white space
 		    	if (!(e.isCharacters() && e.asCharacters().isWhiteSpace())) {
 		    		
 		    		if (!allSettings.containsKey(upSection)) {
@@ -192,8 +266,36 @@ public class ConfigurationDomain extends Domain {
 		    			System.exit(1);
 		    		}
 		    		
-		    		allSettings.get(upSection).settings.put(sectionList.get(sectionList.size() - 1), e.asCharacters().getData());
-		    		
+		    		if (newBehaviour != null) { // enter behaviour property
+		    			if (behaviourProperty.equals("name")) {
+			    			newBehaviour.name = e.asCharacters().getData();
+			    		} else if (behaviourProperty.equals("path")) {
+			    			newBehaviour.path = e.asCharacters().getData();
+			    		} else if (behaviourProperty.equals("fc")) {
+			    			newBehaviour.fcPath = e.asCharacters().getData();
+			    		} else if (behaviourProperty.equals("ts")) {
+			    			newBehaviour.tsPath = e.asCharacters().getData();
+			    		} else if (behaviourProperty.equals("tc")) {
+			    			newBehaviour.tcPath = e.asCharacters().getData();
+			    		} else if (behaviourProperty.equals("dp")) {
+			    			newBehaviour.dpPath = e.asCharacters().getData();
+			    		} else if (behaviourProperty.equals("ee")) {
+			    			newBehaviour.eePath = e.asCharacters().getData();
+			    		} else if (behaviourProperty.equals("lc")) {
+			    			newBehaviour.lcPath = e.asCharacters().getData();
+			    		} else if (behaviourProperty.equals("ip")) {
+			    			newBehaviour.ipPath = e.asCharacters().getData();
+			    		} else if (behaviourProperty.equals("op")) {
+			    			newBehaviour.opPath = e.asCharacters().getData();
+			    		} else if (behaviourProperty.equals("sp")) {
+			    			newBehaviour.spPath = e.asCharacters().getData();
+			    		} else if (behaviourProperty.equals("gs")) {
+			    			newBehaviour.gsPath = e.asCharacters().getData();
+			    		}
+			    	} else {
+				    	allSettings.get(upSection).settings.put(sectionList.get(sectionList.size() - 1), e.asCharacters().getData());
+			    	}
+				    
 		    	}
 		    	
 		    	break;
@@ -216,10 +318,45 @@ public class ConfigurationDomain extends Domain {
 		}
 		
 		try {
+			ConfigSection cs = c.getSection("interface");
+			for (String s : cs.settings.keySet()) {
+				System.out.println(s+": "+cs.settings.get(s));
+			}
+		} catch (SectionNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
 			System.out.println(c.getSetting("interface", "type"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			c.loadConfig("config/network.xml", "network");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileAlreadyLoadedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SectionAlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XMLStreamException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (String bc : c.behaviours.keySet()) {
+			System.out.println(bc + ": " + c.behaviours.get(bc).path);
+		}
+		
+		System.out.println("fc: " + c.behaviours.get("test").path + c.behaviours.get("test").fcPath);
+		
+		
+		
 	}
 
 	

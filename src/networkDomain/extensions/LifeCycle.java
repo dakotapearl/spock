@@ -1,11 +1,12 @@
 package networkDomain.extensions;
 
+import networkDomain.NetworkBehaviour;
 import networkDomain.NetworkNode;
 
 /**
  * @author Loren Chorley
  */
-public abstract class LifeCycle extends Thread {
+public abstract class LifeCycle extends Thread implements NetworkBehaviour {
 	
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }

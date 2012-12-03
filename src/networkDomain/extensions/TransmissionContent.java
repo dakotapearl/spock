@@ -1,12 +1,13 @@
 package networkDomain.extensions;
 
+import networkDomain.NetworkBehaviour;
 import networkDomain.NetworkNode;
 import networkDomain.NetworkSignal;
 
 /**
  * @author Loren Chorley
  */
-public abstract class TransmissionContent extends Thread {
+public abstract class TransmissionContent extends Thread implements NetworkBehaviour {
 	
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }

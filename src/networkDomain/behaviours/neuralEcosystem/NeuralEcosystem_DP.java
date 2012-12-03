@@ -10,8 +10,8 @@ public class NeuralEcosystem_DP extends DataProcessing {
 
 	@Override
 	public DataCell processData(DataCell dataCell) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return new DataCell(1, dataCell.getDatum());
 	}
 
 	@Override

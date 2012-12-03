@@ -1,12 +1,13 @@
 package networkDomain.extensions;
 
+import networkDomain.NetworkBehaviour;
 import networkDomain.NetworkNode;
 import dataDomain.DataCell;
 
 /**
  * @author Loren Chorley
  */
-public abstract class DataProcessing extends Thread {
+public abstract class DataProcessing extends Thread implements NetworkBehaviour {
 
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }

@@ -2,6 +2,8 @@ package networkDomain.core;
 
 import java.util.Observable;
 import java.util.Observer;
+
+import networkDomain.NetworkBehaviour;
 import networkDomain.NetworkNode;
 import networkDomain.NetworkSignal;
 import networkDomain.NetworkTransmitter;
@@ -14,7 +16,7 @@ import tools.errorChecking.Log;
 /**
  * @author Loren Chorley
  */
-public class InputProcess extends Thread implements Observer {
+public class InputProcess extends Thread implements Observer, NetworkBehaviour  {
 	
 	private Port<NetworkSignal> port;
 	NetworkNode parent;

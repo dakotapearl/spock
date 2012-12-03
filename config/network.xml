@@ -10,4 +10,24 @@
 		<ee>ee.java</ee>
 		<lc>lc.java</lc>
 	</behaviour>
+	<behaviour>
+		<name>neuralEcosystem</name>
+		<path>src/networkDomain/behaviours/neuralEcosystem/</path>
+		<fc>NeuralEcosystem_FC.java</fc>
+		<ts>NeuralEcosystem_TS.java</ts>
+		<tc>NeuralEcosystem_TC.java</tc>
+		<dp>NeuralEcosystem_DP.java</dp>
+		<ee>NeuralEcosystem_EE.java</ee>
+		<lc>NeuralEcosystem_LC.java</lc>
+	</behaviour>
+	<behaviour>
+		<name>persistantSignal</name>
+		<path>src/networkDomain/behaviours/persistantSignal/</path>
+		<fc>PersistantSignal_FC.java</fc>
+		<ts>PersistantSignal_TS.java</ts>
+		<tc>PersistantSignal_TC.java</tc>
+		<dp>PersistantSignal_DP.java</dp>
+		<ee>PersistantSignal_EE.java</ee>
+		<lc>PersistantSignal_LC.java</lc>
+	</behaviour>
 </configuration>

@@ -1,11 +1,12 @@
 package networkDomain.extensions;
 
+import networkDomain.NetworkBehaviour;
 import networkDomain.NetworkNode;
 
 /**
  * @author Loren Chorley
  */
-public abstract class FiringCondition extends Thread {
+public abstract class FiringCondition extends Thread implements NetworkBehaviour {
 	
 	private boolean ready = false;
 	protected NetworkNode parent;

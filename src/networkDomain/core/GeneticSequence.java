@@ -4,12 +4,13 @@ import java.util.HashMap;
 import java.util.Random;
 
 import tools.errorChecking.Assert;
+import networkDomain.NetworkBehaviour;
 import networkDomain.NetworkNode;
 
 /**
  * @author Loren Chorley
  */
-public class GeneticSequence {
+public class GeneticSequence implements NetworkBehaviour {
 	
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }

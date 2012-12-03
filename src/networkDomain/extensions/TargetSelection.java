@@ -1,5 +1,6 @@
 package networkDomain.extensions;
 
+import networkDomain.NetworkBehaviour;
 import networkDomain.NetworkNode;
 import networkDomain.NetworkSignal;
 import networkDomain.NetworkTargetable;
@@ -7,7 +8,7 @@ import networkDomain.NetworkTargetable;
 /**
  * @author Loren Chorley
  */
-public abstract class TargetSelection extends Thread {
+public abstract class TargetSelection extends Thread implements NetworkBehaviour {
 	
 	protected NetworkNode parent;
 	public void declareParent(NetworkNode parent) { this.parent = parent; }

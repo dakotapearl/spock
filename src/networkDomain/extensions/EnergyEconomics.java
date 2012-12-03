@@ -1,11 +1,12 @@
 package networkDomain.extensions;
 
+import networkDomain.NetworkBehaviour;
 import networkDomain.NetworkNode;
 
 /**
  * @author Loren Chorley
  */
-public abstract class EnergyEconomics extends Thread {
+public abstract class EnergyEconomics extends Thread implements NetworkBehaviour {
 
 	private int energy = 0;
 	protected NetworkNode parent;
