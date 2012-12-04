@@ -13,6 +13,8 @@ import javax.xml.stream.events.XMLEvent;
 
 import tools.errorChecking.Log;
 
+import configurationDomain.configs.NetworkBehaviourConfig;
+import configurationDomain.domainLoaders.NetworkBehaviourLoader;
 import configurationDomain.exceptions.FileAlreadyLoadedException;
 import configurationDomain.exceptions.SectionAlreadyExistsException;
 import configurationDomain.exceptions.SectionNotFoundException;
@@ -22,10 +24,15 @@ import application.Domain;
 import application.DomainContainer;
 
 public class ConfigurationDomain extends Domain {
-
+	
+	// General settings
 	private HashSet<String> loadedFiles;
-	private HashMap<String, ConfigSection> allSettings;
-	private HashMap<String, BehaviourConfig> behaviours;
+	private HashMap<String, ConfigSection> generalSettings;
+	
+	// Domain specific data loaders
+	private HashMap<String, DomainConfigLoader> loaderMap;
+	
+	public Settings settings;
 	
 	private class ConfigSection {
 		public HashMap<String, String> settings;
@@ -35,50 +42,27 @@ public class ConfigurationDomain extends Domain {
 			settings = new HashMap<>();
 		}
 	}
-	
-	@SuppressWarnings("unused")
-	private class BehaviourConfig {
 		
-		public String name = null;
-		public String path = null;
-		
-		public String fcPath = null;
-		public String tsPath = null;
-		public String tcPath = null;
-		public String dpPath = null;
-		public String eePath = null;
-		public String lcPath = null;
-		
-		public String ipPath = null;
-		public String opPath = null;
-		public String spPath = null;
-		public String gsPath = null;
-		
-		public boolean isValid() {
-			if (name != null && fcPath != null && tsPath != null && tcPath != null && dpPath != null && eePath != null && lcPath != null) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		public boolean filesExist() {
-			return false;
-			//TODO test each file name passed in
-		}
-		
-	}
-	
 	public ConfigurationDomain(DomainContainer container) {
 		super(container);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void initialiseIndependent() {
 		
-		allSettings = new HashMap<String, ConfigSection>();
+		DomainConfigLoader loader;
+		
+		generalSettings = new HashMap<String, ConfigSection>();
 		loadedFiles = new HashSet<>();
-		behaviours = new HashMap<String, BehaviourConfig>();
+		
+		loaderMap = new HashMap<String, DomainConfigLoader>();
+		
+		settings = new Settings();
+		
+		// Let the domain config loaders register themselves
+		loader = new NetworkBehaviourLoader(settings.networkbehaviours);
+		loaderMap.put(loader.getTag(), loader);
 		
 		Log.write("Configuration domain initialised (independent)");
 	}
@@ -91,44 +75,44 @@ public class ConfigurationDomain extends Domain {
 	public String getSetting(String section, String name) throws SectionNotFoundException, SettingNotFoundException {
 		ConfigSection sectionMap;
 		
-		if (!allSettings.containsKey(section))
+		if (!generalSettings.containsKey(section))
 			throw new SectionNotFoundException();
 		
-		sectionMap = allSettings.get(section);
+		sectionMap = generalSettings.get(section);
 		
 		if (!sectionMap.settings.containsKey(name))
 			throw new SettingNotFoundException();
 		
-		return allSettings.get(section).settings.get(name);
+		return generalSettings.get(section).settings.get(name);
 	}
 	
 	public ConfigSection getSection(String section) throws SectionNotFoundException {
 		
-		if (!allSettings.containsKey(section))
+		if (!generalSettings.containsKey(section))
 			throw new SectionNotFoundException();
 		
-		return allSettings.get(section);
+		return generalSettings.get(section);
 	}
 	
 	public void setSetting(String section, String name, String value) throws SectionNotFoundException {
-		
+		//TODO
 	}
 	
 	public void addSection(String section) throws SectionAlreadyExistsException {
 		
-		if (allSettings.containsKey(section))
+		if (generalSettings.containsKey(section))
 			throw new SectionAlreadyExistsException();
 		
-		allSettings.put(section, new ConfigSection());
+		generalSettings.put(section, new ConfigSection());
 		
 	}
 	
 	public void removeSection(String section) throws SectionNotFoundException {
-		allSettings.remove(section);
+		generalSettings.remove(section);
 	}
 	
 	public void saveConfig(String section) {
-		
+		//TODO
 	}
 	
 	public void loadConfigWithStandardHandling(String filename, String newSection) {
@@ -165,8 +149,9 @@ public class ConfigurationDomain extends Domain {
 		String section = newSection;
 		String upSection = newSection;
 		ArrayList<String> sectionList = new ArrayList<String>();
-		BehaviourConfig newBehaviour = null;
-		String behaviourProperty = null;
+		DomainConfig newConfig = null;
+		String configType = "";
+		String configProperty = null;
 		
 		addSection(newSection);
 		
@@ -217,10 +202,12 @@ public class ConfigurationDomain extends Domain {
 		    switch (e.getEventType()) {
 		    case XMLEvent.START_ELEMENT:
 		    	
-		    	if (e.asStartElement().getName().getLocalPart().equals("behaviour")) {
-		    		newBehaviour = new BehaviourConfig();
-		    	} else if (newBehaviour != null) { // enter behaviour property
-		    		behaviourProperty = e.asStartElement().getName().getLocalPart();
+		    	//if (e.asStartElement().getName().getLocalPart().equals("behaviour")) {
+		    	if (loaderMap.containsKey(e.asStartElement().getName().getLocalPart())) {		    		
+		    		configType = e.asStartElement().getName().getLocalPart();
+		    		newConfig = loaderMap.get(configType).newConfig(configType);
+		    	} else if (newConfig != null) { // enter behaviour property
+		    		configProperty = e.asStartElement().getName().getLocalPart();
 		    	} else {
 			    	sectionList.add(e.asStartElement().getName().getLocalPart());
 			    	upSection = section;
@@ -231,20 +218,21 @@ public class ConfigurationDomain extends Domain {
 		    	
 		    case XMLEvent.END_ELEMENT:
 		    	
-		    	if (e.asEndElement().getName().getLocalPart().equals("behaviour")) {
-		    		if (newBehaviour.isValid()) {
-		    			behaviours.put(newBehaviour.name, newBehaviour);
-		    			newBehaviour = null;
+		    	if (e.asEndElement().getName().getLocalPart().equals(configType)) {
+		    		if (newConfig.isValid() && newConfig.getID() != null) {
+		    			loaderMap.get(e.asEndElement().getName().getLocalPart()).setConfig(newConfig);
 		    		} else { // invalid behaviour configuration
-		    			if (newBehaviour.name != null) {
-		    				System.out.println("Invalid behaviour config discarded: " + newBehaviour.name);
+		    			if (newConfig.getID() != null) {
+		    				System.out.println("Invalid config discarded: " + newConfig.getID());
+		    				//TODO make exception or some sort of exception handler
 		    			} else {
-		    				System.out.println("Invalid behaviour config discarded");
+		    				System.out.println("Invalid config discarded");
 		    			}
-		    			newBehaviour = null;
 		    		}
-		    	} else if (newBehaviour != null) { // leave behaviour property
-		    		behaviourProperty = null; 
+		    		newConfig = null;
+	    			configType = "";
+		    	} else if (newConfig != null) { // leave behaviour property
+		    		configProperty = null; 
 		    	} else {
 			    	if (sectionList.size() > 0) {
 			    		section = upSection;
@@ -260,40 +248,16 @@ public class ConfigurationDomain extends Domain {
 		    	// If not white space
 		    	if (!(e.isCharacters() && e.asCharacters().isWhiteSpace())) {
 		    		
-		    		if (!allSettings.containsKey(upSection)) {
-		    			//allSettings.put(upSection, new HashMap<String, String>());
+		    		if (!generalSettings.containsKey(upSection)) {
+		    			//generalSettings.put(upSection, new HashMap<String, String>());
 		    			System.out.println("Should not happen!");
 		    			System.exit(1);
 		    		}
 		    		
-		    		if (newBehaviour != null) { // enter behaviour property
-		    			if (behaviourProperty.equals("name")) {
-			    			newBehaviour.name = e.asCharacters().getData();
-			    		} else if (behaviourProperty.equals("path")) {
-			    			newBehaviour.path = e.asCharacters().getData();
-			    		} else if (behaviourProperty.equals("fc")) {
-			    			newBehaviour.fcPath = e.asCharacters().getData();
-			    		} else if (behaviourProperty.equals("ts")) {
-			    			newBehaviour.tsPath = e.asCharacters().getData();
-			    		} else if (behaviourProperty.equals("tc")) {
-			    			newBehaviour.tcPath = e.asCharacters().getData();
-			    		} else if (behaviourProperty.equals("dp")) {
-			    			newBehaviour.dpPath = e.asCharacters().getData();
-			    		} else if (behaviourProperty.equals("ee")) {
-			    			newBehaviour.eePath = e.asCharacters().getData();
-			    		} else if (behaviourProperty.equals("lc")) {
-			    			newBehaviour.lcPath = e.asCharacters().getData();
-			    		} else if (behaviourProperty.equals("ip")) {
-			    			newBehaviour.ipPath = e.asCharacters().getData();
-			    		} else if (behaviourProperty.equals("op")) {
-			    			newBehaviour.opPath = e.asCharacters().getData();
-			    		} else if (behaviourProperty.equals("sp")) {
-			    			newBehaviour.spPath = e.asCharacters().getData();
-			    		} else if (behaviourProperty.equals("gs")) {
-			    			newBehaviour.gsPath = e.asCharacters().getData();
-			    		}
+		    		if (newConfig != null) { // enter behaviour property
+		    			loaderMap.get(configType).setProperty(newConfig, configProperty, e.asCharacters().getData());
 			    	} else {
-				    	allSettings.get(upSection).settings.put(sectionList.get(sectionList.size() - 1), e.asCharacters().getData());
+				    	generalSettings.get(upSection).settings.put(sectionList.get(sectionList.size() - 1), e.asCharacters().getData());
 			    	}
 				    
 		    	}
@@ -349,11 +313,11 @@ public class ConfigurationDomain extends Domain {
 			e.printStackTrace();
 		}
 		
-		for (String bc : c.behaviours.keySet()) {
-			System.out.println(bc + ": " + c.behaviours.get(bc).path);
+		for (String bc : c.settings.networkbehaviours.keySet()) {
+			System.out.println(bc + ": " + ((NetworkBehaviourConfig) c.settings.networkbehaviours.get(bc)).path);
 		}
 		
-		System.out.println("fc: " + c.behaviours.get("test").path + c.behaviours.get("test").fcPath);
+		System.out.println("fc: " + ((NetworkBehaviourConfig) c.settings.networkbehaviours.get("test")).path + ((NetworkBehaviourConfig) c.settings.networkbehaviours.get("test")).fcPath);
 		
 		
 		
