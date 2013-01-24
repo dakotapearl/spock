@@ -1,7 +1,0 @@
-#!/bin/bash
-./make
-echo
-echo Starting program
-echo ----------------
-echo
-./buildfiles/spock
