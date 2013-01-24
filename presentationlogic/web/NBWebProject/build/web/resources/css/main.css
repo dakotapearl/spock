@@ -1,0 +1,58 @@
+/* 
+    Document   : main
+    Created on : 13/01/2013, 12:08:40 PM
+    Author     : Loren
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+html,body,div,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,p,blockquote,fieldset,input,hr {margin:0; padding:0;}
+h1,h2,h3,h4,h5,h6,pre,code,address,caption,cite,code,em,strong,th {font-size:1em; font-weight:normal; font-style:normal;}
+ul,ol {list-style:none;}
+fieldset,img,hr {border:none;}
+caption,th {text-align:left;}
+table {border-collapse:collapse; border-spacing:0;}
+td {vertical-align:top;}
+
+body {
+    color:#000000;
+    margin: 0;
+    font-size: 11pt;
+    font-family: 'Times New Roman';
+}
+
+.wrap {
+    margin:0 auto; 
+    width:850px;
+    background:#FFFFFF;  
+    min-height: 700px;
+    padding: 0px 0px 50px 0px;
+    position: relative;
+}
+
+a:link {
+    color:#849DB1;
+    text-decoration:none;
+    font-variant: small-caps;
+}
+a:visited {
+    color:#1B507A; 
+    text-decoration:none;
+    font-variant: small-caps;
+}
+
+.nav {
+    
+}
+
+.networks {
+    display: none;
+}
+
+.environments {
+    display: none;
+}
+
+.experiments {
+    display: none;
+}
