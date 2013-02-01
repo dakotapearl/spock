@@ -1,0 +1,18 @@
+/* 
+    Document   : header
+    Created on : 13/01/2013, 12:44:53 PM
+    Author     : loren
+    Description:
+        The main header across the top of the main column
+*/
+
+.header {
+    height:80px; /* Header box height */
+    text-align: center;
+}
+
+.header {
+    font-family:Sawasdee, Ancillary; /* Header font */
+    font-size:200%; /* Header size */
+    text-decoration: none;
+}

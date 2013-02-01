@@ -1,0 +1,92 @@
+/* 
+    Document   : content
+    Created on : 13/01/2013, 12:54:36 PM
+    Author     : loren
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.content h1, h2, h3, h4, h5, h6 {
+    color: #113453;
+    line-height: 1.1em;
+}
+
+.content h1 {
+    font-size:2em;
+}
+
+/* The content section in the middle */
+.content {
+    width:660px; /* MCW - size of sidebar */
+    margin: 0px 0px 0px 95px;
+}
+
+.content a:link {
+    color:#849DB1;
+    text-decoration:none;
+    font-variant: small-caps;
+}
+
+.content a:visited {
+    color:#1B507A; 
+    text-decoration:none;
+    font-variant: small-caps;
+}
+.content .separator {
+    background:#ffffff url('http://www.moore-strickland.com/images/fancy_divider.png') no-repeat; 
+    background-position: center;
+    height: 7px;
+    margin-top: 5px;
+}
+.content .pagepath {
+    opacity: 0.15;
+    text-align: center;
+    margin-top: -30px;
+}
+.content p {
+    line-height: 1.5em;
+    margin-bottom: 0;
+    color: #444;
+    font-family: 'Crimson Text';
+    font-size: 13pt;
+    margin-top: 0.5em;
+}
+.content .join p + p {
+  text-indent: 2em;
+  margin-top: 0;
+}
+.content p + p {
+  /*text-indent: 0em;*/
+  /*margin-top: 0;*/
+}
+.content pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  padding-left: 2em;
+  padding-right: 2em;
+  background-color: #FFE8DD;
+  border-radius: 15px;
+}
+.content .sitescrap pre {
+  background-color: #ffffff;
+}
+.content span.preHL {
+  background-color: #FFF5EC;;
+  border-radius: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.content li {
+  color: #444;
+  font-family: 'Crimson Text';
+}
+
+.content abbr {
+  font-variant: small-caps;
+  text-transform: lowercase;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}

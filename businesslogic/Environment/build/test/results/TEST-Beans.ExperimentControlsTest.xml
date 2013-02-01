@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="1" failures="0" hostname="LabPotato" name="Beans.ExperimentControlsTest" tests="1" time="10.253" timestamp="2013-01-31T09:17:20">
+  <properties>
+    <property name="libs.jsp-compiler.javadoc" value="" />
+    <property name="netbeans.autoupdate.country" value="AU" />
+    <property name="javac.test.classpath" value="/usr/share/netbeans/7.0.1/platform/modules/ext/junit-4.8.2.jar:build/classes" />
+    <property name="libs.jsf20.maven-pom" value="" />
+    <property name="source.root" value="src" />
+    <property name="libs.junit.javadoc" value="/usr/share/doc/junit-doc/doc/api" />
+    <property name="ant.core.lib" value="/usr/share/netbeans/7.0.1/java/ant/lib/ant.jar" />
+    <property name="libs.swing-app-framework.src" value="" />
+    <property name="javadoc.windowtitle" value="" />
+    <property name="libs.toplink.classpath" value="/home/loren/.netbeans/7.0/modules/ext/toplink/toplink-essentials.jar:/home/loren/.netbeans/7.0/modules/ext/toplink/toplink-essentials-agent.jar" />
+    <property name="libs.jsp-compilation.javadoc" value="" />
+    <property name="user.dir" value="/media/Stuff/Documents/workspace/spock_FS/businesslogic/Environment" />
+    <property name="java.vm.version" value="23.6-b04" />
+    <property name="libs.jstl11.maven-pom" value="" />
+    <property name="libs.Java-EE-GlassFish-v3.wsimport" value="" />
+    <property name="libs.MySQLDriver.classpath" value="/usr/share/netbeans/7.0.1/ide/modules/ext/mysql-connector-java-5.1.13-bin.jar" />
+    <property name="libs.eclipselinkmodelgen.src" value="" />
+    <property name="libs.jstl11.src" value="" />
+    <property name="javadoc.notree" value="false" />
+    <property name="netbeans.autoupdate.version" value="1.23" />
+    <property name="libs.EclipseLink-GlassFish-v3.classpath" value="/home/loren/glassfish3/glassfish/modules/org.eclipse.persistence.core.jar:/home/loren/glassfish3/glassfish/modules/org.eclipse.persistence.jpa.modelgen.jar:/home/loren/glassfish3/glassfish/modules/org.eclipse.persistence.moxy.jar:/home/loren/glassfish3/glassfish/modules/org.eclipse.persistence.antlr.jar:/home/loren/glassfish3/glassfish/modules/org.eclipse.persistence.asm.jar:/home/loren/glassfish3/glassfish/modules/org.eclipse.persistence.jpa.jar:/home/loren/glassfish3/glassfish/modules/org.eclipse.persistence.oracle.jar:/home/loren/glassfish3/glassfish/modules/javax.persistence.jar" />
+    <property name="libs.javaee-web-api-6.0.classpath" value="/home/loren/.netbeans/7.0/modules/ext/javaee-web-api-6.0.jar" />
+    <property name="jdk.home" value="/usr/lib/jvm/java-7-oracle" />
+    <property name="libs.javac-api.src" value="" />
+    <property name="javadoc.noindex" value="false" />
+    <property name="sun.os.patch.level" value="unknown" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="nb.show.statistics.ui" value="usageStatisticsEnabled" />
+    <property name="netbeans.autoupdate.variant" value="" />
+    <property name="have.tests" value="true" />
+    <property name="org.xml.sax.driver" value="com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser" />
+    <property name="j2ee.server.instance" value="[/home/loren/glassfish3/glassfish]deployer:gfv3ee6wc:localhost:4848" />
+    <property name="libs.javac-api.javadoc" value="" />
+    <property name="os.name" value="Linux" />
+    <property name="libs.beans-binding.classpath" value="/usr/share/netbeans/7.0.1/java/modules/ext/beansbinding-1.2.1.jar" />
+    <property name="ap.proc.none.internal" value="" />
+    <property name="libs.JWSAntTasks.maven-pom" value="" />
+    <property name="runmain.jvmargs" value="" />
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+    <property name="libs.jaxb.maven-pom" value="" />
+    <property name="os.arch" value="i386" />
+    <property name="libs.eclipselink.src" value="" />
+    <property name="user.name" value="loren" />
+    <property name="j2ee.compile.on.save" value="true" />
+    <property name="libs.jsf12.javadoc" value="/home/loren/.netbeans/7.0/docs/javaee6-doc-api.zip" />
+    <property name="libs.Comet-GlassFish-v3.javadoc" value="" />
+    <property name="libs.swing-layout.maven-pom" value="" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Beans.ExperimentControlsTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/loren/spock/businesslogic/Environment/build/test/results/TEST-Beans.ExperimentControlsTest.xml crashfile=/tmp/junitvmwatcher4321182382559121208.properties propsfile=/tmp/junit5033186798945020410.properties" />
+    <property name="build.classes.dir" value="build/classes" />
+    <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
+    <property name="libs.Java-EE-GlassFish-v3.wsjwsdp" value="" />
+    <property name="ap.supported.internal" value="true" />
+    <property name="libs.jaxws21.javadoc" value="/home/loren/.netbeans/7.0/docs/jaxws-api-doc.zip" />
+    <property name="includes" value="**" />
+    <property name="j2ee.platform.wsimport.classpath" value="/home/loren/glassfish3/glassfish/modules/webservices-osgi.jar:/home/loren/glassfish3/glassfish/modules/endorsed/webservices-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/jaxb-osgi.jar:/home/loren/glassfish3/glassfish/modules/endorsed/jaxb-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/javax.ejb.jar" />
+    <property name="user.country" value="AU" />
+    <property name="libs.jstl11.javadoc" value="/home/loren/.netbeans/7.0/docs/javaee6-doc-api.zip" />
+    <property name="javadoc.encoding" value="UTF-8" />
+    <property name="javac.classpath" value="/usr/share/netbeans/7.0.1/platform/modules/ext/junit-4.8.2.jar" />
+    <property name="libs.jsp-compilation-syscp.src" value="" />
+    <property name="debug-transport" value="dt_socket" />
+    <property name="meta.inf" value="src/conf" />
+    <property name="netbeans.home" value="/usr/share/netbeans/7.0.1/platform" />
+    <property name="build.compiler.emacs" value="true" />
+    <property name="libs.javaee-web-api-6.0.src" value="" />
+    <property name="libs.Java-EE-GlassFish-v3.javadoc" value="/home/loren/.netbeans/7.0/docs/javaee6-doc-api.zip" />
+    <property name="do.package.with.custom.manifest.not.directory.deploy" value="true" />
+    <property name="libs.jsp-compilation-syscp.classpath" value="/usr/share/netbeans/7.0.1/java/ant/lib/ant.jar:/home/loren/.netbeans/7.0/modules/ext/servlet3.0-jsp2.2-api.jar:/home/loren/.netbeans/7.0/modules/ext/glassfish-jspparser-3.0.jar:/home/loren/.netbeans/7.0/modules/ext/standard.jar:/home/loren/.netbeans/7.0/modules/ext/jsf-2_1/jsf-impl.jar" />
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-7-oracle/jre/lib/endorsed" />
+    <property name="libs.Comet-GlassFish-v3.maven-pom" value="" />
+    <property name="netbeans.dynamic.classpath" value="/usr/share/netbeans/7.0.1/platform/core/org-openide-filesystems.jar:/usr/share/netbeans/7.0.1/platform/core/core.jar:/usr/share/netbeans/7.0.1/nb/core/org-netbeans-upgrader.jar:/usr/share/netbeans/7.0.1/nb/core/locale/core_nb.jar" />
+    <property name="java.vm.specification.version" value="1.7" />
+    <property name="libs.primefaces.classpath" value="/home/loren/.netbeans/7.0/modules/ext/primefaces/primefaces-2.2.1.jar" />
+    <property name="libs.javaee-api-6.0.classpath" value="/home/loren/.netbeans/7.0/modules/ext/javaee-api-6.0.jar" />
+    <property name="libs.jaxws21.src" value="" />
+    <property name="libs.swing-app-framework.classpath" value="/usr/share/netbeans/7.0.1/java/modules/ext/appframework-1.0.3.jar" />
+    <property name="meta.inf.excludes" value="sun-cmp-mappings.xml" />
+    <property name="netbeans.autoupdate.language" value="en" />
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="libs.javaee-api-6.0.javadoc" value="/home/loren/.netbeans/7.0/docs/javaee6-doc-api.zip" />
+    <property name="sun.font.fontmanager" value="sun.awt.X11FontManager" />
+    <property name="javac.debug" value="true" />
+    <property name="javadoc.splitindex" value="true" />
+    <property name="file.separator" value="/" />
+    <property name="libs.restlib_gfv3ee6.classpath" value="/home/loren/glassfish3/glassfish/modules/jackson-core-asl.jar:/home/loren/glassfish3/glassfish/modules/jackson-jaxrs.jar:/home/loren/glassfish3/glassfish/modules/jackson-mapper-asl.jar:/home/loren/glassfish3/glassfish/modules/jersey-client.jar:/home/loren/glassfish3/glassfish/modules/jersey-core.jar:/home/loren/glassfish3/glassfish/modules/jersey-gf-server.jar:/home/loren/glassfish3/glassfish/modules/jersey-json.jar:/home/loren/glassfish3/glassfish/modules/jersey-multipart.jar:/home/loren/glassfish3/glassfish/modules/jettison.jar:/home/loren/glassfish3/glassfish/modules/mimepull.jar" />
+    <property name="libs.junit_4.maven-pom" value="" />
+    <property name="resource.dir" value="setup" />
+    <property name="javac.test.processorpath" value="/usr/share/netbeans/7.0.1/platform/modules/ext/junit-4.8.2.jar:build/classes" />
+    <property name="netbeans.buildnumber" value="20121011-unknown-revn" />
+    <property name="libs.JWSAntTasks.javadoc" value="" />
+    <property name="build.generated.sources.dir" value="build/generated-sources" />
+    <property name="libs.eclipselinkmodelgen.classpath" value="/home/loren/.netbeans/7.0/modules/ext/eclipselink/eclipselink-jpa-modelgen-2.2.0.jar" />
+    <property name="libs.Java-EE-GlassFish-v3.wscompile" value="" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="libs.junit.classpath" value="/usr/share/netbeans/7.0.1/java/modules/ext/junit-3.8.2.jar" />
+    <property name="libs.jaxb.javadoc" value="/home/loren/.netbeans/7.0/docs/jaxb-api-doc.zip" />
+    <property name="libs.struts.classpath" value="/home/loren/.netbeans/7.0/modules/ext/struts/antlr-2.7.2.jar:/home/loren/.netbeans/7.0/modules/ext/struts/bsf-2.3.0.jar:/home/loren/.netbeans/7.0/modules/ext/struts/commons-beanutils-1.7.0.jar:/home/loren/.netbeans/7.0/modules/ext/struts/commons-chain-1.1.jar:/home/loren/.netbeans/7.0/modules/ext/struts/commons-digester-1.8.jar:/home/loren/.netbeans/7.0/modules/ext/struts/commons-fileupload-1.1.1.jar:/home/loren/.netbeans/7.0/modules/ext/struts/commons-io-1.1.jar:/home/loren/.netbeans/7.0/modules/ext/struts/commons-logging-1.0.4.jar:/home/loren/.netbeans/7.0/modules/ext/struts/commons-validator-1.3.1.jar:/home/loren/.netbeans/7.0/modules/ext/struts/jstl-1.0.2.jar:/home/loren/.netbeans/7.0/modules/ext/struts/oro-2.0.8.jar:/home/loren/.netbeans/7.0/modules/ext/struts/standard-1.0.2.jar:/home/loren/.netbeans/7.0/modules/ext/struts/struts-core-1.3.8.jar:/home/loren/.netbeans/7.0/modules/ext/struts/struts-el-1.3.8.jar:/home/loren/.netbeans/7.0/modules/ext/struts/struts-extras-1.3.8.jar:/home/loren/.netbeans/7.0/modules/ext/struts/struts-faces-1.3.8.jar:/home/loren/.netbeans/7.0/modules/ext/struts/struts-mailreader-dao-1.3.8.jar:/home/loren/.netbeans/7.0/modules/ext/struts/struts-scripting-1.3.8.jar:/home/loren/.netbeans/7.0/modules/ext/struts/struts-taglib-1.3.8.jar:/home/loren/.netbeans/7.0/modules/ext/struts/struts-tiles-1.3.8.jar" />
+    <property name="ant.home" value="/usr/share/netbeans/7.0.1/java/ant" />
+    <property name="libs.junit_4.src" value="" />
+    <property name="libs.absolutelayout.maven-pom" value="" />
+    <property name="ant.java.version" value="1.7" />
+    <property name="java.library.path" value="/usr/java/packages/lib/i386:/lib:/usr/lib" />
+    <property name="javadoc.author" value="false" />
+    <property name="libs.EclipseLink-GlassFish-v3.src" value="" />
+    <property name="java.util.logging.config.class" value="org.netbeans.core.startup.TopLogging" />
+    <property name="libs.PostgreSQLDriver.src" value="" />
+    <property name="sun.arch.data.model" value="32" />
+    <property name="basedir" value="/home/loren/spock/businesslogic/Environment" />
+    <property name="build.ear.classes.dir" value="build/classes" />
+    <property name="jar.compress" value="false" />
+    <property name="libs.jstl11.classpath" value="/home/loren/.netbeans/7.0/modules/ext/standard.jar:/home/loren/.netbeans/7.0/modules/ext/jstl.jar" />
+    <property name="path.separator" value=":" />
+    <property name="libs.javaee-web-api-6.0.javadoc" value="/home/loren/.netbeans/7.0/docs/javaee6-doc-api.zip" />
+    <property name="ant.junit.enabletestlistenerevents" value="true" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="libs.jaxws21.classpath" value="/home/loren/.netbeans/7.0/modules/ext/jaxb/jaxb-impl.jar:/home/loren/.netbeans/7.0/modules/ext/jaxb/jaxb-xjc.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/FastInfoset.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/gmbal-api-only.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/http.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/jaxws-rt.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/jaxws-tools.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/management-api.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/mimepull.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/policy.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/saaj-impl.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/stax-ex.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/streambuffer.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/woodstox.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/api/jaxws-api.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/api/jsr181-api.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/api/jsr250-api.jar:/home/loren/.netbeans/7.0/modules/ext/jaxws22/api/saaj-api.jar:/home/loren/.netbeans/7.0/modules/ext/jaxb/activation.jar:/home/loren/.netbeans/7.0/modules/ext/jaxb/api/jaxb-api.jar:/home/loren/.netbeans/7.0/modules/ext/jaxb/api/jsr173_api.jar" />
+    <property name="libs.struts.src" value="" />
+    <property name="apple.awt.graphics.UseQuartz" value="true" />
+    <property name="user.language" value="en" />
+    <property name="j2ee.platform.classpath" value="/home/loren/glassfish3/glassfish/modules/javax.enterprise.deploy.jar:/home/loren/glassfish3/glassfish/modules/javax.management.j2ee.jar:/home/loren/glassfish3/glassfish/modules/weld-osgi-bundle.jar:/home/loren/glassfish3/glassfish/modules/javax.security.jacc.jar:/home/loren/glassfish3/glassfish/modules/javax.el-api.jar:/home/loren/glassfish3/glassfish/modules/jersey-core.jar:/home/loren/glassfish3/glassfish/modules/endorsed/webservices-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet-api.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet.jsp.jstl.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet.jsp.jar:/home/loren/glassfish3/glassfish/modules/javax.ejb.jar:/home/loren/glassfish3/glassfish/modules/endorsed/javax.annotation.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet.jsp.jstl-api.jar:/home/loren/glassfish3/glassfish/modules/javax.mail.jar:/home/loren/glassfish3/glassfish/modules/javax.persistence.jar:/home/loren/glassfish3/glassfish/modules/javax.el.jar:/home/loren/glassfish3/glassfish/modules/endorsed/jaxb-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/javax.security.auth.message.jar:/home/loren/glassfish3/glassfish/modules/javax.jms.jar:/home/loren/glassfish3/glassfish/modules/bean-validator.jar:/home/loren/glassfish3/glassfish/modules/javax.resource.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet.jsp-api.jar:/home/loren/glassfish3/glassfish/modules/jaxr-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/javax.transaction.jar:/home/loren/glassfish3/glassfish/modules/jaxrpc-api-osgi.jar" />
+    <property name="libs.eclipselink.maven-pom" value="" />
+    <property name="libs.primefaces.javadoc" value="" />
+    <property name="run.test.classpath" value="/usr/share/netbeans/7.0.1/platform/modules/ext/junit-4.8.2.jar:build/classes:build/test/classes" />
+    <property name="ant.project.invoked-targets" value="test" />
+    <property name="libs.swing-layout.javadoc" value="" />
+    <property name="libs.swing-app-framework.javadoc" value="" />
+    <property name="libs.PostgreSQLDriver.maven-pom" value="" />
+    <property name="java.class.version" value="51.0" />
+    <property name="libs.javaee-endorsed-api-6.0.src" value="" />
+    <property name="libs.eclipselink.javadoc" value="" />
+    <property name="libs.jsp-compilation.maven-pom" value="" />
+    <property name="user.properties.file" value="/home/loren/.netbeans/7.0/build.properties" />
+    <property name="libs.javac-api.maven-pom" value="" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="libs.JWSAntTasks.classpath" value="/usr/share/netbeans/7.0.1/java/ant/extra/org-netbeans-modules-javawebstart-anttasks.jar" />
+    <property name="ant.file.SpockEnvironment-impl" value="/home/loren/spock/businesslogic/Environment/nbproject/build-impl.xml" />
+    <property name="empty.dir" value="/home/loren/spock/businesslogic/Environment/build/empty" />
+    <property name="version-output" value="java version &quot;1.7" />
+    <property name="javadoc.preview" value="true" />
+    <property name="nbplatform.default.harness.dir" value="/usr/share/netbeans/7.0.1/harness" />
+    <property name="java.home" value="/usr/lib/jvm/java-7-oracle/jre" />
+    <property name="libs.jsp-compilation.src" value="" />
+    <property name="debug.test.classpath" value="/usr/share/netbeans/7.0.1/platform/modules/ext/junit-4.8.2.jar:build/classes:build/test/classes" />
+    <property name="libs.javaee-endorsed-api-6.0.classpath" value="/home/loren/.netbeans/7.0/modules/ext/javaee6-endorsed/javax.annotation.jar:/home/loren/.netbeans/7.0/modules/ext/javaee6-endorsed/jaxb-api-osgi.jar:/home/loren/.netbeans/7.0/modules/ext/javaee6-endorsed/webservices-api-osgi.jar" />
+    <property name="libs.javaee-api-6.0.src" value="" />
+    <property name="netbeans.importclass" value="org.netbeans.upgrade.AutoUpgrade" />
+    <property name="ant.project.default-target" value="default" />
+    <property name="annotation.processing.run.all.processors" value="true" />
+    <property name="libs.toplink.maven-pom" value="" />
+    <property name="libs.PostgreSQLDriver.javadoc" value="" />
+    <property name="libs.MySQLDriver.maven-pom" value="" />
+    <property name="j2ee.platform.wsgen.classpath" value="/home/loren/glassfish3/glassfish/modules/webservices-osgi.jar:/home/loren/glassfish3/glassfish/modules/endorsed/webservices-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/jaxb-osgi.jar:/home/loren/glassfish3/glassfish/modules/endorsed/jaxb-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/javax.ejb.jar" />
+    <property name="libs.junit_4.javadoc" value="/usr/share/doc/junit4/api" />
+    <property name="libs.toplink.src" value="" />
+    <property name="libs.EclipseLink-GlassFish-v3.maven-pom" value="" />
+    <property name="libs.javaee-web-api-6.0.maven-pom" value="" />
+    <property name="j2ee.deploy.on.save" value="true" />
+    <property name="jar.name" value="SpockEnvironment.jar" />
+    <property name="libs.javaee-endorsed-api-6.0.javadoc" value="/home/loren/.netbeans/7.0/docs/javaee6-doc-api.zip" />
+    <property name="annotation.processing.enabled.in.editor" value="true" />
+    <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+    <property name="javac.deprecation" value="false" />
+    <property name="javadoc.use" value="true" />
+    <property name="sun.java2d.noddraw" value="true" />
+    <property name="libs.jsp-compiler.classpath" value="/home/loren/.netbeans/7.0/ant/extra/jspcompile.jar" />
+    <property name="javac.processorpath" value="/usr/share/netbeans/7.0.1/platform/modules/ext/junit-4.8.2.jar" />
+    <property name="javac.compilerargs" value="" />
+    <property name="ant.file" value="/home/loren/spock/businesslogic/Environment/build.xml" />
+    <property name="sun.java2d.pmoffscreen" value="false" />
+    <property name="libs.beans-binding.maven-pom" value="" />
+    <property name="libs.jsf12.classpath" value="/home/loren/.netbeans/7.0/modules/ext/jsf-1_2/commons-beanutils.jar:/home/loren/.netbeans/7.0/modules/ext/jsf-1_2/commons-collections.jar:/home/loren/.netbeans/7.0/modules/ext/jsf-1_2/commons-digester.jar:/home/loren/.netbeans/7.0/modules/ext/jsf-1_2/commons-logging.jar:/home/loren/.netbeans/7.0/modules/ext/jsf-1_2/jsf-api.jar:/home/loren/.netbeans/7.0/modules/ext/jsf-1_2/jsf-impl.jar" />
+    <property name="sun.awt.exception.handler" value="org.netbeans.core.startup.TopLogging$AWTHandler" />
+    <property name="has.custom.manifest" value="true" />
+    <property name="libs.beans-binding.src" value="" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="libs.swing-layout.src" value="" />
+    <property name="libs.Java-EE-GlassFish-v3.embedabbleejb" value="" />
+    <property name="org.openide.major.version" value="IDE/1" />
+    <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+    <property name="netbeans.user" value="/home/loren/.netbeans/7.0" />
+    <property name="javadoc.additionalparam" value="" />
+    <property name="java.io.tmpdir" value="/tmp" />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="endorsed.classpath.cmd.line.arg" value="-Xbootclasspath/p:&apos;/home/loren/.netbeans/7.0/modules/ext/javaee6-endorsed/javax.annotation.jar:/home/loren/.netbeans/7.0/modules/ext/javaee6-endorsed/jaxb-api-osgi.jar:/home/loren/.netbeans/7.0/modules/ext/javaee6-endorsed/webservices-api-osgi.jar&apos;" />
+    <property name="j2ee.platform.wsit.classpath" value="" />
+    <property name="libs.jsp-compiler.src" value="" />
+    <property name="deploy.ant.properties.file" value="/home/loren/.netbeans/7.0/gfv3-1456476732.properties" />
+    <property name="j2ee.platform.wscompile.classpath" value="/home/loren/glassfish3/glassfish/modules/webservices-osgi.jar" />
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-7-oracle/jre/lib/i386" />
+    <property name="have.sources" value="true" />
+    <property name="debug.classpath" value="/usr/share/netbeans/7.0.1/platform/modules/ext/junit-4.8.2.jar:build/classes" />
+    <property name="javadoc.private" value="false" />
+    <property name="test.src.dir" value="test" />
+    <property name="libs.jsf20.classpath" value="/home/loren/.netbeans/7.0/modules/ext/jsf-2_1/jsf-api.jar:/home/loren/.netbeans/7.0/modules/ext/jsf-2_1/jsf-impl.jar" />
+    <property name="ap.processors.internal" value="" />
+    <property name="javadoc.encoding.used" value="UTF-8" />
+    <property name="dist.jar" value="dist/SpockEnvironment.jar" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="ant.project.name" value="SpockEnvironment" />
+    <property name="netbeans.hash.code" value="unique=NBUBU02e130f98-4bf3-44ae-b963-f9ba199eacf3_856128d9-3ca3-4c5d-a830-646008c18faa" />
+    <property name="libs.jsp-compilation-syscp.maven-pom" value="" />
+    <property name="sun.cpu.isalist" value="" />
+    <property name="libs.CopyLibs.javadoc" value="" />
+    <property name="org.openide.specification.version" value="6.2" />
+    <property name="j2ee.server.home" value="/home/loren/glassfish3/glassfish" />
+    <property name="user.home" value="/home/loren" />
+    <property name="annotation.processing.processors.list" value="" />
+    <property name="libs.primefaces.maven-pom" value="" />
+    <property name="debug-args-line" value="-Xdebug" />
+    <property name="libs.javaee-api-6.0.maven-pom" value="" />
+    <property name="libs.JWSAntTasks.src" value="" />
+    <property name="libs.CopyLibs.maven-pom" value="" />
+    <property name="libs.absolutelayout.javadoc" value="" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="libs.swing-app-framework.maven-pom" value="" />
+    <property name="no.dist.ear.dir" value="true" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="libs.javac-api.classpath" value="/usr/share/netbeans/7.0.1/java/modules/ext/javac-api-nb-7.0-b07.jar" />
+    <property name="ant.file.type.SpockEnvironment" value="file" />
+    <property name="java.version" value="1.7.0_11" />
+    <property name="javadoc.version" value="false" />
+    <property name="libs.MySQLDriver.javadoc" value="" />
+    <property name="org.openide.version" value="deprecated" />
+    <property name="libs.restlib_gfv3ee6.maven-pom" value="" />
+    <property name="source.encoding" value="UTF-8" />
+    <property name="ap.cmd.line.internal" value="" />
+    <property name="libs.eclipselinkmodelgen.maven-pom" value="" />
+    <property name="libs.jsp-compilation-syscp.javadoc" value="" />
+    <property name="libs.junit.maven-pom" value="" />
+    <property name="libs.eclipselinkmodelgen.javadoc" value="" />
+    <property name="libs.struts.maven-pom" value="" />
+    <property name="netbeans.home+have.tests" value="true" />
+    <property name="libs.jaxb.src" value="" />
+    <property name="libs.Java-EE-GlassFish-v3.wsgenerate" value="" />
+    <property name="libs.jaxb.classpath" value="/home/loren/.netbeans/7.0/modules/ext/jaxb/jaxb-impl.jar:/home/loren/.netbeans/7.0/modules/ext/jaxb/jaxb-xjc.jar:/home/loren/.netbeans/7.0/modules/ext/jaxb/jaxb1-impl.jar:/home/loren/.netbeans/7.0/modules/ext/jaxb/activation.jar:/home/loren/.netbeans/7.0/modules/ext/jaxb/api/jaxb-api.jar:/home/loren/.netbeans/7.0/modules/ext/jaxb/api/jsr173_api.jar" />
+    <property name="classes.dir" value="build/classes" />
+    <property name="dist.javadoc.dir" value="dist/javadoc" />
+    <property name="libs.swing-layout.classpath" value="/usr/share/netbeans/7.0.1/platform/modules/ext/swing-layout-1.0.4.jar" />
+    <property name="build.generated.dir" value="build/generated" />
+    <property name="javac.source" value="1.6" />
+    <property name="line.separator" value="&#xa;" />
+    <property name="java.specification.version" value="1.7" />
+    <property name="libs.jaxws21.maven-pom" value="" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="sun.boot.class.path" value="/home/loren/.netbeans/7.0/modules/ext/javaee6-endorsed/javax.annotation.jar:/home/loren/.netbeans/7.0/modules/ext/javaee6-endorsed/jaxb-api-osgi.jar:/home/loren/.netbeans/7.0/modules/ext/javaee6-endorsed/webservices-api-osgi.jar:/usr/lib/jvm/java-7-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-7-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-7-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-7-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-7-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-7-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-7-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-7-oracle/jre/classes" />
+    <property name="javac.target" value="1.6" />
+    <property name="build.test.classes.dir" value="build/test/classes" />
+    <property name="src.dir" value="src/java" />
+    <property name="annotation.processing.enabled" value="true" />
+    <property name="libs.jsf20.src" value="" />
+    <property name="libs.jsf12.src" value="" />
+    <property name="j2ee.platform" value="1.6" />
+    <property name="nbplatform.default.netbeans.dest.dir" value="/usr/share/netbeans/7.0.1" />
+    <property name="libs.struts.javadoc" value="/home/loren/.netbeans/7.0/docs/struts-1.3.8-javadoc.zip" />
+    <property name="ignore.failing.tests" value="true" />
+    <property name="libs.Comet-GlassFish-v3.classpath" value="/home/loren/glassfish3/glassfish/modules/grizzly-comet.jar" />
+    <property name="libs.restlib_gfv3ee6.javadoc" value="" />
+    <property name="libs.primefaces.src" value="" />
+    <property name="dist.dir" value="dist" />
+    <property name="dist.ear.jar" value="dist/SpockEnvironment.jar" />
+    <property name="javac.fork" value="false" />
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+    <property name="default.javac.source" value="1.7" />
+    <property name="debug-transport-by-os" value="dt_socket" />
+    <property name="libs.MySQLDriver.src" value="" />
+    <property name="sun.jnu.encoding" value="UTF-8" />
+    <property name="java.runtime.version" value="1.7.0_11-b21" />
+    <property name="build.test.results.dir" value="build/test/results" />
+    <property name="jna.platform.library.path" value="/usr/lib/i386-linux-gnu:/lib/i386-linux-gnu:/usr/lib32:/usr/lib:/lib" />
+    <property name="default.javac.target" value="1.7" />
+    <property name="ant.file.type.SpockEnvironment-impl" value="file" />
+    <property name="libs.junit_4.classpath" value="/usr/share/netbeans/7.0.1/platform/modules/ext/junit-4.8.2.jar" />
+    <property name="libs.Java-EE-GlassFish-v3.src" value="" />
+    <property name="user.timezone" value="" />
+    <property name="libs.javaee-endorsed-api-6.0.maven-pom" value="" />
+    <property name="netbeans.dirs" value="/usr/share/netbeans/7.0.1/nb:/usr/share/netbeans/7.0.1/bin/../ergonomics:/usr/share/netbeans/7.0.1/ide:/usr/share/netbeans/7.0.1/java:/usr/share/netbeans/7.0.1/bin/../xml:/usr/share/netbeans/7.0.1/apisupport:/usr/share/netbeans/7.0.1/bin/../webcommon:/usr/share/netbeans/7.0.1/bin/../websvccommon:/usr/share/netbeans/7.0.1/bin/../enterprise:/usr/share/netbeans/7.0.1/bin/../mobility:/usr/share/netbeans/7.0.1/bin/../profiler:/usr/share/netbeans/7.0.1/bin/../ruby:/usr/share/netbeans/7.0.1/bin/../python:/usr/share/netbeans/7.0.1/bin/../php:/usr/share/netbeans/7.0.1/bin/../visualweb:/usr/share/netbeans/7.0.1/bin/../soa:/usr/share/netbeans/7.0.1/bin/../identity:/usr/share/netbeans/7.0.1/bin/../uml:/usr/share/netbeans/7.0.1/harness:/usr/share/netbeans/7.0.1/bin/../cnd:/usr/share/netbeans/7.0.1/bin/../dlight:/usr/share/netbeans/7.0.1/bin/../groovy:/usr/share/netbeans/7.0.1/bin/../extra:/usr/share/netbeans/7.0.1/bin/../javafx:/usr/share/netbeans/7.0.1/bin/../javacard:" />
+    <property name="libs.jsf20.javadoc" value="/home/loren/.netbeans/7.0/docs/javaee6-doc-api.zip" />
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-7-oracle/jre/lib/ext:/usr/java/packages/lib/ext" />
+    <property name="libs.restlib_gfv3ee6.src" value="" />
+    <property name="endorsed.classpath" value="/home/loren/.netbeans/7.0/modules/ext/javaee6-endorsed/javax.annotation.jar:/home/loren/.netbeans/7.0/modules/ext/javaee6-endorsed/jaxb-api-osgi.jar:/home/loren/.netbeans/7.0/modules/ext/javaee6-endorsed/webservices-api-osgi.jar" />
+    <property name="libs.absolutelayout.classpath" value="/usr/share/netbeans/7.0.1/java/modules/ext/AbsoluteLayout.jar" />
+    <property name="excludes" value="" />
+    <property name="ant.file.SpockEnvironment" value="/home/loren/spock/businesslogic/Environment/build.xml" />
+    <property name="java.class.path" value="/usr/share/netbeans/7.0.1/platform/modules/ext/junit-4.8.2.jar:/home/loren/spock/businesslogic/Environment/build/classes:/home/loren/spock/businesslogic/Environment/build/test/classes:/home/loren/glassfish3/glassfish/modules/javax.enterprise.deploy.jar:/home/loren/glassfish3/glassfish/modules/javax.management.j2ee.jar:/home/loren/glassfish3/glassfish/modules/weld-osgi-bundle.jar:/home/loren/glassfish3/glassfish/modules/javax.security.jacc.jar:/home/loren/glassfish3/glassfish/modules/javax.el-api.jar:/home/loren/glassfish3/glassfish/modules/jersey-core.jar:/home/loren/glassfish3/glassfish/modules/endorsed/webservices-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet-api.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet.jsp.jstl.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet.jsp.jar:/home/loren/glassfish3/glassfish/modules/javax.ejb.jar:/home/loren/glassfish3/glassfish/modules/endorsed/javax.annotation.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet.jsp.jstl-api.jar:/home/loren/glassfish3/glassfish/modules/javax.mail.jar:/home/loren/glassfish3/glassfish/modules/javax.persistence.jar:/home/loren/glassfish3/glassfish/modules/javax.el.jar:/home/loren/glassfish3/glassfish/modules/endorsed/jaxb-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/javax.security.auth.message.jar:/home/loren/glassfish3/glassfish/modules/javax.jms.jar:/home/loren/glassfish3/glassfish/modules/bean-validator.jar:/home/loren/glassfish3/glassfish/modules/javax.resource.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet.jsp-api.jar:/home/loren/glassfish3/glassfish/modules/jaxr-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/javax.transaction.jar:/home/loren/glassfish3/glassfish/modules/jaxrpc-api-osgi.jar:/home/loren/glassfish3/glassfish/lib/embedded/glassfish-embedded-static-shell.jar:/usr/share/netbeans/7.0.1/java/ant/lib/junit.jar:/usr/share/netbeans/7.0.1/java/ant/lib/ant-launcher.jar:/usr/share/netbeans/7.0.1/java/ant/lib/ant.jar:/usr/share/netbeans/7.0.1/java/ant/lib/ant-junit.jar:/usr/share/netbeans/7.0.1/java/ant/lib/ant-junit4.jar" />
+    <property name="apple.laf.useScreenMenuBar" value="true" />
+    <property name="libs.absolutelayout.src" value="" />
+    <property name="j2ee.server.type" value="gfv3ee6" />
+    <property name="os.version" value="3.5.0-22-generic" />
+    <property name="libs.EclipseLink-GlassFish-v3.javadoc" value="/home/loren/.netbeans/7.0/docs/javaee6-doc-api.zip" />
+    <property name="sun.awt.enableExtraMouseButtons" value="true" />
+    <property name="libs.toplink.javadoc" value="" />
+    <property name="libs.Comet-GlassFish-v3.src" value="" />
+    <property name="j2ee.platform.embeddableejb.classpath" value="/home/loren/glassfish3/glassfish/lib/embedded/glassfish-embedded-static-shell.jar" />
+    <property name="libs.eclipselink.classpath" value="/home/loren/.netbeans/7.0/modules/ext/eclipselink/eclipselink-2.2.0.jar:/home/loren/.netbeans/7.0/modules/ext/eclipselink/eclipselink-javax.persistence-2.0.jar" />
+    <property name="libs.beans-binding.javadoc" value="" />
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+    <property name="libs.Java-EE-GlassFish-v3.classpath" value="/home/loren/glassfish3/glassfish/modules/javax.enterprise.deploy.jar:/home/loren/glassfish3/glassfish/modules/javax.management.j2ee.jar:/home/loren/glassfish3/glassfish/modules/weld-osgi-bundle.jar:/home/loren/glassfish3/glassfish/modules/javax.security.jacc.jar:/home/loren/glassfish3/glassfish/modules/javax.el-api.jar:/home/loren/glassfish3/glassfish/modules/jersey-core.jar:/home/loren/glassfish3/glassfish/modules/endorsed/webservices-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet-api.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet.jsp.jstl.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet.jsp.jar:/home/loren/glassfish3/glassfish/modules/javax.ejb.jar:/home/loren/glassfish3/glassfish/modules/endorsed/javax.annotation.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet.jsp.jstl-api.jar:/home/loren/glassfish3/glassfish/modules/javax.mail.jar:/home/loren/glassfish3/glassfish/modules/javax.persistence.jar:/home/loren/glassfish3/glassfish/modules/javax.el.jar:/home/loren/glassfish3/glassfish/modules/endorsed/jaxb-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/javax.security.auth.message.jar:/home/loren/glassfish3/glassfish/modules/javax.jms.jar:/home/loren/glassfish3/glassfish/modules/bean-validator.jar:/home/loren/glassfish3/glassfish/modules/javax.resource.jar:/home/loren/glassfish3/glassfish/modules/javax.servlet.jsp-api.jar:/home/loren/glassfish3/glassfish/modules/jaxr-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/javax.transaction.jar:/home/loren/glassfish3/glassfish/modules/jaxrpc-api-osgi.jar:/home/loren/glassfish3/glassfish/modules/web-core.jar:/home/loren/glassfish3/glassfish/modules/jackson-core-asl.jar:/home/loren/glassfish3/glassfish/modules/jackson-jaxrs.jar:/home/loren/glassfish3/glassfish/modules/jackson-mapper-asl.jar:/home/loren/glassfish3/glassfish/modules/jersey-client.jar:/home/loren/glassfish3/glassfish/modules/jersey-core.jar:/home/loren/glassfish3/glassfish/modules/jersey-gf-server.jar:/home/loren/glassfish3/glassfish/modules/jersey-json.jar:/home/loren/glassfish3/glassfish/modules/jersey-multipart.jar:/home/loren/glassfish3/glassfish/modules/jettison.jar:/home/loren/glassfish3/glassfish/modules/mimepull.jar" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="libs.CopyLibs.classpath" value="/usr/share/netbeans/7.0.1/java/ant/extra/org-netbeans-modules-java-j2seproject-copylibstask.jar" />
+    <property name="libs.jsp-compiler.maven-pom" value="" />
+    <property name="libs.Java-EE-GlassFish-v3.wsinterop" value="" />
+    <property name="libs.PostgreSQLDriver.classpath" value="/usr/share/netbeans/7.0.1/ide/modules/ext/postgresql-8.3-603.jdbc3.jar" />
+    <property name="libs.jsf12.maven-pom" value="" />
+    <property name="libs.junit.src" value="" />
+    <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
+    <property name="libs.CopyLibs.src" value="" />
+    <property name="build.dir" value="build" />
+    <property name="libs.jsp-compilation.classpath" value="/usr/share/netbeans/7.0.1/java/ant/lib/ant.jar:/home/loren/.netbeans/7.0/modules/ext/servlet3.0-jsp2.2-api.jar:/home/loren/.netbeans/7.0/modules/ext/glassfish-jspparser-3.0.jar:/home/loren/.netbeans/7.0/modules/ext/jsf-2_1/jsf-api.jar:/home/loren/.netbeans/7.0/modules/ext/jstl.jar:/usr/share/netbeans/7.0.1/java/ant/lib/ant-launcher.jar" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.8.2 compiled on May 18 2012" />
+    <property name="j2ee.platform.is.jsr109" value="true" />
+    <property name="file.encoding" value="UTF-8" />
+    <property name="build.classes.excludes" value="**/*.java,**/*.form,**/.nbattrs" />
+    <property name="jdkBug6558476" value="false" />
+    <property name="javadoc.nonavbar" value="false" />
+    <property name="platform.active" value="default_platform" />
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+  </properties>
+  <testcase classname="Beans.ExperimentControlsTest" name="testTestControl" time="10.195">
+    <error message="Failed to deploy EJB modules - see log for details" type="javax.ejb.EJBException">javax.ejb.EJBException: Failed to deploy EJB modules - see log for details
+	at org.glassfish.ejb.embedded.EJBContainerImpl.deploy(EJBContainerImpl.java:150)
+	at org.glassfish.ejb.embedded.EJBContainerProviderImpl.createEJBContainer(EJBContainerProviderImpl.java:134)
+	at javax.ejb.embeddable.EJBContainer.createEJBContainer(EJBContainer.java:127)
+	at javax.ejb.embeddable.EJBContainer.createEJBContainer(EJBContainer.java:102)
+	at Beans.ExperimentControlsTest.setUp(ExperimentControlsTest.java:39)
+</error>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Jan 31, 2013 8:17:20 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl getValidFile
+WARNING: EJB6008:Specified or calculated application server instance [/home/loren/glassfish3/glassfish/domains/domain1] does not exist.
+Jan 31, 2013 8:17:23 PM org.glassfish.ha.store.spi.BackingStoreFactoryRegistry register
+INFO: Registered org.glassfish.ha.store.adapter.cache.ShoalBackingStoreProxy for persistence-type = replicated in BackingStoreFactoryRegistry
+Jan 31, 2013 8:17:23 PM org.hibernate.validator.internal.util.Version <clinit>
+INFO: HV000001: Hibernate Validator 4.3.0.Final
+Jan 31, 2013 8:17:23 PM com.sun.enterprise.v3.services.impl.GrizzlyService createNetworkProxy
+INFO: Network listener http-listener on port 0 disabled per domain.xml
+Jan 31, 2013 8:17:23 PM com.sun.enterprise.v3.services.impl.GrizzlyService createNetworkProxy
+INFO: Network listener https-listener on port 0 disabled per domain.xml
+Jan 31, 2013 8:17:23 PM com.sun.enterprise.v3.server.AppServerStartup run
+INFO: GlassFish Server Open Source Edition 3.1.2.2 (5) startup time : Embedded (794ms), startup services(1,148ms), total(1,942ms)
+Jan 31, 2013 8:17:24 PM org.glassfish.admin.mbeanserver.JMXStartupService$JMXConnectorsStarterThread run
+INFO: JMX006: JMXStartupService had disabled JMXConnector system
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.enterprise.deploy.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.management.j2ee.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: weld-osgi-bundle.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.security.jacc.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.el-api.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: jersey-core.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping entry with a Manifest file with a special attribute: webservices-api-osgi.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.servlet-api.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.servlet.jsp.jstl.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.servlet.jsp.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.ejb.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping entry with a Manifest file with a special attribute: javax.annotation.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.servlet.jsp.jstl-api.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.mail.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.persistence.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.el.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.security.auth.message.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.jms.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: bean-validator.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.resource.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.servlet.jsp-api.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: jaxr-api-osgi.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: javax.transaction.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping module: jaxrpc-api-osgi.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+INFO: ... skipping entry with a Manifest file with a special attribute: glassfish-embedded-static-shell.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding EJB module to ScatteredArchive classes
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive junit-4.8.2.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive junit.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive ant-launcher.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive ant-junit4.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive ant.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive ant-junit.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive jaxb-api-osgi.jar
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive classes
+Jan 31, 2013 8:17:24 PM org.glassfish.ejb.embedded.EJBContainerImpl deploy
+INFO: [EJBContainerImpl] Deploying app: org.glassfish.embeddable.archive.ScatteredArchive@e1f0c0
+Jan 31, 2013 8:17:27 PM com.sun.ejb.containers.EjbContainerUtilImpl createThreadPoolExecutor
+INFO: Created EjbThreadPoolExecutor with thread-core-pool-size 16 thread-max-pool-size 32 thread-keep-alive-seconds 60 thread-queue-capacity 2147483647 allow-core-thread-timeout false 
+Jan 31, 2013 8:17:27 PM com.sun.enterprise.security.SecurityLifecycle <init>
+INFO: SEC1002: Security Manager is OFF.
+Jan 31, 2013 8:17:27 PM com.sun.enterprise.security.SecurityLifecycle onInitialization
+INFO: SEC1010: Entering Security Startup Service
+Jan 31, 2013 8:17:27 PM com.sun.enterprise.security.PolicyLoader loadPolicy
+INFO: SEC1143: Loading policy provider com.sun.enterprise.security.jacc.provider.SimplePolicyProvider.
+Jan 31, 2013 8:17:27 PM com.sun.enterprise.security.auth.realm.Realm doInstantiate
+INFO: SEC1115: Realm [admin-realm] of classtype [com.sun.enterprise.security.auth.realm.file.FileRealm] successfully created.
+Jan 31, 2013 8:17:27 PM com.sun.enterprise.security.auth.realm.Realm doInstantiate
+INFO: SEC1115: Realm [file] of classtype [com.sun.enterprise.security.auth.realm.file.FileRealm] successfully created.
+Jan 31, 2013 8:17:27 PM com.sun.enterprise.security.auth.realm.Realm doInstantiate
+INFO: SEC1115: Realm [certificate] of classtype [com.sun.enterprise.security.auth.realm.certificate.CertificateRealm] successfully created.
+Jan 31, 2013 8:17:27 PM com.sun.enterprise.security.SecurityLifecycle onInitialization
+INFO: SEC1011: Security Service(s) Started Successfully
+Jan 31, 2013 8:17:28 PM com.sun.ejb.containers.BaseContainer initializeHome
+INFO: EJB5181:Portable JNDI names for EJB ExperimentControlsBean: [java:global/classes/ExperimentControlsBean!interfaces.ExperimentControls, java:global/classes/ExperimentControlsBean]
+Jan 31, 2013 8:17:28 PM org.jboss.weld.bootstrap.WeldBootstrap <clinit>
+INFO: WELD-000900 1.1.8 (Final)
+Jan 31, 2013 8:17:30 PM org.glassfish.api.ActionReport failure
+SEVERE: Exception while loading the app
+Jan 31, 2013 8:17:30 PM org.glassfish.deployment.admin.DeployCommand execute
+SEVERE: Exception while loading the app : tried to access class javax.xml.bind.ContextFinder from class javax.xml.bind.ContextFinder$2
+java.lang.IllegalAccessError: tried to access class javax.xml.bind.ContextFinder from class javax.xml.bind.ContextFinder$2
+	at java.lang.Class.getEnclosingMethod0(Native Method)
+	at java.lang.Class.getEnclosingMethodInfo(Class.java:949)
+	at java.lang.Class.getEnclosingClass(Class.java:1101)
+	at java.lang.Class.getSimpleBinaryName(Class.java:1240)
+	at java.lang.Class.isMemberClass(Class.java:1230)
+	at org.jboss.weld.util.reflection.Reflections.isNonStaticInnerClass(Reflections.java:139)
+	at org.jboss.weld.bootstrap.BeanDeployer.addClass(BeanDeployer.java:78)
+	at org.jboss.weld.bootstrap.BeanDeployer.addClasses(BeanDeployer.java:123)
+	at org.jboss.weld.bootstrap.BeanDeployment.createBeans(BeanDeployment.java:184)
+	at org.jboss.weld.bootstrap.WeldBootstrap.deployBeans(WeldBootstrap.java:350)
+	at org.glassfish.weld.WeldDeployer.event(WeldDeployer.java:179)
+	at org.glassfish.kernel.event.EventsImpl.send(EventsImpl.java:128)
+	at org.glassfish.internal.data.ApplicationInfo.load(ApplicationInfo.java:277)
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.deploy(ApplicationLifecycle.java:460)
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.deploy(ApplicationLifecycle.java:240)
+	at org.glassfish.deployment.admin.DeployCommand.execute(DeployCommand.java:389)
+	at com.sun.enterprise.v3.admin.CommandRunnerImpl$1.execute(CommandRunnerImpl.java:348)
+	at com.sun.enterprise.v3.admin.CommandRunnerImpl.doCommand(CommandRunnerImpl.java:363)
+	at com.sun.enterprise.v3.admin.CommandRunnerImpl.doCommand(CommandRunnerImpl.java:1085)
+	at com.sun.enterprise.v3.admin.CommandRunnerImpl.access$1200(CommandRunnerImpl.java:95)
+	at com.sun.enterprise.v3.admin.CommandRunnerImpl$ExecutionContext.execute(CommandRunnerImpl.java:1291)
+	at com.sun.enterprise.v3.admin.CommandRunnerImpl$ExecutionContext.execute(CommandRunnerImpl.java:1259)
+	at com.sun.enterprise.admin.cli.embeddable.DeployerImpl.deploy(DeployerImpl.java:129)
+	at com.sun.enterprise.admin.cli.embeddable.DeployerImpl.deploy(DeployerImpl.java:105)
+	at org.glassfish.ejb.embedded.EJBContainerImpl.deploy(EJBContainerImpl.java:140)
+	at org.glassfish.ejb.embedded.EJBContainerProviderImpl.createEJBContainer(EJBContainerProviderImpl.java:134)
+	at javax.ejb.embeddable.EJBContainer.createEJBContainer(EJBContainer.java:127)
+	at javax.ejb.embeddable.EJBContainer.createEJBContainer(EJBContainer.java:102)
+	at Beans.ExperimentControlsTest.setUp(ExperimentControlsTest.java:39)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:518)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1052)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:906)
+
+Jan 31, 2013 8:17:30 PM org.glassfish.ejb.embedded.EJBContainerProviderImpl createEJBContainer
+INFO: [EJBContainerProviderImpl] Cleaning up on failure ...
+Jan 31, 2013 8:17:30 PM org.glassfish.admin.mbeanserver.JMXStartupService shutdown
+INFO: JMX001: JMXStartupService and JMXConnectors have been shut down.
+Jan 31, 2013 8:17:30 PM com.sun.enterprise.v3.server.AppServerStartup stop
+INFO: Shutdown procedure finished
+Jan 31, 2013 8:17:30 PM AppServerStartup run
+INFO: [Thread[GlassFish Kernel Main Thread,5,main]] exiting
+]]></system-err>
+</testsuite>

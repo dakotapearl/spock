@@ -1,0 +1,79 @@
+/* 
+    Document   : main
+    Created on : 13/01/2013, 12:08:40 PM
+    Author     : loren
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body {
+    /* Linear gradient background */
+    background: rgb(245,247,249); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(245,247,249,1) 0%, rgba(229,235,238,1) 34%, rgba(239,245,247,1) 71%, rgba(245,247,249,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(245,247,249,1)), color-stop(34%,rgba(229,235,238,1)), color-stop(71%,rgba(239,245,247,1)), color-stop(100%,rgba(245,247,249,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(245,247,249,1) 0%,rgba(229,235,238,1) 34%,rgba(239,245,247,1) 71%,rgba(245,247,249,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(245,247,249,1) 0%,rgba(229,235,238,1) 34%,rgba(239,245,247,1) 71%,rgba(245,247,249,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(245,247,249,1) 0%,rgba(229,235,238,1) 34%,rgba(239,245,247,1) 71%,rgba(245,247,249,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(245,247,249,1) 0%,rgba(229,235,238,1) 34%,rgba(239,245,247,1) 71%,rgba(245,247,249,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f7f9', endColorstr='#f5f7f9',GradientType=0 ); /* IE6-9 */
+
+    color:#000000;
+    margin: 0;
+    font-size: 11pt;
+    font-family: 'Times New Roman';
+}
+
+/* The main div */
+.main {
+	margin:0 auto; 
+	width:850px; /* Width of main column (if you change this you must change two other values marked with MCW) */
+	background:#FFFFFF;  
+	min-height: 700px;
+	padding: 0px 0px 50px 0px;
+	position: relative;
+}
+
+/* Some link styles */
+
+a.white:link {
+    color:#FFFFFF; 
+    text-decoration:none;
+}
+a.white:visited {
+    color:#FFFFFF;
+    text-decoration:none;
+}
+a:link {
+    color:#849DB1;
+    text-decoration:none;
+    font-variant: small-caps;
+}
+a:visited {
+    color:#1B507A; 
+    text-decoration:none;
+    font-variant: small-caps;
+}
+
+
+/* Convenient page div styles */
+
+.center {
+  text-align: center;
+}
+.fit_page {
+  width: 100%;
+}
+.half_width {
+  width: 50%;
+}
+.vspace_small {
+  margin-bottom: 10px;
+}
+.vspace_large {
+  margin-bottom: 3cm;
+}
+
+
+
+
+

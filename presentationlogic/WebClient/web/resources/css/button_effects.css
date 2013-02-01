@@ -1,0 +1,29 @@
+/* 
+    Document   : button_effects
+    Created on : 13/01/2013, 12:46:16 PM
+    Author     : loren
+    Description:
+        CSS3 Button effects
+*/
+
+.faintbluebutton {
+	-moz-box-shadow:inset 0px 0px 1px 0px #bbdaf7;
+	-webkit-box-shadow:inset 0px 0px 1px 0px #bbdaf7;
+	box-shadow:inset 0px 0px 1px 0px #bbdaf7;
+	background-color:#c7e3ff;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 17px;
+	text-decoration:none;
+}.faintbluebutton:hover {
+	background-color:#6fadeb;
+}.faintbluebutton:active {
+	position:relative;
+	background-color:#84bcf3;
+}
