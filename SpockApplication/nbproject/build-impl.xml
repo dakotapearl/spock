@@ -180,11 +180,15 @@ exists or setup the property manually. For example like this:
                 <isset property="build.deploy.on.save"/>
             </not>
         </condition>
-        <ant antfile="${project.SpockEnvironment}/build.xml" inheritall="false" target="dist-ear">
+        <ant antfile="${project.SpockDataAccess}/build.xml" inheritall="false" target="dist-ear">
             <property location="${build.dir}" name="dist.ear.dir"/>
             <property name="deploy.on.save" value="${build.deploy.on.save}"/>
         </ant>
-        <ant antfile="${project.SpockExperiment}/build.xml" inheritall="false" target="dist-ear">
+        <ant antfile="${project.SpockEnvironment-1}/build.xml" inheritall="false" target="dist-ear">
+            <property location="${build.dir}" name="dist.ear.dir"/>
+            <property name="deploy.on.save" value="${build.deploy.on.save}"/>
+        </ant>
+        <ant antfile="${project.SpockExperiment-1}/build.xml" inheritall="false" target="dist-ear">
             <property location="${build.dir}" name="dist.ear.dir"/>
             <property name="deploy.on.save" value="${build.deploy.on.save}"/>
         </ant>
@@ -192,7 +196,7 @@ exists or setup the property manually. For example like this:
             <property location="${build.dir}" name="dist.ear.dir"/>
             <property name="deploy.on.save" value="${build.deploy.on.save}"/>
         </ant>
-        <ant antfile="${project.SpockNetwork}/build.xml" inheritall="false" target="dist-ear">
+        <ant antfile="${project.SpockNetwork-1}/build.xml" inheritall="false" target="dist-ear">
             <property location="${build.dir}" name="dist.ear.dir"/>
             <property name="deploy.on.save" value="${build.deploy.on.save}"/>
         </ant>
@@ -212,11 +216,12 @@ exists or setup the property manually. For example like this:
         </copy>
     </target>
     <target depends="init,deps-jar,pre-pre-compile,pre-compile" name="-do-compile-deps">
-        <copyfiles files="${reference.SpockNetwork.dist-ear}" todir="${build.dir}//"/>
-        <copyfiles files="${reference.SpockExperiment.dist-ear}" todir="${build.dir}//"/>
-        <copyfiles files="${reference.SpockEnvironment.dist-ear}" todir="${build.dir}//"/>
         <copyfiles files="${reference.SpockWebClient.dist-ear}" todir="${build.dir}//"/>
         <copyfiles files="${reference.SpockJavaClient.j2ee-module-car}" todir="${build.dir}//"/>
+        <copyfiles files="${reference.SpockEnvironment-1.dist-ear}" todir="${build.dir}//"/>
+        <copyfiles files="${reference.SpockExperiment-1.dist-ear}" todir="${build.dir}//"/>
+        <copyfiles files="${reference.SpockNetwork-1.dist-ear}" todir="${build.dir}//"/>
+        <copyfiles files="${reference.SpockDataAccess.dist-ear}" todir="${build.dir}//"/>
     </target>
     <target name="post-compile">
         <!-- Empty placeholder for easier customization. -->
@@ -293,10 +298,11 @@ exists or setup the property manually. For example like this:
     </target>
     <target name="-run-deploy-am" unless="no.deps">
         <!-- Task to deploy to the Access Manager runtime. -->
-        <ant antfile="${project.SpockEnvironment}/build.xml" inheritall="false" target="-run-deploy-am"/>
-        <ant antfile="${project.SpockExperiment}/build.xml" inheritall="false" target="-run-deploy-am"/>
+        <ant antfile="${project.SpockDataAccess}/build.xml" inheritall="false" target="-run-deploy-am"/>
+        <ant antfile="${project.SpockEnvironment-1}/build.xml" inheritall="false" target="-run-deploy-am"/>
+        <ant antfile="${project.SpockExperiment-1}/build.xml" inheritall="false" target="-run-deploy-am"/>
         <ant antfile="${project.SpockJavaClient}/build.xml" inheritall="false" target="-run-deploy-am"/>
-        <ant antfile="${project.SpockNetwork}/build.xml" inheritall="false" target="-run-deploy-am"/>
+        <ant antfile="${project.SpockNetwork-1}/build.xml" inheritall="false" target="-run-deploy-am"/>
         <ant antfile="${project.SpockWebClient}/build.xml" inheritall="false" target="-run-deploy-am"/>
     </target>
     <target depends="-init-cos,dist-directory-deploy,pre-run-deploy,-pre-nbmodule-run-deploy,-run-deploy-nb,-init-deploy-ant,-deploy-ant,-run-deploy-am,-post-nbmodule-run-deploy,post-run-deploy" name="run-deploy"/>
@@ -578,11 +584,15 @@ exists or setup the property manually. For example like this:
                 <isset property="build.deploy.on.save"/>
             </not>
         </condition>
-        <ant antfile="${project.SpockEnvironment}/build.xml" inheritall="false" target="clean-ear">
+        <ant antfile="${project.SpockDataAccess}/build.xml" inheritall="false" target="clean-ear">
             <property location="${build.dir}" name="dist.ear.dir"/>
             <property name="deploy.on.save" value="${build.deploy.on.save}"/>
         </ant>
-        <ant antfile="${project.SpockExperiment}/build.xml" inheritall="false" target="clean-ear">
+        <ant antfile="${project.SpockEnvironment-1}/build.xml" inheritall="false" target="clean-ear">
+            <property location="${build.dir}" name="dist.ear.dir"/>
+            <property name="deploy.on.save" value="${build.deploy.on.save}"/>
+        </ant>
+        <ant antfile="${project.SpockExperiment-1}/build.xml" inheritall="false" target="clean-ear">
             <property location="${build.dir}" name="dist.ear.dir"/>
             <property name="deploy.on.save" value="${build.deploy.on.save}"/>
         </ant>
@@ -590,7 +600,7 @@ exists or setup the property manually. For example like this:
             <property location="${build.dir}" name="dist.ear.dir"/>
             <property name="deploy.on.save" value="${build.deploy.on.save}"/>
         </ant>
-        <ant antfile="${project.SpockNetwork}/build.xml" inheritall="false" target="clean-ear">
+        <ant antfile="${project.SpockNetwork-1}/build.xml" inheritall="false" target="clean-ear">
             <property location="${build.dir}" name="dist.ear.dir"/>
             <property name="deploy.on.save" value="${build.deploy.on.save}"/>
         </ant>
