@@ -7,7 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -26,9 +26,12 @@ public class Network implements Serializable {
     protected Boolean isActive;
     @ManyToMany(mappedBy="networks")
     protected Collection<Experiment> experiments;
+    @OneToMany(mappedBy="network", cascade=CascadeType.ALL)
+    protected Collection<NetworkNode> nodes;
 
     public Network() {
         experiments = new ArrayList<Experiment>();
+        nodes = new ArrayList<NetworkNode>();
     }
     
     public String getId() {
@@ -53,6 +56,10 @@ public class Network implements Serializable {
     
     public void addExperiment(Experiment experiment) {
         experiments.add(experiment);
+    }
+
+    public Collection<NetworkNode> getNodes() {
+        return nodes;
     }
     
     

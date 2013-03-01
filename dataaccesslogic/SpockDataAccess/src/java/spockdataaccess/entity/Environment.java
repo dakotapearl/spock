@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package spockdataaccess.entity;
 
 import java.io.Serializable;
@@ -16,7 +12,9 @@ import javax.ejb.EJBException;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -38,9 +36,15 @@ public class Environment implements Serializable {
     protected String CodeURL;
     @NotNull
     protected String DataURL;
+    @OneToMany(mappedBy="environment")
+    protected Collection<EnvironmentNode> environmentNodes;
+    @OneToMany(mappedBy="environment")
+    protected Collection<EnvironmentInterface> environmentInterfaces;
     
     public Environment() {
         experiments = new ArrayList<Experiment>();
+        environmentNodes = new ArrayList<EnvironmentNode>();
+        environmentInterfaces = new ArrayList<EnvironmentInterface>();
     }
     
     public String getId() {
@@ -81,6 +85,30 @@ public class Environment implements Serializable {
 
     public void setDataURL(String DataURL) {
         this.DataURL = DataURL;
+    }
+
+    public Collection<EnvironmentInterface> getEnvironmentInterfaces() {
+        return environmentInterfaces;
+    }
+
+    public void setEnvironmentInterfaces(Collection<EnvironmentInterface> environmentInterfaces) {
+        this.environmentInterfaces = environmentInterfaces;
+    }
+
+    public Collection<EnvironmentNode> getEnvironmentNodes() {
+        return environmentNodes;
+    }
+
+    public void setEnvironmentNodes(Collection<EnvironmentNode> environmentNodes) {
+        this.environmentNodes = environmentNodes;
+    }
+    
+    public void addEnvironmentInterface(EnvironmentInterface environmentInterface) {
+        environmentInterfaces.add(environmentInterface);
+    }
+    
+    public void addEnvironmentNode(EnvironmentNode environmentNode) {
+        environmentNodes.add(environmentNode);
     }
     
     @Override

@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.persistence.EntityManager;
 import spockdataaccess.entity.Environment;
+import spockdataaccess.entity.EnvironmentInterface;
+import spockdataaccess.entity.EnvironmentNode;
 
 /**
  *
@@ -115,7 +117,7 @@ public class EnvironmentFunctions {
     }
     
     /**
-     * Creates a new environment record in the database.
+     * Removes the environment record from the database.
      * @param id the ID of the environment
      */
     public void removeEnvironment(String id) {
@@ -135,5 +137,72 @@ public class EnvironmentFunctions {
         
     }
     
+    /**
+     * Creates an environment interface, the right amount of environment nodes and connects them all appropriately
+     * @param environmentId the environment for the environment interface
+     * @param interfaceIsInput If this is true then the interface is for input, otherwise it is for output
+     * @param numberOfNodes determines the number of nodes that are attached to this interface
+     * @return returns the interface ID
+     */
+    public Long createEnvironmentInterface(
+            String environmentId,
+            Boolean interfaceIsInput,
+            Integer numberOfNodes) {
+        
+        try {
+            
+            Environment environment = em.find(Environment.class, environmentId);
+            
+            // Create interface
+            EnvironmentInterface environmentInterface = new EnvironmentInterface();
+            
+            environmentInterface.setIsInputInterface(interfaceIsInput);
+            environmentInterface.setNumberOfNodes(numberOfNodes);
+
+            // Add interface to environment, and vise versa
+            environment.addEnvironmentInterface(environmentInterface);
+            environmentInterface.setEnvironment(environment);
+            
+            em.persist(environmentInterface);
+            
+            // Create exactly the right number of environment nodes and add them to both the interface and the enivornemnt
+            EnvironmentNode environmentNode;
+            for (int i = 0; i<numberOfNodes; i++) {
+                environmentNode = new EnvironmentNode();
+                
+                environment.addEnvironmentNode(environmentNode);
+                environmentNode.setEnvironment(environment);
+                
+                environmentInterface.addEnvironmentNode(environmentNode);
+                environmentNode.setEnvironmentInterface(environmentInterface);
+                
+                em.persist(environmentNode);
+                
+            }
+            
+            
+            logger.log(Level.INFO,
+                       "Created and persisted environment interface: {0}",
+                       new Object[] { environmentInterface.getId() });
+            
+            return environmentInterface.getId();
+            
+        } catch (Exception ex) {
+            throw new EJBException("RequestBean.createEnvironment threw: " + ex.getMessage());
+        }
+        
+    }
+    
+    /**
+     * 
+     * @param environmentInterfaceId 
+     */
+    public void removeEnvironmentInterface(Long environmentInterfaceId) {
+        try {
+            
+        } catch (Exception ex) {
+            throw new EJBException("RequestBean.createEnvironment threw: " + ex.getMessage());
+        }
+    }
     
 }

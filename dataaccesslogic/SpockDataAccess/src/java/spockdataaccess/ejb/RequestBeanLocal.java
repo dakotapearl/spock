@@ -8,7 +8,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author loren
+ * @author Loren Chorley
  */
 @Local
 public interface RequestBeanLocal {

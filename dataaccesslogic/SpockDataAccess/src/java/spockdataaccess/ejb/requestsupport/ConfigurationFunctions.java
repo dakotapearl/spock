@@ -12,7 +12,7 @@ import spockdataaccess.entity.Configuration;
 
 /**
  *
- * @author loren
+ * @author Loren Chorley
  */
 public class ConfigurationFunctions {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.ConfigurationFunctions");

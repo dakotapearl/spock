@@ -7,7 +7,7 @@ import javax.ejb.EJBException;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -27,10 +27,13 @@ public class Experiment implements Serializable {
     protected Collection<Network> networks;
     @ManyToMany
     protected Collection<Environment> environments;
+    @OneToMany(mappedBy="experiment")
+    protected Collection<UserInterface> interfaces;
     
     public Experiment() {
         networks = new ArrayList<Network>();
         environments = new ArrayList<Environment>();
+        interfaces = new ArrayList<UserInterface>();
     }
     
     public Experiment(String id, boolean isActive) {
@@ -71,6 +74,10 @@ public class Experiment implements Serializable {
         }
         networks.remove(network);
     }
+
+    public Collection<Environment> getEnvironments() {
+        return environments;
+    }
     
     public void addEnvironment(Environment environment) {
         if (environments.contains(environment)) {
@@ -85,6 +92,12 @@ public class Experiment implements Serializable {
         }
         environments.remove(environment);
     }
+
+    public Collection<UserInterface> getInterfaces() {
+        return interfaces;
+    }
+    
+    
     
     @Override
     public int hashCode() {
