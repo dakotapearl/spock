@@ -1,6 +1,7 @@
 package spockdataaccess.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,7 +17,6 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "Networks")
-@NamedQuery(name = "findAllNetworks", query = "SELECT n FROM Network n")
 public class Network implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -27,6 +27,10 @@ public class Network implements Serializable {
     @ManyToMany(mappedBy="networks")
     protected Collection<Experiment> experiments;
 
+    public Network() {
+        experiments = new ArrayList<Experiment>();
+    }
+    
     public String getId() {
         return id;
     }

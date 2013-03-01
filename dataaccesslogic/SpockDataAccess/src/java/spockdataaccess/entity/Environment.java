@@ -25,6 +25,7 @@ import javax.validation.constraints.NotNull;
  * @author Loren Chorley
  */
 @Entity
+@Table(name = "Environments")
 public class Environment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -37,6 +38,10 @@ public class Environment implements Serializable {
     protected String CodeURL;
     @NotNull
     protected String DataURL;
+    
+    public Environment() {
+        experiments = new ArrayList<Experiment>();
+    }
     
     public String getId() {
         return id;

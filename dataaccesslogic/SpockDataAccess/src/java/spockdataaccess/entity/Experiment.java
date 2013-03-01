@@ -17,7 +17,6 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "Experiments")
-@NamedQuery(name = "findAllExperiments", query = "SELECT e FROM Experiment e")
 public class Experiment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -31,6 +30,7 @@ public class Experiment implements Serializable {
     
     public Experiment() {
         networks = new ArrayList<Network>();
+        environments = new ArrayList<Environment>();
     }
     
     public Experiment(String id, boolean isActive) {

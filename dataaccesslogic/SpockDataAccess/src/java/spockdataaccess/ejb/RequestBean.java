@@ -47,6 +47,7 @@ public class RequestBean {
         configurationFns = new ConfigurationFunctions(em);
         networkFns = new NetworkFunctions(em);
         experimentFns = new ExperimentFunctions(em);
+        environmentFns = new EnvironmentFunctions(em);
         
         logger.log(Level.INFO,
                        "RequestBean instantiate!!!",
