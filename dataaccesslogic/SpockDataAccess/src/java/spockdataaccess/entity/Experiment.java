@@ -1,14 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package spockdataaccess.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import javax.ejb.EJBException;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -21,8 +22,16 @@ public class Experiment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private String id;
-
-    public Experiment() {}
+    @NotNull
+    protected Boolean isActive;
+    @ManyToMany
+    protected Collection<Network> networks;
+    @ManyToMany
+    protected Collection<Environment> environments;
+    
+    public Experiment() {
+        networks = new ArrayList<Network>();
+    }
     
     public Experiment(String id, boolean isActive) {
         this.id = id;
@@ -37,8 +46,6 @@ public class Experiment implements Serializable {
         this.id = id;
     }
 
-    protected Boolean isActive;
-
     public Boolean getIsActive() {
         return isActive;
     }
@@ -47,6 +54,37 @@ public class Experiment implements Serializable {
         this.isActive = IsActive;
     }
 
+    public Collection<Network> getNetworks() {
+        return networks;
+    }
+    
+    public void addNetwork(Network network) {
+        if (networks.contains(network)) {
+            throw new EJBException("Experiment threw: Already contains network " + network.getId());
+        }
+        networks.add(network);
+    }
+    
+    public void removeNetwork(Network network) {
+        if (!networks.contains(network)) {
+            throw new EJBException("Experiment threw: Does not contain network " + network.getId());
+        }
+        networks.remove(network);
+    }
+    
+    public void addEnvironment(Environment environment) {
+        if (environments.contains(environment)) {
+            throw new EJBException("Experiment threw: Already contains environment " + environment.getId());
+        }
+        environments.add(environment);
+    }
+    
+    public void removeEnvironment(Environment environment) {
+        if (!environments.contains(environment)) {
+            throw new EJBException("Experiment threw: Does not contain environment " + environment.getId());
+        }
+        environments.remove(environment);
+    }
     
     @Override
     public int hashCode() {
