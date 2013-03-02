@@ -27,11 +27,17 @@ public class Network implements Serializable {
     @ManyToMany(mappedBy="networks")
     protected Collection<Experiment> experiments;
     @OneToMany(mappedBy="network", cascade=CascadeType.ALL)
-    protected Collection<NetworkNode> nodes;
-
+    protected Collection<NetworkNode> networkNodes;
+    @OneToMany(mappedBy="network")
+    protected Collection<NetworkInterface> networkInterfaces;
+    @ManyToMany
+    protected Collection<Metric> metrics;
+    
     public Network() {
         experiments = new ArrayList<Experiment>();
-        nodes = new ArrayList<NetworkNode>();
+        networkNodes = new ArrayList<NetworkNode>();
+        networkInterfaces = new ArrayList<NetworkInterface>();
+        metrics = new ArrayList<Metric>();
     }
     
     public String getId() {
@@ -59,10 +65,45 @@ public class Network implements Serializable {
     }
 
     public Collection<NetworkNode> getNodes() {
-        return nodes;
+        return networkNodes;
     }
     
+    public Collection<Metric> getMetrics() {
+        return metrics;
+    }
+
+    public void setMetrics(Collection<Metric> metrics) {
+        this.metrics = metrics;
+    }
+
+    public Collection<NetworkInterface> getNetworkInterfaces() {
+        return networkInterfaces;
+    }
+
+    public void setNetworkInterfaces(Collection<NetworkInterface> networkInterfaces) {
+        this.networkInterfaces = networkInterfaces;
+    }
+
+    public Collection<NetworkNode> getNetworkNodes() {
+        return networkNodes;
+    }
+
+    public void setNetworkNodes(Collection<NetworkNode> networkNodes) {
+        this.networkNodes = networkNodes;
+    }
     
+    public void addNetworkInterface(NetworkInterface networkInterface) {
+        networkInterfaces.add(networkInterface);
+    }
+    
+    public void addMetric(Metric metric) {
+        metrics.add(metric);
+    }
+    
+    public void addNetworkNode(NetworkNode networkNode) {
+        networkNodes.add(networkNode);
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

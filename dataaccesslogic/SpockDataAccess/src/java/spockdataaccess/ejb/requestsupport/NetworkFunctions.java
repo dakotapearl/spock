@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.persistence.EntityManager;
 import spockdataaccess.entity.Network;
+import spockdataaccess.entity.NetworkConnection;
+import spockdataaccess.entity.NetworkInterface;
 import spockdataaccess.entity.NetworkNode;
 
 /**
@@ -13,6 +15,9 @@ import spockdataaccess.entity.NetworkNode;
  */
 public class NetworkFunctions {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.NetworkFunctions");
+    
+    public static final boolean INPUT_INTERFACE = true;
+    public static final boolean OUTPUT_INTERFACE = false;
     
     private EntityManager em;
     
@@ -117,27 +122,102 @@ public class NetworkFunctions {
     
     /**
      * Connects two nodes in a network
-     * @param outgoingNetworkNodeId the ID of the node that will produce information
-     * @param incomingNetworkNodeId the ID of the node that will accept information
+     * @param sendingNodeId the ID of the node that will produce information
+     * @param incomireceivingNodeIdngNetworkNodeId the ID of the node that will accept information
      */
-    public void connectNodes(Long outgoingNetworkNodeId, Long incomingNetworkNodeId) {
+    public void connectNodes(Long sendingNodeId, Long receivingNodeId, Double strength) {
         
         try {
         
-            NetworkNode nodeOutgoing = em.find(NetworkNode.class, outgoingNetworkNodeId);
-            NetworkNode nodeIncoming = em.find(NetworkNode.class, incomingNetworkNodeId);
+            NetworkConnection networkConnection = new NetworkConnection();
             
-            nodeOutgoing.addOutgoingNode(nodeIncoming);
-            nodeIncoming.addIncomingNode(nodeOutgoing);
+            NetworkNode sendingNode = em.find(NetworkNode.class, sendingNodeId);
+            NetworkNode receivingNode = em.find(NetworkNode.class, receivingNodeId);
+            
+            // Add not null verifications
+            
+            networkConnection.setSendingNode(sendingNode);
+            networkConnection.setReceivingNode(receivingNode);
+            networkConnection.setStrength(strength);
+            
+            em.persist(networkConnection);
             
             logger.log(Level.INFO,
-                       "Established connection between nodes: {0} -> {1}",
-                       new Object[] { nodeOutgoing.getId(), nodeIncoming.getId() });
+                       "Established connection between nodes: {0} -> {1} with strength {2}",
+                       new Object[] { sendingNode.getId(), receivingNode.getId(), strength });
             
         } catch (Exception ex) {
             throw new EJBException("RequestBean.createNetwork threw: " + ex.getMessage());
         }
         
+    }
+    
+    /**
+     * Creates an network interface, the right amount of network nodes and connects them all appropriately
+     * @param networkId the network for the network interface
+     * @param interfaceIsInput If this is true then the interface is for input, otherwise it is for output
+     * @param numberOfNodes determines the number of nodes that are attached to this interface
+     * @return returns the interface ID
+     */
+    public Long createNetworkInterface(
+            String networkId,
+            boolean interfaceType,
+            Integer numberOfNodes) {
+        
+        try {
+            
+            Network network = em.find(Network.class, networkId);
+            
+            // Create interface
+            NetworkInterface networkInterface = new NetworkInterface();
+            
+            networkInterface.setIsInputInterface(interfaceType);
+            networkInterface.setNumberOfNodes(numberOfNodes);
+
+            // Add interface to network, and vise versa
+            network.addNetworkInterface(networkInterface);
+            networkInterface.setNetwork(network);
+            
+            em.persist(networkInterface);
+            
+            // Create exactly the right number of network nodes and add them to both the interface and the enivornemnt
+            NetworkNode networkNode;
+            for (int i = 0; i<numberOfNodes; i++) {
+                networkNode = new NetworkNode();
+                
+                network.addNetworkNode(networkNode);
+                networkNode.setNetwork(network);
+                
+                networkInterface.addNetworkNode(networkNode);
+                networkNode.setNetworkInterface(networkInterface);
+                
+                em.persist(networkNode);
+                
+            }
+            
+            
+            logger.log(Level.INFO,
+                       "Created and persisted network interface: {0}",
+                       new Object[] { networkInterface.getId() });
+            
+            return networkInterface.getId();
+            
+        } catch (Exception ex) {
+            throw new EJBException("RequestBean.createNetwork threw: " + ex.getMessage());
+        }
+        
+    }
+    
+    /**
+     * 
+     * @param networkInterfaceId 
+     */
+    public void removeNetworkInterface(Long networkInterfaceId) {
+        try {
+            
+        } catch (Exception ex) {
+            throw new EJBException("RequestBean.createNetwork threw: " + ex.getMessage());
+        }
     }
     
 }

@@ -15,6 +15,9 @@ import spockdataaccess.entity.EnvironmentNode;
 public class EnvironmentFunctions {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.EnvironmentFunctions");
     
+    public static final boolean INPUT_INTERFACE = true;
+    public static final boolean OUTPUT_INTERFACE = false;
+    
     private EntityManager em;
     
     public EnvironmentFunctions(EntityManager em) {
@@ -146,7 +149,7 @@ public class EnvironmentFunctions {
      */
     public Long createEnvironmentInterface(
             String environmentId,
-            Boolean interfaceIsInput,
+            boolean interfaceType,
             Integer numberOfNodes) {
         
         try {
@@ -156,7 +159,7 @@ public class EnvironmentFunctions {
             // Create interface
             EnvironmentInterface environmentInterface = new EnvironmentInterface();
             
-            environmentInterface.setIsInputInterface(interfaceIsInput);
+            environmentInterface.setIsInputInterface(interfaceType);
             environmentInterface.setNumberOfNodes(numberOfNodes);
 
             // Add interface to environment, and vise versa

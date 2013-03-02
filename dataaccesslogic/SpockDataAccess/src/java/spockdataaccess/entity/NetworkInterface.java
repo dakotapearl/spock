@@ -17,23 +17,23 @@ import javax.validation.constraints.NotNull;
  * @author Loren Chorley
  */
 @Entity
-@Table(name = "EnvironmentInterfaces")
-public class EnvironmentInterface implements Serializable {
+@Table(name="NetworkInterfaces")
+public class NetworkInterface implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     protected Integer NumberOfNodes;
-    @OneToMany(mappedBy="environmentInterface")
-    protected Collection<EnvironmentNode> environmentNodes;
+    @OneToMany(mappedBy="networkInterface")
+    protected Collection<NetworkNode> networkNodes;
     @NotNull
     @ManyToOne
-    protected Environment environment;
+    protected Network network;
     @NotNull
     protected Boolean isInputInterface;
     
-    public EnvironmentInterface() {
-        environmentNodes = new ArrayList<EnvironmentNode>();
+    public NetworkInterface() {
+        networkNodes = new ArrayList<NetworkNode>();
     }
     
     public Long getId() {
@@ -52,16 +52,16 @@ public class EnvironmentInterface implements Serializable {
         this.NumberOfNodes = NumberOfNodes;
     }
 
-    public Collection<EnvironmentNode> getEnvironmentNodes() {
-        return environmentNodes;
+    public Collection<NetworkNode> getNetworkNodes() {
+        return networkNodes;
     }
 
-    public void setEnvironmentNodes(Collection<EnvironmentNode> environmentNodes) {
-        this.environmentNodes = environmentNodes;
+    public void setNetworkNodes(Collection<NetworkNode> networkNodes) {
+        this.networkNodes = networkNodes;
     }
 
-    public void addEnvironmentNode(EnvironmentNode environmentNode) {
-        environmentNodes.add(environmentNode);
+    public void addNetworkNode(NetworkNode networkNode) {
+        networkNodes.add(networkNode);
     }
 
     public Boolean getIsInputInterface() {
@@ -72,14 +72,14 @@ public class EnvironmentInterface implements Serializable {
         this.isInputInterface = isInputInterface;
     }
 
-    public Environment getEnvironment() {
-        return environment;
+    public Network getNetwork() {
+        return network;
     }
 
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
+    public void setNetwork(Network network) {
+        this.network = network;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -90,10 +90,10 @@ public class EnvironmentInterface implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof EnvironmentInterface)) {
+        if (!(object instanceof NetworkInterface)) {
             return false;
         }
-        EnvironmentInterface other = (EnvironmentInterface) object;
+        NetworkInterface other = (NetworkInterface) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -102,7 +102,7 @@ public class EnvironmentInterface implements Serializable {
 
     @Override
     public String toString() {
-        return "spockdataaccess.entity.EnvironmentInterface[ id=" + id + " ]";
+        return "spockdataaccess.entity.NetworkInterface[ id=" + id + " ]";
     }
     
 }

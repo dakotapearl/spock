@@ -1,14 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package spockdataaccess.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -17,10 +11,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Configurations")
-@NamedQuery(name = "Configuration.findByName", query = "SELECT c FROM Configuration c WHERE c.name = :name")
-/*@NamedQueries({
-    @NamedQuery(name = "Configuration.setByName", query = "SELECT c FROM Configuration c") //TODO
-})*/
 public class Configuration implements Serializable {
     private static final long serialVersionUID = 1L;
 

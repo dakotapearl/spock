@@ -1,11 +1,14 @@
 package spockdataaccess.ejb.requestsupport;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.persistence.EntityManager;
 import spockdataaccess.entity.User;
 import java.security.*;
+import java.util.Arrays;
 
 /**
  *
@@ -29,15 +32,10 @@ public class UserFunctions {
     public void createUser(String Username, String Password, String Email) {
         
         try {
-        
-            // Encrypt password
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] bytesOfMessage = Password.getBytes("UTF-8");
-            byte[] encryptedPassword = md.digest(bytesOfMessage);
             
             User user = new User();
             user.setUsername(Username);
-            user.setPassword(encryptedPassword.toString());
+            user.setPassword(md5sum(Password));
             user.setEmail(Email);
             
             em.persist(user);
@@ -69,15 +67,20 @@ public class UserFunctions {
     }
     
     /**
-     * 
-     * @param Username
-     * @param Password 
+     * Sets the password of the user, encrypted via md5
+     * @param Username the username of the user
+     * @param Password the new password of the user
      */
     public void setPassword(String Username, String Password) {
         try {
         
-            
+            User user = em.find(User.class, Username);
+            user.setPassword(md5sum(Password));
         
+            logger.log(Level.INFO,
+                       "Set password of user {0} to {1}",
+                       new Object[] { user.getUsername() , user.getPassword() });
+            
         } catch (Exception ex) {
             throw new EJBException("UserFunctions.setPassword threw: " + ex.getMessage());
         }
@@ -120,4 +123,52 @@ public class UserFunctions {
         }
         
     }
+    
+    /**
+     * Counts the number of users registered in the database
+     * @return the number of users in the database
+     */
+    public Integer countUsers() {
+        
+        try {
+            
+            Integer count = em.createNamedQuery("countUsers").getFirstResult();
+            
+            logger.log(Level.INFO,
+                       "User count: {0}",
+                       new Object[] { count });
+            
+            return count;
+            
+        } catch (Exception ex) {
+            throw new EJBException("UserFunctions.removeUser threw: " + ex.getMessage());
+        }
+        
+    }
+    
+    /**
+     * Encrypts the given string via md5
+     * @param str string to be converted
+     * @return returns a hex string
+     */
+    public String md5sum(String str) {
+        String result = "";
+        
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] bytesOfMessage = str.getBytes("UTF-8");
+            byte[] encryptedPassword = md.digest(bytesOfMessage);
+            
+            result = new BigInteger(1, encryptedPassword).toString(16);
+            
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(UserFunctions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UserFunctions.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            return result;
+        }
+        
+    }
+    
 }

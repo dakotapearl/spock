@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "Users")
+@NamedQuery(name="countUsers", query="SELECT COUNT(u) FROM User u")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

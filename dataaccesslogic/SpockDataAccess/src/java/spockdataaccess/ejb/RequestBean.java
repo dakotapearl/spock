@@ -1,6 +1,5 @@
 package spockdataaccess.ejb;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -28,6 +27,7 @@ public class RequestBean {
     private EnvironmentFunctions environmentFns;
     private UserFunctions userFns;
     private UserInterfaceFunctions userInterfaceFns;
+    private ConnectionFunctions connectionFns;
     
     public ConfigurationFunctions getConfigurationFns() {
         return configurationFns;
@@ -53,6 +53,10 @@ public class RequestBean {
         return userInterfaceFns;
     }
     
+    public ConnectionFunctions getConnectionFns() {
+        return connectionFns;
+    }
+    
     @PostConstruct
     public void RequestBeanConstruction() {
         configurationFns = new ConfigurationFunctions(em);
@@ -61,6 +65,7 @@ public class RequestBean {
         environmentFns = new EnvironmentFunctions(em);
         userFns = new UserFunctions(em);
         userInterfaceFns = new UserInterfaceFunctions(em);
+        connectionFns = new ConnectionFunctions(em);
         
     }
     
@@ -88,6 +93,13 @@ public class RequestBean {
             em.createQuery("DROP TABLE Networks").executeUpdate();
             em.createQuery("DROP TABLE NetworkNodes").executeUpdate();
             em.createQuery("DROP TABLE Configurations").executeUpdate();
+            em.flush();
+            
+            em.createQuery("DROP TABLE NetworkNodes_NetworkNodes").executeUpdate();
+            em.createQuery("DROP TABLE NetworkNodes").executeUpdate();
+            em.createQuery("DROP TABLE NetworkNodes_NetworkNodes").executeUpdate();
+            em.flush();
+            
         } catch (Exception ex) {
             
         }

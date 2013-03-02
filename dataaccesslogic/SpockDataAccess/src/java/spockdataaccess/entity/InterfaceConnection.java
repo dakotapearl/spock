@@ -1,35 +1,30 @@
 package spockdataaccess.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Loren Chorley
  */
 @Entity
-@Table(name = "NetworkNodes")
-public class NetworkNode implements Serializable {
+@Table(name="InterfaceConnections")
+public class InterfaceConnection implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotNull
-    @ManyToOne
-    protected Network network;
-    @ManyToOne
-    protected NetworkBehaviour networkBehaviour;
     @ManyToOne
     protected NetworkInterface networkInterface;
+    @ManyToOne
+    protected EnvironmentInterface environmentInterface;
+    @ManyToOne
+    protected Experiment experiment;
     
     public Long getId() {
         return id;
@@ -38,23 +33,23 @@ public class NetworkNode implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    public Network getNetwork() {
-        return network;
+
+    public EnvironmentInterface getEnvironmentInterface() {
+        return environmentInterface;
     }
 
-    public void setNetwork(Network network) {
-        this.network = network;
+    public void setEnvironmentInterface(EnvironmentInterface environmentInterface) {
+        this.environmentInterface = environmentInterface;
     }
 
-    public NetworkBehaviour getNetworkBehaviour() {
-        return networkBehaviour;
+    public Experiment getExperiment() {
+        return experiment;
     }
 
-    public void setNetworkBehaviour(NetworkBehaviour networkBehaviour) {
-        this.networkBehaviour = networkBehaviour;
+    public void setExperiment(Experiment experiment) {
+        this.experiment = experiment;
     }
-    
+
     public NetworkInterface getNetworkInterface() {
         return networkInterface;
     }
@@ -62,6 +57,7 @@ public class NetworkNode implements Serializable {
     public void setNetworkInterface(NetworkInterface networkInterface) {
         this.networkInterface = networkInterface;
     }
+
     
     
     @Override
@@ -74,10 +70,10 @@ public class NetworkNode implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof NetworkNode)) {
+        if (!(object instanceof InterfaceConnection)) {
             return false;
         }
-        NetworkNode other = (NetworkNode) object;
+        InterfaceConnection other = (InterfaceConnection) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -86,7 +82,7 @@ public class NetworkNode implements Serializable {
 
     @Override
     public String toString() {
-        return "spockdataaccess.entity.NetworkNode[ id=" + id + " ]";
+        return "spockdataaccess.entity.InterfaceConnection[ id=" + id + " ]";
     }
     
 }

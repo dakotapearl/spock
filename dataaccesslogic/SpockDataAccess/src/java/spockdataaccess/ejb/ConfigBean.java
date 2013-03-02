@@ -7,6 +7,9 @@ import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import spockdataaccess.ejb.requestsupport.ConnectionFunctions;
+import spockdataaccess.ejb.requestsupport.EnvironmentFunctions;
+import spockdataaccess.ejb.requestsupport.NetworkFunctions;
 
 /**
  * This bean is solely used for testing purposes and should not be use in a 
@@ -19,10 +22,34 @@ import javax.ejb.Startup;
 public class ConfigBean {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.ConfigBean");
     
+    static private final boolean testingMode = true;
+    
     @EJB
     private RequestBean requestbean;
     
     @PostConstruct
+    public void checkUsers() {
+        
+        // If there are no users, create a root user with no password
+        Integer count = requestbean.getUserFns().countUsers();
+        
+        if (count == 0) {
+            
+            requestbean.getUserFns().createUser("root", "", "");
+            
+            logger.log(Level.INFO,
+                       "Starting to create testing data",
+                       new Object[] { });
+
+        }
+        
+        // do testing method if in testing mode
+        if (testingMode) {
+            createData();
+        }
+        
+    }
+    
     public void createData() {
         logger.log(Level.INFO,
                    "Starting to create testing data",
@@ -60,6 +87,7 @@ public class ConfigBean {
         // Network Behaviours
         // Metrics
         
+        
         logger.log(Level.INFO,
                    "Inserting data that must depend on other data",
                    new Object[] { });
@@ -69,20 +97,25 @@ public class ConfigBean {
         Long node2 = requestbean.getNetworkFns().addNodeToNetwork("Network1");
         
         // Environment Interfaces
-        requestbean.getEnvironmentFns().createEnvironmentInterface("Environment1", Boolean.TRUE, 3);
+        Long EnvironmentInterfaceID = requestbean.getEnvironmentFns().createEnvironmentInterface("Environment1", EnvironmentFunctions.INPUT_INTERFACE, 3);
         
         // Network Interfaces
+        Long NetworkInterfaceID = requestbean.getNetworkFns().createNetworkInterface("Network1", NetworkFunctions.OUTPUT_INTERFACE, 3);
         
         logger.log(Level.INFO,
                    "Creating relationships between table data",
                    new Object[] { });
         
         // NetworkNode-NetworkNode
-        requestbean.getNetworkFns().connectNodes(node1, node2);
-        
-        // NetworkNode-NetworkInterface
+        requestbean.getNetworkFns().connectNodes(node1, node2, 2.0);
         
         // NetworkInterface-EnvironmentInterface-Experiment (Connections)
+        requestbean.getConnectionFns().createConnection(
+                NetworkInterfaceID, 
+                ConnectionFunctions.NETWORK_INTERFACE, 
+                EnvironmentInterfaceID, 
+                ConnectionFunctions.ENVIRONMENT_INTERFACE, 
+                "Experiment2");
         
         // Experiment-Network
         requestbean.getExperimentFns().addNetworkToExperiment("Experiment1", "Network1");
@@ -94,6 +127,7 @@ public class ConfigBean {
         requestbean.getUserInterfaceFns().setExperimentForUserInterface(AndroidUI_ID, "Experiment2");
         
         // User-UserInterface
+        
         // 
         
         logger.log(Level.INFO,
