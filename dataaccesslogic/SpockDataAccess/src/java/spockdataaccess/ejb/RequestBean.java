@@ -3,6 +3,7 @@ package spockdataaccess.ejb;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +15,7 @@ import spockdataaccess.ejb.requestsupport.*;
  * @author Loren Chorley
  */
 @Stateful
-public class RequestBean {
+public class RequestBean implements RequestBeanLocal, RequestBeanRemote {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.RequestBean");
     
     @PersistenceContext
@@ -33,6 +34,7 @@ public class RequestBean {
     private String loggedInUser = null;
     private String accessRights = "";
     
+    @Override
     public boolean login(String username, String passwordHash) {
         
         logger.log(Level.INFO,
@@ -60,6 +62,7 @@ public class RequestBean {
         }
     }
     
+    @Override
     public void sendPasswordResetEmail(String username) {
         
     }
@@ -72,54 +75,63 @@ public class RequestBean {
         }
     }
     
+    @Override
     public ConfigurationFunctions getConfigurationFns() {
         if (!userVerified()) { return null; }
         
         return configurationFns;
     }
     
+    @Override
     public NetworkFunctions getNetworkFns() {
         if (!userVerified()) { return null; }
         
         return networkFns;
     }
     
+    @Override
     public ExperimentFunctions getExperimentFns() {
         if (!userVerified()) { return null; }
         
         return experimentFns;
     }
     
+    @Override
     public EnvironmentFunctions getEnvironmentFns() {
         if (!userVerified()) { return null; }
         
         return environmentFns;
     }
     
+    @Override
     public UserFunctions getUserFns() {
         if (!userVerified()) { return null; }
         
         return userFns;
     }
     
+    @Override
     public UserInterfaceFunctions getUserInterfaceFns() {
         if (!userVerified()) { return null; }
         
         return userInterfaceFns;
     }
     
+    @Override
     public ConnectionFunctions getConnectionFns() {
         if (!userVerified()) { return null; }
         
         return connectionFns;
     }
     
+    @Override
     public BehaviourFunctions getBehaviourFns() {
         if (!userVerified()) { return null; }
         
         return behaviourFns;
     }
     
+    @Override
     public MetricFunctions getMetricFns() {
         if (!userVerified()) { return null; }
         

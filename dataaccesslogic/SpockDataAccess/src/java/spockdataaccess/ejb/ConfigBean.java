@@ -32,7 +32,7 @@ public class ConfigBean {
     static private final boolean testingMode = true;
     
     @EJB
-    private RequestBean requestbean;
+    private RequestBeanLocal requestbean;
     
     @PostConstruct
     public void checkUsers() {

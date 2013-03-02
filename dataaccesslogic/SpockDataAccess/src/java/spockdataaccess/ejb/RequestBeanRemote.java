@@ -4,15 +4,15 @@
  */
 package spockdataaccess.ejb;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 import spockdataaccess.ejb.requestsupport.*;
 
 /**
  *
  * @author Loren Chorley
  */
-@Local
-public interface RequestBeanLocal {
+@Remote
+public interface RequestBeanRemote {
     public boolean login(String username, String passwordHash);
     public void sendPasswordResetEmail(String username);
     public ConfigurationFunctions getConfigurationFns();
