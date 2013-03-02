@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package spockdataaccess.ejb.requestsupport;
 
 import java.util.logging.Level;
@@ -32,15 +28,14 @@ public class ConfigurationFunctions {
         
         try {
             
-            Configuration config;
-            config = em.find(Configuration.class, name);
+            Configuration config = em.find(Configuration.class, name);
             
             if (config == null) {
                 
                 config = new Configuration();
                 
                 logger.log(Level.INFO,
-                           "Create new configuration: {0}",
+                           "Created new configuration: {0}",
                            new Object[] { name });
                 
             }

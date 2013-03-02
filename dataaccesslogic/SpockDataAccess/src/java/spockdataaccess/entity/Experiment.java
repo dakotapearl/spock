@@ -97,6 +97,13 @@ public class Experiment implements Serializable {
         return interfaces;
     }
     
+    public void addUserInterface(UserInterface userInterface) {
+        interfaces.add(userInterface);
+    }
+    
+    public void removeUserInterface(UserInterface userInterface) {
+        interfaces.remove(userInterface);
+    }
     
     
     @Override

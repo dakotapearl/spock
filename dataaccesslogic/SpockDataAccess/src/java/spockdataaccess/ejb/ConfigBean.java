@@ -1,5 +1,10 @@
 package spockdataaccess.ejb;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -10,6 +15,8 @@ import javax.ejb.Startup;
 import spockdataaccess.ejb.requestsupport.ConnectionFunctions;
 import spockdataaccess.ejb.requestsupport.EnvironmentFunctions;
 import spockdataaccess.ejb.requestsupport.NetworkFunctions;
+import spockdataaccess.ejb.requestsupport.UserFunctions;
+import spockdataaccess.entity.User;
 
 /**
  * This bean is solely used for testing purposes and should not be use in a 
@@ -30,22 +37,15 @@ public class ConfigBean {
     @PostConstruct
     public void checkUsers() {
         
-        // If there are no users, create a root user with no password
-        Integer count = requestbean.getUserFns().countUsers();
-        
-        if (count == 0) {
-            
-            requestbean.getUserFns().createUser("root", "", "");
-            
-            logger.log(Level.INFO,
-                       "Starting to create testing data",
-                       new Object[] { });
-
-        }
-        
         // do testing method if in testing mode
         if (testingMode) {
-            createData();
+            if (requestbean.login("root", md5sum("admin"))) {
+                createData();
+            } else {
+                logger.log(Level.INFO,
+                           "Could not log in.",
+                           new Object[] { });
+            }
         }
         
     }
@@ -78,15 +78,17 @@ public class ConfigBean {
         requestbean.getEnvironmentFns().createEnvironment("Environment2", "file:///code/e2.jar", "file:///data/e2.dat");
         
         // Users
-        requestbean.getUserFns().createUser("Loren", "MyPassword", "dakotapearl@gmail.com");
+        requestbean.getUserFns().createUser("Loren", "MyPassword", "dakotapearl@gmail.com", "user");
         
         // User Interfaces
         Long AndroidUI_ID = requestbean.getUserInterfaceFns().createUserInterface("Android", "192.168.0.11");
         requestbean.getUserInterfaceFns().createUserInterface("Web", "192.168.0.14");
         
         // Network Behaviours
-        // Metrics
+        requestbean.getBehaviourFns().setBehaviour("RandomBehaviour", "ftp://192.168.0.11/code/behaviour.jar");
         
+        // Metrics
+        requestbean.getMetricFns().setMetric("Cheese-based Metric", "~/metrics/code/cheese.jar");
         
         logger.log(Level.INFO,
                    "Inserting data that must depend on other data",
@@ -109,7 +111,7 @@ public class ConfigBean {
         // NetworkNode-NetworkNode
         requestbean.getNetworkFns().connectNodes(node1, node2, 2.0);
         
-        // NetworkInterface-EnvironmentInterface-Experiment (Connections)
+        // NetworkInterface-EnvironmentInterface-Experiment (Interface Connections)
         requestbean.getConnectionFns().createConnection(
                 NetworkInterfaceID, 
                 ConnectionFunctions.NETWORK_INTERFACE, 
@@ -128,34 +130,38 @@ public class ConfigBean {
         
         // User-UserInterface
         
-        // 
+        // NetworkNode-NetworkBehaviour
+        
+        // Network-Metric
+        
+        // Environment-Metric
+        
         
         logger.log(Level.INFO,
                    "Finished creating testing data",
                    new Object[] { });
     }
     
-    @PreDestroy
-    public void deleteData() {
-        logger.log(Level.INFO,
-                   "Cleaning database. (Warning: Should only be used for testing!)",
-                   new Object[] { });
+    /**
+     * Encrypts the given string via md5
+     * @param str string to be converted
+     * @return returns a hex string
+     */
+    public String md5sum(String str) {
+        String result = "";
         
-        //requestbean.CleanDatabase();
-        
-        /*requestbean.getUserFns().removeUser("Loren");
-        
-        requestbean.getExperimentFns().removeEnvironmentFromExperiment("Experiment1", "Environment1");
-        requestbean.getExperimentFns().removeNetworkFromExperiment("Experiment1", "Network1");
-        
-        requestbean.getNetworkFns().removeNetwork("Network1");
-        requestbean.getNetworkFns().removeNetwork("Network2");
-        
-        requestbean.getConfigurationFns().removeConfiguration("setting1");
-        requestbean.getConfigurationFns().removeConfiguration("setting2");
-        
-        requestbean.getExperimentFns().removeExperiment("Experiment1");
-        requestbean.getExperimentFns().removeExperiment("Experiment2");*/
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] bytesOfMessage = str.getBytes("UTF-8");
+            byte[] encryptedPassword = md.digest(bytesOfMessage);
+            
+            result = new BigInteger(1, encryptedPassword).toString(16);
+            
+        } catch (UnsupportedEncodingException ex) {
+        } catch (NoSuchAlgorithmException ex) {
+        } finally {
+            return result;
+        }
         
     }
     

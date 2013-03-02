@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import spockdataaccess.entity.User;
 import java.security.*;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -16,6 +17,9 @@ import java.util.Arrays;
  */
 public class UserFunctions {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.UserFunctions");
+    
+    public static final String ACCESSRIGHTS_ADMIN = "admin";
+    public static final String ACCESSRIGHTS_USER = "user";
     
     private EntityManager em;
     
@@ -25,18 +29,20 @@ public class UserFunctions {
     
     /**
      * Creates a new user record in the database.
-     * @param Username the username of the new user
-     * @param Password the unencrypted password of the new user
-     * @param Email the email address of the user
+     * @param username the username of the new user
+     * @param password the unencrypted password of the new user
+     * @param email the email address of the user
+     * @param accessRights the access rights of the user
      */
-    public void createUser(String Username, String Password, String Email) {
+    public void createUser(String username, String passwordHash, String email, String accessRights) {
         
         try {
             
             User user = new User();
-            user.setUsername(Username);
-            user.setPassword(md5sum(Password));
-            user.setEmail(Email);
+            user.setUsername(username);
+            user.setPassword(passwordHash);
+            user.setEmail(email);
+            user.setAccessRights(accessRights);
             
             em.persist(user);
             
@@ -55,7 +61,7 @@ public class UserFunctions {
      * @param OldUsername
      * @param NewUsername 
      */
-    public void setUsername(String OldUsername, String NewUsername) {
+    public void setUsername(String oldUsername, String newUsername) {
         try {
         
             
@@ -71,11 +77,11 @@ public class UserFunctions {
      * @param Username the username of the user
      * @param Password the new password of the user
      */
-    public void setPassword(String Username, String Password) {
+    public void setPassword(String username, String password) {
         try {
         
-            User user = em.find(User.class, Username);
-            user.setPassword(md5sum(Password));
+            User user = em.find(User.class, username);
+            user.setPassword(md5sum(password));
         
             logger.log(Level.INFO,
                        "Set password of user {0} to {1}",
@@ -92,7 +98,7 @@ public class UserFunctions {
      * @param Username
      * @param Email 
      */
-    public void setEmail(String Username, String Email) {
+    public void setEmail(String username, String email) {
         try {
         
             
@@ -107,16 +113,16 @@ public class UserFunctions {
      * Creates a new network record in the database.
      * @param id the ID of the network
      */
-    public void removeUser(String Username) {
+    public void removeUser(String username) {
         
         try {
         
-            User user = em.find(User.class, Username);
+            User user = em.find(User.class, username);
             em.remove(user);
             
             logger.log(Level.INFO,
                        "Removed user: {0}",
-                       new Object[] { Username });
+                       new Object[] { username });
             
         } catch (Exception ex) {
             throw new EJBException("UserFunctions.removeUser threw: " + ex.getMessage());
@@ -142,6 +148,49 @@ public class UserFunctions {
             
         } catch (Exception ex) {
             throw new EJBException("UserFunctions.removeUser threw: " + ex.getMessage());
+        }
+        
+    }
+    
+    public List<User> getAllUsers() {
+        List<User> users = (List<User>) em.createQuery("SELECT u FROM User u").getResultList();
+
+        return users;
+    }
+    
+    public boolean verifiyUser(String username, String passwordHash) {
+        boolean verified = false;
+        
+        try {
+            
+            // If there are no users, create a root user with a default password
+            Integer userCount = countUsers();
+
+            if (userCount == 0) {
+                createUser("root", md5sum("admin"), "", "admin");
+            }
+            
+            // Check to see if there is a user that matches
+            Integer resultCount = em.createNamedQuery("verifyUser")
+                                    .setParameter("uname", username)
+                                    .setParameter("pword", passwordHash)
+                                    .getResultList()
+                                    .size();
+            
+            logger.log(Level.INFO,
+                       "User verification returned {0} result for user {1}",
+                       new Object[] { resultCount, username });
+            
+            if (resultCount == 1) {
+                verified = true;
+            } else if (resultCount != 0) {
+                throw new EJBException("verifyUser threw unexpected result, non-0, non-1 number");
+            }
+            
+        } catch (Exception ex) {
+            throw new EJBException("UserFunctions.removeUser threw: " + ex.getMessage());
+        } finally {
+            return verified;
         }
         
     }

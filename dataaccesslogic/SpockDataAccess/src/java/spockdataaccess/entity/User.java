@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,26 +18,30 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "Users")
 @NamedQuery(name="countUsers", query="SELECT COUNT(u) FROM User u")
+@NamedQueries({
+    @NamedQuery(name="verifyUser", query="SELECT u FROM User u WHERE u.Username = :uname AND u.Password = :pword")
+})
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    private String username;
+    private String Username;
     @NotNull
     protected String Password;
     protected String Email;
     @OneToMany(mappedBy="user")
     protected Collection<UserInterface> interfaces;
+    protected String accessRights;
 
     public User() {
         interfaces = new ArrayList<UserInterface>();
     }
     
     public String getUsername() {
-        return username;
+        return Username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String Username) {
+        this.Username = Username;
     }
 
     public String getPassword() {
@@ -59,11 +64,28 @@ public class User implements Serializable {
         return interfaces;
     }
     
+    public void addUserInterface(UserInterface userInterface) {
+        interfaces.add(userInterface);
+    }
+    
+    public void removeUserInterface(UserInterface userInterface) {
+        interfaces.remove(userInterface);
+    }
+
+    public String getAccessRights() {
+        return accessRights;
+    }
+
+    public void setAccessRights(String accessRights) {
+        this.accessRights = accessRights;
+    }
+
+    
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (username != null ? username.hashCode() : 0);
+        hash += (Username != null ? Username.hashCode() : 0);
         return hash;
     }
 
@@ -74,7 +96,7 @@ public class User implements Serializable {
             return false;
         }
         User other = (User) object;
-        if ((this.username == null && other.username != null) || (this.username != null && !this.username.equals(other.username))) {
+        if ((this.Username == null && other.Username != null) || (this.Username != null && !this.Username.equals(other.Username))) {
             return false;
         }
         return true;
@@ -82,7 +104,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "spockdataaccess.entity.User[ id=" + username + " ]";
+        return "spockdataaccess.entity.User[ id=" + Username + " ]";
     }
     
 }
