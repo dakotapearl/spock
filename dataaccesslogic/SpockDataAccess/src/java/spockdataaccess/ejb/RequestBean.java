@@ -15,7 +15,7 @@ import spockdataaccess.ejb.requestsupport.*;
  * @author Loren Chorley
  */
 @Stateful
-public class RequestBean implements RequestBeanLocal, RequestBeanRemote {
+public class RequestBean implements RequestBeanLocal, SpockDataRequest {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.RequestBean");
     
     @PersistenceContext

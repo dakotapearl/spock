@@ -19,26 +19,50 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.naming.NamingException;
 import spockdataaccess.ejb.RequestBean;
 import spockdataaccess.ejb.RequestBeanLocal;
-import spockdataaccess.ejb.RequestBeanRemote;
+import spockdataaccess.ejb.SpockDataRequest;
+import javax.naming.Context;
+import javax.ejb.embeddable.EJBContainer;
+import java.util.logging.Logger;
 
 @Singleton
 @Startup
 public class EnvironmentBean {
     private static final Logger logger = Logger.getLogger("EnvironmentBean");
 
-    @EJB
-    private RequestBeanRemote requestbean;
+    //@EJB
+    //private SpockDataRequest dataRequest;
+    
+    //spockdataaccess.ejb.RequestBeanRemote
     
     @PostConstruct
-    public void DoIt() {
+    public void DoIt() throws NamingException {
+        
+        logger.log(Level.INFO,
+                   "Starting Environment Bean",
+                   new Object[] {  });
+        
+        Context ctx;
+        EJBContainer ec;
+        
+        //ec = EJBContainer.createEJBContainer();
+        //ctx = ec.getContext();
+        
+        //RequestBean requestbean = (RequestBean) ctx.lookup("java:global/classes/StandaloneBean");
+        RequestBean requestbean = (RequestBean) ctx.lookup("java:global/SpockDataAccess/RequestBean!spockdataaccess.ejb.SpockDataRequest");
+        
         boolean result = requestbean.login("root", md5sum("admin"));
         
         logger.log(Level.INFO,
                    "Log in result: {0}",
                    new Object[] { result ? "success" : "failure" });
         
+        /*if (ec != null) {
+            ec.close();
+        }*/
+                   
     }
     
     /**

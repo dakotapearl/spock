@@ -4,19 +4,15 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import spockdataaccess.ejb.requestsupport.ConnectionFunctions;
 import spockdataaccess.ejb.requestsupport.EnvironmentFunctions;
 import spockdataaccess.ejb.requestsupport.NetworkFunctions;
-import spockdataaccess.ejb.requestsupport.UserFunctions;
-import spockdataaccess.entity.User;
 
 /**
  * This bean is solely used for testing purposes and should not be use in a 
@@ -29,7 +25,7 @@ import spockdataaccess.entity.User;
 public class ConfigBean {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.ConfigBean");
     
-    static private final boolean testingMode = true;
+    static private final boolean testingMode = false;
     
     @EJB
     private RequestBeanLocal requestbean;
