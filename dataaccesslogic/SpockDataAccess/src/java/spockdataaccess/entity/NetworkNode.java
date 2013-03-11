@@ -30,6 +30,15 @@ public class NetworkNode implements Serializable {
     protected NetworkBehaviour networkBehaviour;
     @ManyToOne
     protected NetworkInterface networkInterface;
+
+    public NetworkNode() {
+    }
+
+    public NetworkNode(Network network, NetworkBehaviour networkBehaviour, NetworkInterface networkInterface) {
+        this.network = network;
+        this.networkBehaviour = networkBehaviour;
+        this.networkInterface = networkInterface;
+    }
     
     public Long getId() {
         return id;

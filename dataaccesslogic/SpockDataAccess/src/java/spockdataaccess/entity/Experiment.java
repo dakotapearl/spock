@@ -35,6 +35,14 @@ public class Experiment implements Serializable {
         environments = new ArrayList<Environment>();
         interfaces = new ArrayList<UserInterface>();
     }
+
+    public Experiment(String id, Boolean isActive) {
+        networks = new ArrayList<Network>();
+        environments = new ArrayList<Environment>();
+        interfaces = new ArrayList<UserInterface>();
+        this.id = id;
+        this.isActive = isActive;
+    }
     
     public Experiment(String id, boolean isActive) {
         this.id = id;

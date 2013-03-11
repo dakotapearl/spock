@@ -18,6 +18,14 @@ public class Metric implements Serializable {
     private String id;
     @NotNull
     protected String CodeURL;
+
+    public Metric() {
+    }
+
+    public Metric(String id, String CodeURL) {
+        this.id = id;
+        this.CodeURL = CodeURL;
+    }
     
     public String getId() {
         return id;

@@ -35,6 +35,13 @@ public class EnvironmentInterface implements Serializable {
     public EnvironmentInterface() {
         environmentNodes = new ArrayList<EnvironmentNode>();
     }
+
+    public EnvironmentInterface(Integer NumberOfNodes, Environment environment, Boolean isInputInterface) {
+        environmentNodes = new ArrayList<EnvironmentNode>();
+        this.NumberOfNodes = NumberOfNodes;
+        this.environment = environment;
+        this.isInputInterface = isInputInterface;
+    }
     
     public Long getId() {
         return id;

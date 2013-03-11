@@ -25,6 +25,15 @@ public class InterfaceConnection implements Serializable {
     protected EnvironmentInterface environmentInterface;
     @ManyToOne
     protected Experiment experiment;
+
+    public InterfaceConnection() {
+    }
+
+    public InterfaceConnection(NetworkInterface networkInterface, EnvironmentInterface environmentInterface, Experiment experiment) {
+        this.networkInterface = networkInterface;
+        this.environmentInterface = environmentInterface;
+        this.experiment = experiment;
+    }
     
     public Long getId() {
         return id;

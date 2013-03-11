@@ -28,6 +28,14 @@ public class EnvironmentNode implements Serializable {
     @NotNull
     @ManyToOne
     protected EnvironmentInterface environmentInterface;
+
+    public EnvironmentNode() {
+    }
+
+    public EnvironmentNode(Environment environment, EnvironmentInterface environmentInterface) {
+        this.environment = environment;
+        this.environmentInterface = environmentInterface;
+    }
     
     public Long getId() {
         return id;

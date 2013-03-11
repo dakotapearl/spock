@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -13,6 +14,12 @@ import javax.ejb.Startup;
 import spockdataaccess.ejb.requestsupport.ConnectionFunctions;
 import spockdataaccess.ejb.requestsupport.EnvironmentFunctions;
 import spockdataaccess.ejb.requestsupport.NetworkFunctions;
+import spockdataaccess.ejb.requestsupport.UserFunctions;
+import spockdataaccess.entity.Configuration;
+import spockdataaccess.entity.InterfaceConnection;
+import spockdataaccess.entity.Network;
+import spockdataaccess.entity.User;
+import spockdataaccess.entity.UserInterface;
 
 /**
  * This bean is solely used for testing purposes and should not be use in a 
@@ -25,7 +32,8 @@ import spockdataaccess.ejb.requestsupport.NetworkFunctions;
 public class ConfigBean {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.ConfigBean");
     
-    static private final boolean testingMode = false;
+    static private final boolean staticTestingMode = false;
+    static private final boolean dynamicTestingMode = true;
     
     @EJB
     private RequestBeanLocal requestbean;
@@ -34,9 +42,20 @@ public class ConfigBean {
     public void checkUsers() {
         
         // do testing method if in testing mode
-        if (testingMode) {
+        if (staticTestingMode) {
             if (requestbean.login("root", md5sum("admin"))) {
-                createData();
+                createStaticData();
+            } else {
+                logger.log(Level.INFO,
+                           "Could not log in.",
+                           new Object[] { });
+            }
+        }
+        
+        // do dynamic testing method if in testing mode
+        if (dynamicTestingMode) {
+            if (requestbean.login("root", md5sum("admin"))) {
+                createDynamicData();
             } else {
                 logger.log(Level.INFO,
                            "Could not log in.",
@@ -46,7 +65,60 @@ public class ConfigBean {
         
     }
     
-    public void createData() {
+    public void createDynamicData() {
+        
+        logger.log(Level.INFO,
+                           "Beginning dynamic testing mode",
+                           new Object[] { });
+        
+        
+        Long usercount = requestbean.getUserFns().countEntities();
+        
+        logger.log(Level.INFO,
+                           "inital user count: {0}",
+                           new Object[] { usercount });
+        
+        
+        User newUser = new User();
+        newUser.setUsername("New User " + UUID.randomUUID());
+        newUser.setPassword(md5sum("newPassword"));
+        newUser.setEmail("new@user.com");
+        newUser.setAccessRights(UserFunctions.ACCESSRIGHTS_USER);
+        
+        requestbean.getUserFns().setEntity(newUser);
+        
+        User modifiedUser = (User) requestbean.getUserFns().retrieveEntity(newUser.getUsername()).get(0);
+        
+        modifiedUser.setEmail("not_quite_so_new@user.com");
+        
+        requestbean.getUserFns().setEntity(modifiedUser);
+        
+        newUser = new User();
+        
+        newUser.setUsername("Another New User");
+        newUser.setPassword(md5sum("anotherPassword"));
+        newUser.setEmail("another@user.com");
+        newUser.setAccessRights(UserFunctions.ACCESSRIGHTS_ADMIN);
+        
+        requestbean.getUserFns().setEntity(newUser);
+        
+        requestbean.getUserFns().removeEntity(newUser.getUsername());
+        
+        
+        usercount = requestbean.getUserFns().countEntities();
+        
+        logger.log(Level.INFO,
+                           "final user count: {0}",
+                           new Object[] { usercount });
+        
+        
+        logger.log(Level.INFO,
+                           "Ending dynamic testing mode",
+                           new Object[] { });
+        
+    }
+    
+    public void createStaticData() {
         logger.log(Level.INFO,
                    "Starting to create testing data",
                    new Object[] { });
@@ -61,24 +133,24 @@ public class ConfigBean {
         requestbean.getExperimentFns().setExperimentActivation("Experiment2", true);
         
         // Configurations
-        requestbean.getConfigurationFns().setConfiguration("Setting1", "value1");
-        requestbean.getConfigurationFns().setConfiguration("Setting1", "NewValue");
-        requestbean.getConfigurationFns().setConfiguration("Setting2", "value2");
+        requestbean.getConfigurationFns().setEntity(new Configuration("Setting1", "value1"));
+        requestbean.getConfigurationFns().setEntity(new Configuration("Setting1", "NewValue"));
+        requestbean.getConfigurationFns().setEntity(new Configuration("Setting2", "value2"));
         
         // Networks
-        requestbean.getNetworkFns().createNetwork("Network1");
-        requestbean.getNetworkFns().createNetwork("Network2");
+        requestbean.getNetworkFns().setEntity(new Network("Network1", false));
+        requestbean.getNetworkFns().setEntity(new Network("Network2", false));
         
         // Environments
         requestbean.getEnvironmentFns().createEnvironment("Environment1", "file:///code/e1.jar", "file:///data/e1.dat");
         requestbean.getEnvironmentFns().createEnvironment("Environment2", "file:///code/e2.jar", "file:///data/e2.dat");
         
         // Users
-        requestbean.getUserFns().createUser("Loren", "MyPassword", "dakotapearl@gmail.com", "user");
+        requestbean.getUserFns().setEntity(new User("Loren", requestbean.getUserFns().md5sum("MyPassword"), "dakotapearl@gmail.com", "user"));
         
         // User Interfaces
-        Long AndroidUI_ID = requestbean.getUserInterfaceFns().createUserInterface("Android", "192.168.0.11");
-        requestbean.getUserInterfaceFns().createUserInterface("Web", "192.168.0.14");
+        UserInterface AndroidUI_ID = requestbean.getUserInterfaceFns().setEntity(new UserInterface("Android", "192.168.0.11", null, null));
+        requestbean.getUserInterfaceFns().setEntity(new UserInterface("Web", "192.168.0.14", null, null));
         
         // Network Behaviours
         requestbean.getBehaviourFns().setBehaviour("RandomBehaviour", "ftp://192.168.0.11/code/behaviour.jar");
@@ -108,6 +180,7 @@ public class ConfigBean {
         requestbean.getNetworkFns().connectNodes(node1, node2, 2.0);
         
         // NetworkInterface-EnvironmentInterface-Experiment (Interface Connections)
+        InterfaceConnection ic = new InterfaceConnection();
         requestbean.getConnectionFns().createConnection(
                 NetworkInterfaceID, 
                 ConnectionFunctions.NETWORK_INTERFACE, 

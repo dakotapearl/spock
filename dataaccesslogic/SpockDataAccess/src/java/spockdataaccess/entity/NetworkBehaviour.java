@@ -19,6 +19,14 @@ public class NetworkBehaviour implements Serializable {
     @NotNull
     protected String CodeURL;
 
+    public NetworkBehaviour() {
+    }
+
+    public NetworkBehaviour(String id, String CodeURL) {
+        this.id = id;
+        this.CodeURL = CodeURL;
+    }
+
     public String getId() {
         return id;
     }

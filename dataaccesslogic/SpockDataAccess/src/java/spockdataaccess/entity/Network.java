@@ -39,6 +39,15 @@ public class Network implements Serializable {
         networkInterfaces = new ArrayList<NetworkInterface>();
         metrics = new ArrayList<Metric>();
     }
+
+    public Network(String id, Boolean isActive) {
+        experiments = new ArrayList<Experiment>();
+        networkNodes = new ArrayList<NetworkNode>();
+        networkInterfaces = new ArrayList<NetworkInterface>();
+        metrics = new ArrayList<Metric>();
+        this.id = id;
+        this.isActive = isActive;
+    }
     
     public String getId() {
         return id;

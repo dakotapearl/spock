@@ -25,7 +25,17 @@ public class UserInterface implements Serializable {
     protected User user;
     @ManyToOne
     protected Experiment experiment;
-    
+
+    public UserInterface() {
+    }
+
+    public UserInterface(String Type, String IPAddress, User user, Experiment experiment) {
+        this.Type = Type;
+        this.IPAddress = IPAddress;
+        this.user = user;
+        this.experiment = experiment;
+    }
+
     public Long getId() {
         return id;
     }

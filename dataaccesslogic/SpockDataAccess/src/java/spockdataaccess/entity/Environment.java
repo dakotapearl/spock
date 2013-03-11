@@ -41,6 +41,17 @@ public class Environment implements Serializable {
         environmentInterfaces = new ArrayList<EnvironmentInterface>();
         metrics = new ArrayList<Metric>();
     }
+
+    public Environment(String id, Boolean isActive, String CodeURL, String DataURL) {
+        experiments = new ArrayList<Experiment>();
+        environmentNodes = new ArrayList<EnvironmentNode>();
+        environmentInterfaces = new ArrayList<EnvironmentInterface>();
+        metrics = new ArrayList<Metric>();
+        this.id = id;
+        this.isActive = isActive;
+        this.CodeURL = CodeURL;
+        this.DataURL = DataURL;
+    }
     
     public String getId() {
         return id;

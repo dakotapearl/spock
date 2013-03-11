@@ -11,72 +11,14 @@ import spockdataaccess.entity.UserInterface;
  *
  * @author Loren Chorley
  */
-public class UserInterfaceFunctions {
+public class UserInterfaceFunctions extends BasicEntityFunctions<UserInterface, Long> {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.UserInterfaceFunctions");
     
     private EntityManager em;
     
     public UserInterfaceFunctions(EntityManager em) {
+        super(em);
         this.em = em;
-    }
-    
-    /**
-     * Creates a new user interface record in the database.
-     * @param Type the type of user interface
-     * @param IPAddress the IP address of the user interface
-     */
-    public long createUserInterface(String Type, String IPAddress) {
-        
-        try {
-            
-            UserInterface userInterface = new UserInterface();
-            userInterface.setType(Type);
-            userInterface.setIPAddress(IPAddress);
-
-            em.persist(userInterface);
-            
-            logger.log(Level.INFO,
-                       "Created and persisted user interface: {0}",
-                       new Object[] { userInterface.getId() });
-            
-            return userInterface.getId();
-            
-        } catch (Exception ex) {
-            throw new EJBException("UserInterfaceFunctions.createUserInterface threw: " + ex.getMessage());
-        }
-        
-    }
-    
-    /**
-     * 
-     * @param id
-     * @param Type 
-     */
-    public void setType(Long id, String Type) {
-        try {
-        
-            
-        
-        } catch (Exception ex) {
-            throw new EJBException("UserInterfaceFunctions.setType threw: " + ex.getMessage());
-        }
-        
-    }
-    
-    /**
-     * 
-     * @param id
-     * @param IPAddress 
-     */
-    public void setIPAddress(Long id, String IPAddress) {
-        try {
-        
-            
-        
-        } catch (Exception ex) {
-            throw new EJBException("UserInterfaceFunctions.setIPAddress threw: " + ex.getMessage());
-        }
-        
     }
     
     /**
@@ -127,6 +69,36 @@ public class UserInterfaceFunctions {
             throw new EJBException("UserInterfaceFunctions.setIPAddress threw: " + ex.getMessage());
         }
         
+    }
+    
+    @Override
+    protected UserInterface newEntity(Long id) {
+        UserInterface x = new UserInterface();
+        x.setId(id);
+        return x;
+    }
+
+    @Override
+    protected void copyEntityProperties(UserInterface sourceEntity, UserInterface targetEntity) {
+        targetEntity.setType(sourceEntity.getType());
+        targetEntity.setIPAddress(sourceEntity.getIPAddress());
+        targetEntity.setUser(sourceEntity.getUser());
+        targetEntity.setExperiment(sourceEntity.getExperiment());
+    }
+
+    @Override
+    protected Long getEntityID(UserInterface entity) {
+        return entity.getId();
+    }
+
+    @Override
+    protected String getEntityName() {
+        return "UserInterface";
+    }
+
+    @Override
+    protected Class getEntityClass() {
+        return UserInterface.class;
     }
     
 }

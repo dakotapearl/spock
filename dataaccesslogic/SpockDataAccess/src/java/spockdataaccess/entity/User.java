@@ -17,10 +17,6 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "Users")
-@NamedQuery(name="countUsers", query="SELECT COUNT(u) FROM User u")
-@NamedQueries({
-    @NamedQuery(name="verifyUser", query="SELECT u FROM User u WHERE u.Username = :uname AND u.Password = :pword")
-})
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,7 +31,15 @@ public class User implements Serializable {
     public User() {
         interfaces = new ArrayList<UserInterface>();
     }
-    
+
+    public User(String Username, String Password, String Email, String accessRights) {
+        interfaces = new ArrayList<UserInterface>();
+        this.Username = Username;
+        this.Password = Password;
+        this.Email = Email;
+        this.accessRights = accessRights;
+    }
+        
     public String getUsername() {
         return Username;
     }

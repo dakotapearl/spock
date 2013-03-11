@@ -17,6 +17,14 @@ public class Configuration implements Serializable {
     @Id
     protected String name;
 
+    public Configuration() {
+    }
+
+    public Configuration(String name, String configvalue) {
+        this.name = name;
+        this.configvalue = configvalue;
+    }
+
     public String getName() {
         return name;
     }

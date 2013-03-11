@@ -1,8 +1,6 @@
 package spockdataaccess.ejb.requestsupport;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.EJBException;
 import javax.persistence.EntityManager;
 import spockdataaccess.entity.Configuration;
 
@@ -10,92 +8,40 @@ import spockdataaccess.entity.Configuration;
  *
  * @author Loren Chorley
  */
-public class ConfigurationFunctions {
-    private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.ConfigurationFunctions");
+public class ConfigurationFunctions extends BasicEntityFunctions<Configuration, String> {
     
     private EntityManager em;
     
     public ConfigurationFunctions(EntityManager em) {
+        super(em);
         this.em = em;
     }
-    
-    /**
-     * Sets the configuration name to value. If it doesn't already exist, it creates it first.
-     * @param name the name of the configuration
-     * @param value the value to initially give the configuration
-     */
-    public void setConfiguration(String name, String value) {
-        
-        try {
-            
-            Configuration config = em.find(Configuration.class, name);
-            
-            if (config == null) {
-                
-                config = new Configuration();
-                
-                logger.log(Level.INFO,
-                           "Created new configuration: {0}",
-                           new Object[] { name });
-                
-            }
-            
-            config.setName(name);
-            config.setConfigValue(value);
-            
-            em.persist(config);
-            
-            logger.log(Level.INFO,
-                       "Set configuration: {0}-{1}",
-                       new Object[] { name, value });
-            
-        } catch (Exception ex) {
-            throw new EJBException("RequestBean.createExperiment threw: " + ex.getMessage());
-        }
-        
+       
+    @Override
+    protected Configuration newEntity(String id) {
+        Configuration x = new Configuration();
+        x.setName(id);
+        return x;
     }
-    
-    /**
-     * Retrieves the value of a stored configuration from the database.
-     * @param name the name of the configuration
-     * @return Returns configuration value, or null if it doesn't exist
-     */
-    public String getConfiguration(String name) {
-        String rtnval = null;
-        
-        try {
-            
-            Configuration config = em.find(Configuration.class, name);
-            
-            if (config != null) {
-                rtnval = config.getConfigValue();
-            }
-            
-        } catch (Exception ex) {
-            throw new EJBException("RequestBean.createExperiment threw: " + ex.getMessage());
-        } finally {
-            return rtnval;
-        }
-        
+
+    @Override
+    protected void copyEntityProperties(Configuration sourceEntity, Configuration targetEntity) {
+        targetEntity.setConfigValue(sourceEntity.getConfigValue());
     }
-    
-    /**
-     * Removes the stored configuration from the database.
-     * @param name the name of the configuration
-     */
-    public void removeConfiguration(String name) {
-        try {
-            
-            Configuration config = em.find(Configuration.class, name);
-            em.remove(config);
-            
-            logger.log(Level.INFO,
-                       "Removed configuration: {0}",
-                       new Object[] { name });
-            
-        } catch (Exception ex) {
-            throw new EJBException("RequestBean.createExperiment threw: " + ex.getMessage());
-        }
+
+    @Override
+    protected String getEntityID(Configuration entity) {
+        return entity.getName();
+    }
+
+    @Override
+    protected String getEntityName() {
+        return "Configuration";
+    }
+
+    @Override
+    protected Class getEntityClass() {
+        return Configuration.class;
     }
     
 }

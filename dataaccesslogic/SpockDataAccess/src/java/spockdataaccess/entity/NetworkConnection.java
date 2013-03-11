@@ -21,14 +21,23 @@ public class NetworkConnection implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
-    protected Double Strength = 0.0;
+    protected Double Strength;
     @NotNull
     @ManyToOne
     protected NetworkNode sendingNode;
     @NotNull
     @ManyToOne
     protected NetworkNode receivingNode;
-    
+
+    public NetworkConnection() {
+    }
+
+    public NetworkConnection(Double Strength, NetworkNode sendingNode, NetworkNode receivingNode) {
+        this.Strength = Strength;
+        this.sendingNode = sendingNode;
+        this.receivingNode = receivingNode;
+    }
+
     public Long getId() {
         return id;
     }
