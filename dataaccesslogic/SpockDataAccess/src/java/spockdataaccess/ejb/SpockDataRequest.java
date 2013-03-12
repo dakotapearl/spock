@@ -15,13 +15,13 @@ import spockdataaccess.ejb.requestsupport.*;
 public interface SpockDataRequest {
     public boolean login(String username, String passwordHash);
     public void sendPasswordResetEmail(String username);
-    public ConfigurationFunctions getConfigurationFns();
-    public NetworkFunctions getNetworkFns();
-    public ExperimentFunctions getExperimentFns();
-    public EnvironmentFunctions getEnvironmentFns();
-    public UserFunctions getUserFns();
-    public UserInterfaceFunctions getUserInterfaceFns();
-    public ConnectionFunctions getConnectionFns();
-    public BehaviourFunctions getBehaviourFns();
-    public MetricFunctions getMetricFns();
+    public ConfigurationFunctions Configuration();
+    public NetworkFunctions Network();
+    public ExperimentFunctions Experiment();
+    public EnvironmentFunctions Environment();
+    public UserFunctions User();
+    public UserInterfaceFunctions UserInterface();
+    public ConnectionFunctions Connection();
+    public BehaviourFunctions Behaviour();
+    public MetricFunctions Metric();
 }

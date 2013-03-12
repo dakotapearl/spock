@@ -1,5 +1,6 @@
 package spockdataaccess.ejb.requestsupport;
 
+import spockdataaccess.ejb.requestsupport.generalisations.BasicEntity;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.util.logging.Level;
@@ -8,23 +9,29 @@ import javax.ejb.EJBException;
 import javax.persistence.EntityManager;
 import spockdataaccess.entity.User;
 import java.security.*;
+import spockdataaccess.ejb.requestsupport.entitycollections.UserUserInterfaceCollection;
 
 /**
  *
  * @author Loren Chorley
  */
-public class UserFunctions extends BasicEntityFunctions<User, String> {
+public class UserFunctions extends BasicEntity<User, String> {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.UserFunctions");
     
     public static final String ACCESSRIGHTS_ADMIN = "admin";
     public static final String ACCESSRIGHTS_USER = "user";
-    
-    private EntityManager em;
+   
+    private UserUserInterfaceCollection userUserInterfaceCollection;
     
     public UserFunctions(EntityManager em) {
         super(em);
+        userUserInterfaceCollection = new UserUserInterfaceCollection(em);
     }
-       
+    
+    public UserUserInterfaceCollection UserInterfaces() {
+        return userUserInterfaceCollection;
+    }
+    
     public boolean verifiyUser(String username, String passwordHash) {
         
         try {
@@ -108,6 +115,11 @@ public class UserFunctions extends BasicEntityFunctions<User, String> {
     @Override
     protected Class getEntityClass() {
         return User.class;
+    }
+
+    @Override
+    protected void verifyBusinessLogic(User entity) {
+        
     }
     
 }

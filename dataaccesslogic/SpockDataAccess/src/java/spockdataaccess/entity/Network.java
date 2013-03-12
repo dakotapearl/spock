@@ -26,7 +26,7 @@ public class Network implements Serializable {
     protected Boolean isActive;
     @ManyToMany(mappedBy="networks")
     protected Collection<Experiment> experiments;
-    @OneToMany(mappedBy="network", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy="network")
     protected Collection<NetworkNode> networkNodes;
     @OneToMany(mappedBy="network")
     protected Collection<NetworkInterface> networkInterfaces;

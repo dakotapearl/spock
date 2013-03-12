@@ -36,12 +36,12 @@ public class UserInterface implements Serializable {
         this.experiment = experiment;
     }
 
-    public Long getId() {
-        return id;
+    public String getIPAddress() {
+        return IPAddress;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIPAddress(String IPAddress) {
+        this.IPAddress = IPAddress;
     }
 
     public String getType() {
@@ -52,18 +52,6 @@ public class UserInterface implements Serializable {
         this.Type = Type;
     }
 
-    public String getIPAddress() {
-        return IPAddress;
-    }
-    
-    public void setIPAddress(String IPAddress) {
-        this.IPAddress = IPAddress;
-    }
-    
-    public User getUser() {
-        return user;
-    }
-
     public Experiment getExperiment() {
         return experiment;
     }
@@ -72,12 +60,22 @@ public class UserInterface implements Serializable {
         this.experiment = experiment;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
     public void setUser(User user) {
         this.user = user;
     }
-    
-    
-    
+
     
     @Override
     public int hashCode() {

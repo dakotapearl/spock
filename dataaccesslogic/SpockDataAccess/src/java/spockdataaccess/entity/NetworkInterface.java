@@ -40,6 +40,7 @@ public class NetworkInterface implements Serializable {
         this.NumberOfNodes = NumberOfNodes;
         this.network = network;
         this.isInputInterface = isInputInterface;
+        networkNodes = new ArrayList<NetworkNode>();
     }
     
     public Long getId() {

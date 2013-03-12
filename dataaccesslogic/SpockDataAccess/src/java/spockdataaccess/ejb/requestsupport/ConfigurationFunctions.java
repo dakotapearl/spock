@@ -1,6 +1,6 @@
 package spockdataaccess.ejb.requestsupport;
 
-import java.util.logging.Logger;
+import spockdataaccess.ejb.requestsupport.generalisations.BasicEntity;
 import javax.persistence.EntityManager;
 import spockdataaccess.entity.Configuration;
 
@@ -8,9 +8,7 @@ import spockdataaccess.entity.Configuration;
  *
  * @author Loren Chorley
  */
-public class ConfigurationFunctions extends BasicEntityFunctions<Configuration, String> {
-    
-    private EntityManager em;
+public class ConfigurationFunctions extends BasicEntity<Configuration, String> {
     
     public ConfigurationFunctions(EntityManager em) {
         super(em);
@@ -42,6 +40,11 @@ public class ConfigurationFunctions extends BasicEntityFunctions<Configuration, 
     @Override
     protected Class getEntityClass() {
         return Configuration.class;
+    }
+
+    @Override
+    protected void verifyBusinessLogic(Configuration entity) {
+        
     }
     
 }

@@ -116,6 +116,14 @@ public class Environment implements Serializable {
     public void addEnvironmentNode(EnvironmentNode environmentNode) {
         environmentNodes.add(environmentNode);
     }
+
+    public Collection<Metric> getMetrics() {
+        return metrics;
+    }
+
+    public void setMetrics(Collection<Metric> metrics) {
+        this.metrics = metrics;
+    }
     
     @Override
     public int hashCode() {

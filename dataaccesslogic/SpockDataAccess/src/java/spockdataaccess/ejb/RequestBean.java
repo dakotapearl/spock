@@ -76,63 +76,63 @@ public class RequestBean implements RequestBeanLocal, SpockDataRequest {
     }
     
     @Override
-    public ConfigurationFunctions getConfigurationFns() {
+    public ConfigurationFunctions Configuration() {
         if (!userVerified()) { return null; }
         
         return configurationFns;
     }
     
     @Override
-    public NetworkFunctions getNetworkFns() {
+    public NetworkFunctions Network() {
         if (!userVerified()) { return null; }
         
         return networkFns;
     }
     
     @Override
-    public ExperimentFunctions getExperimentFns() {
+    public ExperimentFunctions Experiment() {
         if (!userVerified()) { return null; }
         
         return experimentFns;
     }
     
     @Override
-    public EnvironmentFunctions getEnvironmentFns() {
+    public EnvironmentFunctions Environment() {
         if (!userVerified()) { return null; }
         
         return environmentFns;
     }
     
     @Override
-    public UserFunctions getUserFns() {
+    public UserFunctions User() {
         if (!userVerified()) { return null; }
         
         return userFns;
     }
     
     @Override
-    public UserInterfaceFunctions getUserInterfaceFns() {
+    public UserInterfaceFunctions UserInterface() {
         if (!userVerified()) { return null; }
         
         return userInterfaceFns;
     }
     
     @Override
-    public ConnectionFunctions getConnectionFns() {
+    public ConnectionFunctions Connection() {
         if (!userVerified()) { return null; }
         
         return connectionFns;
     }
     
     @Override
-    public BehaviourFunctions getBehaviourFns() {
+    public BehaviourFunctions Behaviour() {
         if (!userVerified()) { return null; }
         
         return behaviourFns;
     }
     
     @Override
-    public MetricFunctions getMetricFns() {
+    public MetricFunctions Metric() {
         if (!userVerified()) { return null; }
         
         return metricFns;
