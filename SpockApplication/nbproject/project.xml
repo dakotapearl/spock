@@ -8,15 +8,10 @@
             <web-module-additional-libraries>
                 <library>
                     <file>${reference.SpockNetwork.dist-ear}</file>
-                </library>
-                <library>
-                    <file>${reference.SpockExperiment.dist-ear}</file>
+                    <path-in-war>/</path-in-war>
                 </library>
                 <library>
                     <file>${reference.SpockEnvironment.dist-ear}</file>
-                </library>
-                <library>
-                    <file>${reference.SpockWebClient.dist-ear}</file>
                     <path-in-war>/</path-in-war>
                 </library>
                 <library>
@@ -24,19 +19,15 @@
                     <path-in-war>/</path-in-war>
                 </library>
                 <library>
-                    <file>${reference.SpockEnvironment-1.dist-ear}</file>
-                    <path-in-war>/</path-in-war>
-                </library>
-                <library>
-                    <file>${reference.SpockExperiment-1.dist-ear}</file>
-                    <path-in-war>/</path-in-war>
-                </library>
-                <library>
-                    <file>${reference.SpockNetwork-1.dist-ear}</file>
-                    <path-in-war>/</path-in-war>
-                </library>
-                <library>
                     <file>${reference.SpockDataAccess.dist-ear}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library>
+                    <file>${reference.SpockExperiment.dist-ear}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library>
+                    <file>${reference.SpockWebClient.dist-ear}</file>
                     <path-in-war>/</path-in-war>
                 </library>
             </web-module-additional-libraries>
@@ -51,7 +42,7 @@
                 <id>dist-ear</id>
             </reference>
             <reference>
-                <foreign-project>SpockEnvironment-1</foreign-project>
+                <foreign-project>SpockEnvironment</foreign-project>
                 <artifact-type>j2ee_ear_archive</artifact-type>
                 <script>build.xml</script>
                 <target>dist-ear</target>
@@ -59,7 +50,7 @@
                 <id>dist-ear</id>
             </reference>
             <reference>
-                <foreign-project>SpockExperiment-1</foreign-project>
+                <foreign-project>SpockExperiment</foreign-project>
                 <artifact-type>j2ee_ear_archive</artifact-type>
                 <script>build.xml</script>
                 <target>dist-ear</target>
@@ -75,7 +66,7 @@
                 <id>j2ee-module-car</id>
             </reference>
             <reference>
-                <foreign-project>SpockNetwork-1</foreign-project>
+                <foreign-project>SpockNetwork</foreign-project>
                 <artifact-type>j2ee_ear_archive</artifact-type>
                 <script>build.xml</script>
                 <target>dist-ear</target>

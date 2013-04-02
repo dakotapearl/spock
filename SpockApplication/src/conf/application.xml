@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application version="6" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd">
-  <display-name>SpockApplication</display-name>
+  <display-name>roster</display-name>
   <module>
     <web>
       <web-uri>SpockWebClient.war</web-uri>
-      <context-root>/WebClient</context-root>
+      <context-root>/Spock</context-root>
     </web>
+  </module>
+  <module>
+    <ejb>SpockNetwork.jar</ejb>
+  </module>
+  <module>
+    <ejb>SpockExperiment.jar</ejb>
+  </module>
+  <module>
+    <ejb>SpockDataAccess.jar</ejb>
   </module>
   <module>
     <java>SpockJavaClient.jar</java>
   </module>
   <module>
     <ejb>SpockEnvironment.jar</ejb>
-  </module>
-  <module>
-    <ejb>SpockExperiment.jar</ejb>
-  </module>
-  <module>
-    <ejb>SpockNetwork.jar</ejb>
-  </module>
-  <module>
-    <ejb>SpockDataAccess.jar</ejb>
   </module>
 </application>

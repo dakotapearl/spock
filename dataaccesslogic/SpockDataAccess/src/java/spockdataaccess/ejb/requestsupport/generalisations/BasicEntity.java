@@ -118,23 +118,36 @@ public abstract class BasicEntity<E, ID> {
     
     /**
      * 
-     * @param id
+     * @param id 
      */
-    public void removeEntity(ID id) {
-        
+    public void removeEntityByID(ID id) {
         try {
             
             E e = (E) em.find(getEntityClass(), id);
+            removeEntity(e);
             
-            if (e == null) {
-                throw new EJBException("Entity with id '" + id + "' not found when attempting to remove!");
+        } catch (Exception ex) {
+            throw new EJBException("BasicEntityFunctions threw: " + ex.getMessage());
+        }
+    }
+    
+    /**
+     * 
+     * @param id
+     */
+    public void removeEntity(E entity) {
+        
+        try {
+            
+            if (entity == null) {
+                return; //TODO throw exception
             }
             
-            em.remove(e);
+            em.remove(entity);
             
             logger.log(Level.INFO,
                        "Removed entity: {0}",
-                       new Object[] { id });
+                       new Object[] { entity.toString() });
             
         } catch (Exception ex) {
             throw new EJBException("BasicEntityFunctions threw: " + ex.getMessage());

@@ -29,99 +29,41 @@ public abstract class BasicEntityCollection<Econtainer, E, ID> {
             
             Collection<E> collection = getCollection(container);
             
-            logger.log(Level.INFO,
-                           "Getting entity collection id",
-                           new Object[] {  });
-            
             ID id = getCollectionEntityID(entity);
             E e = null;
             
             if (id != null) {
-                logger.log(Level.INFO,
-                           "attempting to find entity: {0}",
-                           new Object[] { entity.toString() });
                 e = (E) em.find(getCollectionEntityClass(), id);
-                logger.log(Level.INFO,
-                           "'found' entity: {0}",
-                           new Object[] { entity.toString() });
-            } else {
-                logger.log(Level.INFO,
-                           "ignoring entity: {0}",
-                           new Object[] { entity.toString() });
             }
-            
-            logger.log(Level.INFO,
-                           "between",
-                           new Object[] {  });
             
             // If entity not found in persistence context
             if (e == null) {
                 
-                logger.log(Level.INFO,
-                           "creating new entity: {0}",
-                           new Object[] { entity.toString() });
-                
                 // Create new entity object to avoid persistence problems with already already persisted objects
                 e = newCollectionEntity(id);
-                
-                logger.log(Level.INFO,
-                           "copying: {0}",
-                           new Object[] { entity.toString() });
                 
                 // copy contents
                 copyCollectionEntityProperties(entity, e);
                 
-                logger.log(Level.INFO,
-                           "adding: {0}",
-                           new Object[] { entity.toString() });
-                
                 // add to collection
                 collection.add(e);
-                
-                logger.log(Level.INFO,
-                           "persisting: {0}",
-                           new Object[] { entity.toString() });
                 
                 // persist
                 em.persist(e);
                 
-                logger.log(Level.INFO,
-                           "Created new collection entity: {0}",
-                           new Object[] { entity.toString() });
-                
             } else {
-                
-                logger.log(Level.INFO,
-                           "else: copying: {0}",
-                           new Object[] { entity.toString() });
                 
                 // Update the entities properties
                 copyCollectionEntityProperties(entity, e);
                 
-                logger.log(Level.INFO,
-                           "before if: {0}",
-                           new Object[] { entity.toString() });
-                
                 // then if the collection does not contain the entity, add the entity to the collection
                 if (!collection.contains(entity)) {
                     
-                    logger.log(Level.INFO,
-                           "not in collection, adding: {0}",
-                           new Object[] { entity.toString() });
-                    
                     collection.add(e);
-                    
-                    logger.log(Level.INFO,
-                           "added entity: {0}",
-                           new Object[] { entity.toString() });
                     
                 }
                 
             }
-            
-            logger.log(Level.INFO,
-                           "returning entity: {0}",
-                           new Object[] { entity.toString() });
             
             return e;
             
@@ -179,12 +121,7 @@ public abstract class BasicEntityCollection<Econtainer, E, ID> {
         try {
             
             E e = (E) em.find(getCollectionEntityClass(), id);
-            
-            if (e != null) {
-                removeEntityFromCollection(container, e);
-            } else {
-                throw new EJBException("Entity with id '" + id + "' not found in collection when attempting to remove!");
-            }
+            removeEntityFromCollection(container, e);
             
         } catch (Exception ex) {
             throw new EJBException("removeEntityFromCollectionByID threw: " + ex.getMessage());
@@ -194,7 +131,18 @@ public abstract class BasicEntityCollection<Econtainer, E, ID> {
     public void removeEntityFromCollection(Econtainer container, E entity) {
         try {
             
-            throw new EJBException("Not yet implemented!");
+            if (entity == null) {
+                return; //TODO throw exception
+            }
+            
+            Collection<E> collection = getCollection(container);
+            
+            if (collection.contains(entity)) {
+                collection.remove(entity);
+                return;
+            } else {
+                return; //TODO throw exception
+            }
             
         } catch (Exception ex) {
             throw new EJBException("removeEntityFromCollection threw: " + ex.getMessage());

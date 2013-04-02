@@ -3,8 +3,8 @@ package spockdataaccess.ejb;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.ejb.Remove;
 import javax.ejb.Stateful;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import spockdataaccess.ejb.requestsupport.*;
@@ -15,7 +15,7 @@ import spockdataaccess.ejb.requestsupport.*;
  * @author Loren Chorley
  */
 @Stateful
-public class RequestBean implements RequestBeanLocal, SpockDataRequest {
+public class RequestBean implements RequestBeanRemote {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.RequestBean");
     
     @PersistenceContext

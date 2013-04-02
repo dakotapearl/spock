@@ -20,19 +20,19 @@ import spockdataaccess.entity.*;
  * 
  * @author Loren Chorley
  */
-@Singleton
-@Startup
+//@Singleton
+//@Startup
 public class ConfigBean {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.ConfigBean");
     
     static private final boolean staticTestingMode = false;
     static private final boolean dynamicTestingMode = true;
     
-    @EJB
+    //@EJB
     private RequestBeanLocal RB;
     
     @PostConstruct
-    public void checkUsers() {
+    public void runTests() {
         
         // do testing method if in testing mode
         if (staticTestingMode) {
@@ -95,7 +95,7 @@ public class ConfigBean {
         
         RB.User().setEntity(newUser);
         
-        RB.User().removeEntity(newUser.getUsername());
+        RB.User().removeEntityByID(newUser.getUsername());
         
         
         usercount = RB.User().countEntities();

@@ -19,41 +19,53 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.ejb.embeddable.EJBContainer;
+import javax.inject.Inject;
 import javax.naming.NamingException;
 import spockdataaccess.ejb.RequestBean;
-import spockdataaccess.ejb.RequestBeanLocal;
-import spockdataaccess.ejb.SpockDataRequest;
 import javax.naming.Context;
-import javax.ejb.embeddable.EJBContainer;
-import java.util.logging.Logger;
+import javax.naming.InitialContext;
+import spockdataaccess.ejb.RequestBeanLocal;
+import spockdataaccess.ejb.RequestBeanRemote;
 
 @Singleton
 @Startup
 public class EnvironmentBean {
     private static final Logger logger = Logger.getLogger("EnvironmentBean");
-
-    //@EJB
-    //private SpockDataRequest dataRequest;
     
-    //spockdataaccess.ejb.RequestBeanRemote
+    @EJB
+    private RequestBeanRemote requestBeanRemote;
+    
+    @EJB
+    private RequestBean requestBean;
+    
+    @Inject
+    private RequestBeanRemote requestBeanRemotei;
+    
+    @Inject
+    private RequestBean requestBeani;
+    
+    //private Context ctx;
+    //private EJBContainer ec;
     
     @PostConstruct
     public void DoIt() throws NamingException {
+        
+        //ec = EJBContainer.createEJBContainer();
+        //ctx = ec.getContext();
+    
         
         logger.log(Level.INFO,
                    "Starting Environment Bean",
                    new Object[] {  });
         
-        Context ctx;
-        EJBContainer ec;
+        //Context ctx = new InitialContext();
         
-        //ec = EJBContainer.createEJBContainer();
-        //ctx = ec.getContext();
-        
-        //RequestBean requestbean = (RequestBean) ctx.lookup("java:global/classes/StandaloneBean");
-        RequestBean requestbean = (RequestBean) ctx.lookup("java:global/SpockDataAccess/RequestBean!spockdataaccess.ejb.SpockDataRequest");
-        
-        boolean result = requestbean.login("root", md5sum("admin"));
+        //RequestBean requestbean = (RequestBean) context.lookup("java:global/SpockDataAccess/SpockDataRequest");
+        //RequestBean spockDataRequest = (RequestBean) ctx.lookup("java:global/classes/SpockDataRequest");
+        //RequestBean spockDataRequest = (RequestBean) ctx.lookup("java:global/SpockDataAccess/RequestBean");
+        //java:module/enterprise bean name
+        boolean result = requestBeani.login("root", md5sum("admin"));
         
         logger.log(Level.INFO,
                    "Log in result: {0}",
