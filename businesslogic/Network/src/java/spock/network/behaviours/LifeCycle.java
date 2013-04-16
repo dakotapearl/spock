@@ -1,26 +1,18 @@
 package spock.network.behaviours;
 
-import networkDomain.NetworkBehaviour;
-import networkDomain.NetworkNode;
+import spock.network.core.NetworkNode;
 
 /**
  * @author Loren Chorley
  */
-public abstract class LifeCycle extends Thread implements NetworkBehaviour {
-	
-	protected NetworkNode parent;
-	public void declareParent(NetworkNode parent) { this.parent = parent; }
-	
-	private class replicator extends Thread {
-		@SuppressWarnings("unused") LifeCycle newFunction;
-		public replicator(LifeCycle newFunction) { this.newFunction = newFunction; }
-		@Override public void run() { newFunction = replicate(); }
-	}
-	public void replicateFunction(LifeCycle newFunction) { (new replicator(newFunction)).start(); }
-	public abstract LifeCycle replicate();
-	public abstract void run();
+public abstract class LifeCycle extends NetworkBehaviour<LifeCycle> {
 
-	// cell death condition
-	// neurogenic mitosis condition
-	
+    @Override
+    public void replaceInNode(NetworkNode node, LifeCycle behaviour) {
+        node.lifeCycle = behaviour;
+    }
+    
+    // cell death condition
+    // neurogenic mitosis condition
+
 }

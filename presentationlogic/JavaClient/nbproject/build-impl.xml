@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
         *** GENERATED FROM project.xml - DO NOT EDIT  ***
         ***         EDIT ../build.xml INSTEAD         ***
 
@@ -17,7 +18,8 @@
         - applet
         - cleanup
 
-        --><project xmlns:carproject="http://www.netbeans.org/ns/car-project/1" basedir=".." default="default" name="SpockJavaClient-impl">
+        -->
+<project xmlns:carproject="http://www.netbeans.org/ns/car-project/1" basedir=".." default="default" name="SpockJavaClient-impl">
     <import file="ant-deploy.xml"/>
     <fail message="Please build using Ant 1.7.1 or higher.">
         <condition>
@@ -475,10 +477,10 @@ exists or setup the property manually. For example like this:
         </fail>
     </target>
     <target depends="init" if="no.dist.ear.dir" name="-deps-module-jar" unless="no.deps">
-        <ant antfile="${project.SpockDataAccess}/build.xml" inheritall="false" target="dist"/>
+        <ant antfile="${project.SpockBusinessInterface}/build.xml" inheritall="false" target="dist"/>
     </target>
     <target depends="init" if="dist.ear.dir" name="-deps-ear-jar" unless="no.deps">
-        <ant antfile="${project.SpockDataAccess}/build.xml" inheritall="false" target="dist-ear">
+        <ant antfile="${project.SpockBusinessInterface}/build.xml" inheritall="false" target="dist-ear">
             <property location="${build.dir}" name="dist.ear.dir"/>
         </ant>
     </target>
@@ -491,16 +493,16 @@ exists or setup the property manually. For example like this:
         <!-- You can override this target in the ../build.xml file. -->
     </target>
     <target depends="compile" if="is.server.weblogic" name="library-inclusion-in-archive">
-        <basename file="${reference.SpockDataAccess.dist}" property="manifest.reference.SpockDataAccess.dist"/>
+        <basename file="${reference.SpockBusinessInterface.dist}" property="manifest.reference.SpockBusinessInterface.dist"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
             <attribute name="Extension-List" value="jar-1 "/>
-            <attribute name="jar-1-Extension-Name" value="${manifest.reference.SpockDataAccess.dist}"/>
+            <attribute name="jar-1-Extension-Name" value="${manifest.reference.SpockBusinessInterface.dist}"/>
         </manifest>
     </target>
     <target depends="compile" if="dist.ear.dir" name="library-inclusion-in-manifest">
-        <copyfiles files="${reference.SpockDataAccess.dist}" manifestproperty="manifest.reference.SpockDataAccess.dist" todir="${dist.ear.dir}"/>
+        <copyfiles files="${reference.SpockBusinessInterface.dist}" manifestproperty="manifest.reference.SpockBusinessInterface.dist" todir="${dist.ear.dir}"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${manifest.reference.SpockDataAccess.dist} "/>
+            <attribute name="Class-Path" value="${manifest.reference.SpockBusinessInterface.dist} "/>
         </manifest>
     </target>
     <target name="-copy-meta-inf">
@@ -999,7 +1001,7 @@ exists or setup the property manually. For example like this:
                 ===============
             -->
     <target depends="init" name="deps-clean" unless="no.deps">
-        <ant antfile="${project.SpockDataAccess}/build.xml" inheritall="false" target="clean"/>
+        <ant antfile="${project.SpockBusinessInterface}/build.xml" inheritall="false" target="clean"/>
     </target>
     <target depends="init" name="-do-clean">
         <delete dir="${build.dir}"/>

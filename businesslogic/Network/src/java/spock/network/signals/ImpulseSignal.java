@@ -1,24 +1,23 @@
 package spock.network.signals;
 
-import networkDomain.NetworkSignal;
-import dataDomain.DataCell;
+import java.io.Serializable;
 
 /**
  * @author Loren Chorley
  */
-public class ImpulseSignal implements NetworkSignal {
+public class ImpulseSignal extends NetworkSignal {
 
-	private DataCell dataCell;
+	private Serializable data;
 	
 	// Needs to be able to cope with null value for networknode
 	@Override
-	public DataCell getData() {
-		return dataCell;
+	public Serializable getData() {
+		return data;
 	}
 
 	@Override
-	public void setData(DataCell dataCell) {
-		this.dataCell = dataCell;
+	public void setData(Serializable data) {
+		this.data = data;
 		
 	}
 

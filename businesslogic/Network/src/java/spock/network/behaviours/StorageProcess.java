@@ -1,88 +1,64 @@
 package spock.network.behaviours;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-
+import spock.network.core.NetworkNode;
+import spock.network.signals.NetworkSignal;
 import tools.errorChecking.Log;
 
-import dataDomain.DataCell;
-import environmentDomain.Action;
-import networkDomain.NetworkBehaviour;
-import networkDomain.NetworkNode;
-
 /**
+ * Storage of data and other nodes that are connected to this one
  * @author Loren Chorley
  */
-public class StorageProcess implements NetworkBehaviour {
-	
-	// Storage of data, continuous signals, and other nodes that are connected to this one, including actions
-	NetworkNode parent;
-	public void declareParent(NetworkNode parent) { this.parent = parent; }
+public class StorageProcess extends NetworkBehaviour<StorageProcess> {
 
-	private class replicator extends Thread {
-		@SuppressWarnings("unused") StorageProcess newFunction;
-		public replicator(StorageProcess newFunction) { this.newFunction = newFunction; }
-		@Override public void run() { newFunction = replicate(); }
-	}
-	public void replicateFunction(StorageProcess newFunction) { (new replicator(newFunction)).start(); }
-	public StorageProcess replicate() {
-		StorageProcess n;
-		try {
-			n = this.getClass().newInstance();
-			return n; 
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			System.exit(1);
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			System.exit(1);
-		} 
-		return null;
-	}
-	
-	protected ArrayList<Action> actions;
-	protected Queue<DataCell> data;
-	
-	public StorageProcess() {
-		//TODO init
-		actions = new ArrayList<Action>();
-		data = new LinkedList<DataCell>();
-	}
-	
-	public void storeDataCell(DataCell dataCell) {
-		synchronized (this) {
-			data.add(dataCell);
-			
-			Log.writeForMechanisms("StorageProcess: storing data: " + dataCell.getDatum().getValue().toString());
-			
-			notifyAll();
-		}
-		parent.firingCondition.refresh(); // Not sure about this
-	}
-	
-	public DataCell retrieveDataCell() throws InterruptedException {
-		synchronized (this) {
-			while (data.size() == 0) wait();
-			
-			Log.writeForMechanisms("StorageProcess: retreiving data:" + data.peek().getDatum().getValue().toString());
-			
-			return data.remove();
-		}
-	}
-	
-	public boolean hasData() {
-		return data.size() > 0;
-	}
-	
-	public void registerAction(Action action) {
-		synchronized (actions) {
-			actions.add(action);
-		}
-	}
-	
-	public Action getAction(int index) {
-		return actions.get(index);
-	}
-	
+    protected Queue<NetworkSignal> signals;
+
+    @Override
+    public StorageProcess replicate(StorageProcess parentBehaviour) {
+        return new StorageProcess();
+    }
+
+    @Override
+    public void replaceInNode(NetworkNode node, StorageProcess behaviour) {
+        node.storageProcess = behaviour;
+    }
+
+    public StorageProcess() {
+        signals = new LinkedList<NetworkSignal>();
+    }
+
+    public void storeSignal(NetworkSignal signal) {
+        synchronized (this) {
+            signals.add(signal);
+
+            Log.writeForMechanisms("StorageProcess: storing data: " + signal.toString());
+
+            notifyAll();
+        }
+        parentNode.firingCondition.refresh(); // Not sure about this
+    }
+
+    public NetworkSignal retrieveSignal() throws InterruptedException {
+        synchronized (this) {
+            while (signals.size() == 0) wait();
+
+            Log.writeForMechanisms("StorageProcess: retreiving data:" + signals.peek().toString());
+
+            return signals.remove();
+        }
+    }
+
+    public boolean hasSignals() {
+        return signals.size() > 0;
+    }
+
+    @Override
+    public void run() {}
+
+    @Override
+    public void pauseActivity() {}
+
+    @Override
+    public void resumeActivity() {}
 }

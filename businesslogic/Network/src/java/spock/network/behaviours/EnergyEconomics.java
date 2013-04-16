@@ -1,36 +1,29 @@
 package spock.network.behaviours;
 
-import networkDomain.NetworkBehaviour;
-import networkDomain.NetworkNode;
+import spock.network.core.NetworkNode;
 
 /**
  * @author Loren Chorley
  */
-public abstract class EnergyEconomics extends Thread implements NetworkBehaviour {
+public abstract class EnergyEconomics extends NetworkBehaviour<EnergyEconomics> {
 
-	private int energy = 0;
-	protected NetworkNode parent;
-	public void declareParent(NetworkNode parent) { this.parent = parent; }
-	
-	private class replicator extends Thread {
-		@SuppressWarnings("unused") EnergyEconomics newFunction;
-		public replicator(EnergyEconomics newFunction) { this.newFunction = newFunction; }
-		@Override public void run() { newFunction = replicate(); }
-	}
-	public void replicateFunction(EnergyEconomics newFunction) { (new replicator(newFunction)).start(); }
-	public abstract EnergyEconomics replicate();
-	public abstract void run();
+    @Override
+    public void replaceInNode(NetworkNode node, EnergyEconomics behaviour) {
+        node.energyEconomics = behaviour;
+    }
+    
+    private double energy = 0;
 
-	public void offsetEnergy(int value) {
-		energy = energy + value;
-	}
-	
-	public int checkEnergy() {
-		return energy;
-	}
-	
-	//public abstract boolean continueFiring();
-	//public abstract boolean hasExceededEnergyLimit();
-	//public abstract double getNodeEfficiency(); // might require notify functions spread through NetworkNode and maybe other extensions
+    public void offsetEnergy(double value) {
+            energy = energy + value;
+    }
+
+    public double checkEnergy() {
+            return energy;
+    }
+
+    //public abstract boolean continueFiring();
+    //public abstract boolean hasExceededEnergyLimit();
+    //public abstract double getNodeEfficiency(); // might require notify functions spread through NetworkNode and maybe other extensions
 	
 }
