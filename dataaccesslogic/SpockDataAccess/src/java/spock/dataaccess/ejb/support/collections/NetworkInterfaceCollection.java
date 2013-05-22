@@ -7,15 +7,16 @@ import spock.dataaccess.ejb.interfaces.entities.Network;
 import spock.dataaccess.ejb.interfaces.entities.NetworkInterface;
 import spock.dataaccess.ejb.support.AbstractBasicEntityCollection;
 import spock.dataaccess.entities.NetworkInterfaceEntity;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author Loren Chorley
  */
+//@Stateful
 public class NetworkInterfaceCollection extends AbstractBasicEntityCollection<Network, NetworkInterface, Long> {
 
-    public NetworkInterfaceCollection(EntityManager em) {
-        super(em);
+    public NetworkInterfaceCollection() {
     }
 
     @Override

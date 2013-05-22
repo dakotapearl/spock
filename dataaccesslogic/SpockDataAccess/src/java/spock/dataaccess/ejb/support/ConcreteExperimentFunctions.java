@@ -2,7 +2,9 @@ package spock.dataaccess.ejb.support;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import spock.dataaccess.ejb.interfaces.BasicEntityCollection;
 import spock.dataaccess.ejb.interfaces.ExperimentFunctions;
@@ -19,6 +21,7 @@ import spock.dataaccess.entities.ExperimentEntity;
  *
  * @author Loren Chorley
  */
+@Stateful
 public class ConcreteExperimentFunctions extends AbstractBasicEntity<Experiment, String> implements ExperimentFunctions {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.ExperimentFunctions");
     
@@ -26,12 +29,10 @@ public class ConcreteExperimentFunctions extends AbstractBasicEntity<Experiment,
     private ExperimentEnvironmentCollection experimentEnvironmentCollection;
     private ExperimentUserInterfaceCollection experimentUserInterfaceCollection;
     
-    public ConcreteExperimentFunctions(EntityManager em) {
-        super(em);
-        this.em = em;
-        experimentNetworkCollection = new ExperimentNetworkCollection(em);
-        experimentEnvironmentCollection = new ExperimentEnvironmentCollection(em);
-        experimentUserInterfaceCollection = new ExperimentUserInterfaceCollection(em);
+    public ConcreteExperimentFunctions() {
+        experimentNetworkCollection = new ExperimentNetworkCollection();
+        experimentEnvironmentCollection = new ExperimentEnvironmentCollection();
+        experimentUserInterfaceCollection = new ExperimentUserInterfaceCollection();
     }
     
     public BasicEntityCollection<Experiment, Network, String> Networks() {

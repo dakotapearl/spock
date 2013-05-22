@@ -1,6 +1,7 @@
 package spock.dataaccess.ejb.support.collections;
 
 import java.util.Collection;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import spock.dataaccess.ejb.interfaces.entities.User;
 import spock.dataaccess.ejb.interfaces.entities.UserInterface;
@@ -11,10 +12,10 @@ import spock.dataaccess.entities.UserInterfaceEntity;
  *
  * @author Loren Chorley
  */
+//@Stateful
 public class UserUserInterfaceCollection extends AbstractBasicEntityCollection<User, UserInterface, Long> {
 
-    public UserUserInterfaceCollection(EntityManager em) {
-        super(em);
+    public UserUserInterfaceCollection() {
     }
 
     @Override

@@ -2,30 +2,36 @@ package spock.dataaccess.ejb.support;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.persistence.EntityManager;
 import java.security.*;
+import javax.annotation.PostConstruct;
 import spock.dataaccess.ejb.interfaces.BasicEntityCollection;
 import spock.dataaccess.ejb.interfaces.UserFunctions;
 import spock.dataaccess.ejb.interfaces.entities.User;
 import spock.dataaccess.ejb.interfaces.entities.UserInterface;
 import spock.dataaccess.ejb.support.collections.UserUserInterfaceCollection;
 import spock.dataaccess.entities.UserEntity;
+import javax.ejb.Stateful;
+import spock.dataaccess.ejb.interfaces.SrzedObj;
+import spock.dataaccess.ejb.interfaces.SrzedObjInt;
 
 /**
  *
  * @author Loren Chorley
  */
+@Stateful
 public class ConcreteUserFunctions extends AbstractBasicEntity<User, String> implements UserFunctions {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.UserFunctions");
     
     private UserUserInterfaceCollection userUserInterfaceCollection;
     
-    public ConcreteUserFunctions(EntityManager em) {
-        super(em);
-        userUserInterfaceCollection = new UserUserInterfaceCollection(em);
+    @PostConstruct
+    public void ConcreteUserFunctionsConstructor() {
+        userUserInterfaceCollection = new UserUserInterfaceCollection();
     }
     
     public BasicEntityCollection<User, UserInterface, Long> UserInterfaces() {
@@ -119,6 +125,14 @@ public class ConcreteUserFunctions extends AbstractBasicEntity<User, String> imp
 
     @Override
     protected void verifyBusinessLogic(User entity) {
+        
+    }
+
+    @Override
+    public SrzedObjInt getRootUserAccessRights() throws RemoteException {
+        //return (User) this.retrieveEntity("root").get(0);
+        
+        return new SrzedObj();
         
     }
     

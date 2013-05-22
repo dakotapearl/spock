@@ -6,15 +6,16 @@ import spock.dataaccess.ejb.interfaces.entities.Environment;
 import spock.dataaccess.ejb.interfaces.entities.EnvironmentNode;
 import spock.dataaccess.ejb.support.AbstractBasicEntityCollection;
 import spock.dataaccess.entities.EnvironmentNodeEntity;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author Loren Chorley
  */
+//@Stateful
 public class EnvironmentNodeCollection extends AbstractBasicEntityCollection<Environment, EnvironmentNode, Long> {
 
-    public EnvironmentNodeCollection(EntityManager em) {
-        super(em);
+    public EnvironmentNodeCollection() {
     }
 
     @Override

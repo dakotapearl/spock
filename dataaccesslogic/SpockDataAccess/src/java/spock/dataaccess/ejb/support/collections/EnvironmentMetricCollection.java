@@ -6,15 +6,16 @@ import spock.dataaccess.ejb.interfaces.entities.Environment;
 import spock.dataaccess.ejb.interfaces.entities.Metric;
 import spock.dataaccess.ejb.support.AbstractBasicEntityCollection;
 import spock.dataaccess.entities.MetricEntity;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author Loren Chorley
  */
+//@Stateful
 public class EnvironmentMetricCollection extends AbstractBasicEntityCollection<Environment, Metric, String> {
 
-    public EnvironmentMetricCollection(EntityManager em) {
-        super(em);
+    public EnvironmentMetricCollection() {
     }
 
     @Override

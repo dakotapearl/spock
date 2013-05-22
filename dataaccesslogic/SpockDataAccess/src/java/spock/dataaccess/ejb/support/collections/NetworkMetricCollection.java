@@ -6,15 +6,16 @@ import spock.dataaccess.ejb.interfaces.entities.Metric;
 import spock.dataaccess.ejb.interfaces.entities.Network;
 import spock.dataaccess.ejb.support.AbstractBasicEntityCollection;
 import spock.dataaccess.entities.MetricEntity;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author Loren Chorley
  */
+//@Stateful
 public class NetworkMetricCollection extends AbstractBasicEntityCollection<Network, Metric, String> {
 
-    public NetworkMetricCollection(EntityManager em) {
-        super(em);
+    public NetworkMetricCollection() {
     }
 
     @Override

@@ -4,16 +4,16 @@ import javax.persistence.EntityManager;
 import spock.dataaccess.ejb.interfaces.ConfigurationFunctions;
 import spock.dataaccess.ejb.interfaces.entities.Configuration;
 import spock.dataaccess.entities.ConfigurationEntity;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author Loren Chorley
  */
+@Stateful
 public class ConcreteConfigurationFunctions extends AbstractBasicEntity<Configuration, String> implements ConfigurationFunctions {
     
-    public ConcreteConfigurationFunctions(EntityManager em) {
-        super(em);
-        this.em = em;
+    public ConcreteConfigurationFunctions() {
     }
        
     @Override

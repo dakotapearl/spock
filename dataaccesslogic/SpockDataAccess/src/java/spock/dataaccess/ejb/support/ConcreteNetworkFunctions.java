@@ -18,26 +18,26 @@ import spock.dataaccess.ejb.support.collections.NetworkNodeCollection;
 import spock.dataaccess.entities.NetworkConnectionEntity;
 import spock.dataaccess.entities.NetworkEntity;
 import spock.dataaccess.entities.NetworkNodeEntity;
+import javax.ejb.Stateful;
 
 /**
  * Encapsulates the functions necessary to manipulate the network table and its close associates
  * @author Loren Chorley
  */
+@Stateful
 public class ConcreteNetworkFunctions extends AbstractBasicEntity<Network, String> implements NetworkFunctions {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.NetworkFunctions");
-    
+    private EntityManager em;
     private NetworkExperimentCollection networkExperimentCollection;
     private NetworkNodeCollection networkNodeCollection;
     private NetworkInterfaceCollection networkInterfaceCollection;
     private NetworkMetricCollection networkMetricCollection;
     
-    public ConcreteNetworkFunctions(EntityManager em) {
-        super(em);
-        this.em = em;
-        networkExperimentCollection = new NetworkExperimentCollection(em);
-        networkNodeCollection = new NetworkNodeCollection(em);
-        networkInterfaceCollection = new NetworkInterfaceCollection(em);
-        networkMetricCollection = new NetworkMetricCollection(em);
+    public ConcreteNetworkFunctions() {
+        networkExperimentCollection = new NetworkExperimentCollection();
+        networkNodeCollection = new NetworkNodeCollection();
+        networkInterfaceCollection = new NetworkInterfaceCollection();
+        networkMetricCollection = new NetworkMetricCollection();
     }
     
     public BasicEntityCollection<Network, Experiment, String> Experiments() {

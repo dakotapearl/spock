@@ -1,6 +1,7 @@
 package spock.dataaccess.ejb.interfaces;
 
 import java.io.Serializable;
+import javax.ejb.Remote;
 import spock.dataaccess.ejb.interfaces.entities.Experiment;
 import spock.dataaccess.ejb.interfaces.entities.Metric;
 import spock.dataaccess.ejb.interfaces.entities.Network;
@@ -11,6 +12,7 @@ import spock.dataaccess.ejb.interfaces.entities.NetworkNode;
  * Encapsulates the functions necessary to manipulate the network table and its close associates
  * @author Loren Chorley
  */
+@Remote
 public interface NetworkFunctions extends Serializable, BasicEntity<Network, String> {
     
     public static final boolean INPUT_INTERFACE = true;

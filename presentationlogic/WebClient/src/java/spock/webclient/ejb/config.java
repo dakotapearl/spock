@@ -11,7 +11,9 @@ import javax.ejb.EJBException;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import spock.business.ejb.BusinessInterfaceRequest;
-import spock.dataaccess.ejb.DataRequest;
+import spock.dataaccess.ejb.interfaces.DataRequest;
+import spock.dataaccess.ejb.interfaces.SrzedObjInt;
+import spock.dataaccess.ejb.interfaces.entities.User;
 import spock.environment.ejb.EnvironmentRequest;
 import spock.network.ejb.NetworkRequest;
 
@@ -46,6 +48,7 @@ public class config {
     }
     
     public Collection<String> getTestStrings() {
+        
         Collection<String> rtn = new ArrayList<String>();
         rtn.add(dataRequest.returnTestString());
         rtn.add(environmentRequest.returnTestString());
@@ -60,13 +63,25 @@ public class config {
             Collection<String> rtn = new ArrayList<String>();
             rtn.add("Login " + ((dataRequest.login("root", md5sum("admin"))) ? "successful." : "failed."));
             rtn.add("User verified: " + ((dataRequest.userVerified()) ? "yes" : "no"));
-            //tmp = dataRequest.Experiment().retrieveEntity("Experiment cde8eb3c-c0fb-4804-89b1-61a1b511b4d1").get(0).getIsActive() ? "is active" : "is not active";
-            //System.out.println(((dataRequest == null) ? "is null" : "is not null"));
-            //rtn.add("experiment " + "");
-            rtn.add("new object string: " + dataRequest.getNewObject().getString());
+            
+            //dataRequest.User().removeEntityByID("root"); //Problem
+            
+            //tmp = dataRequest.User().retrieveEntity("root").get(0).getAccessRights(); //Problem
+            //rtn.add("Root user access rights are: " + tmp);
+            
+            rtn.add("User count: " + dataRequest.User().countEntities());
+            
+            //User rootuser = (User) dataRequest.User().getRootUserAccessRights();
+            //rtn.add("Root user access right: " + rootuser.getAccessRights());
+            
+            
+            Object obj = dataRequest.User().getRootUserAccessRights();
+            
+            //rtn.add("Root user access right: " + );
+            
             return rtn;
         } catch (Exception ex) {
-            throw new EJBException("config.getContent() threw: " + ex.getMessage());
+            throw new EJBException("config.getContent() threw: " + ex.getMessage() + " (" + ex.toString() + ")");
         }
     }
 

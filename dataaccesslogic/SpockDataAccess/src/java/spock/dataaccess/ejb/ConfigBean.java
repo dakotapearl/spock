@@ -11,8 +11,10 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import spock.dataaccess.ejb.interfaces.DataRequest;
 import spock.dataaccess.ejb.interfaces.EnvironmentFunctions;
 import spock.dataaccess.ejb.interfaces.NetworkFunctions;
+import spock.dataaccess.ejb.interfaces.SrzedObjInt;
 import spock.dataaccess.ejb.interfaces.UserFunctions;
 import spock.dataaccess.ejb.interfaces.entities.*;
 import spock.dataaccess.entities.*;
@@ -47,6 +49,11 @@ public class ConfigBean {
                        "Testing login passed.",
                        new Object[] { });
         }
+        
+        /*SrzedObjInt obj = DAR.User().getRootUserAccessRights();
+        logger.log(Level.INFO,
+                       "(ConfigBean) SrzedObj: {0}",
+                       new Object[] { obj.getProp() });*/
         
         // do testing method if in testing mode
         if (staticTestingMode) {
@@ -126,10 +133,10 @@ public class ConfigBean {
         //RB.Experiment().Environments().setEntityWithinCollection(experiment, environment);
         //RB.Network().Experiments().setEntityWithinCollection(network, experiment);
         
-        /*experiment.addNetwork(network);
-        network.addExperiment(experiment);
-        RB.Experiment().setEntity(experiment);
-        RB.Network().setEntity(network);*/
+        //experiment.addNetwork(network);
+        //network.addExperiment(experiment);
+        //RB.Experiment().setEntity(experiment);
+        //RB.Network().setEntity(network);
         
         // TODO fix
         DAR.Experiment().Networks().setEntityWithinCollection(experiment, network);

@@ -2,6 +2,8 @@ package spock.dataaccess.ejb.interfaces;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.ejb.Remote;
+import javax.persistence.EntityManager;
 
 /**
  * Supplies a generalised set of functions for managing collections of entities within another entity.
@@ -10,6 +12,7 @@ import java.util.List;
  * @param <E> Entity collection - the entity collection contained within the container entity
  * @param <ID> the type of the entities id field
  */
+@Remote
 public interface BasicEntityCollection<Econtainer, E, ID> extends Serializable {
     
     /**
@@ -49,4 +52,6 @@ public interface BasicEntityCollection<Econtainer, E, ID> extends Serializable {
      */
     public void removeEntityFromCollection(Econtainer container, E entity);
     
+    public void setEntityManager(EntityManager em);
+            
 }

@@ -6,15 +6,16 @@ import spock.dataaccess.ejb.interfaces.entities.Experiment;
 import spock.dataaccess.ejb.interfaces.entities.UserInterface;
 import spock.dataaccess.ejb.support.AbstractBasicEntityCollection;
 import spock.dataaccess.entities.UserInterfaceEntity;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author Loren Chorley
  */
+//@Stateful
 public class ExperimentUserInterfaceCollection extends AbstractBasicEntityCollection<Experiment, UserInterface, Long> {
 
-    public ExperimentUserInterfaceCollection(EntityManager em) {
-        super(em);
+    public ExperimentUserInterfaceCollection() {
     }
 
     @Override

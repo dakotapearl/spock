@@ -2,6 +2,8 @@ package spock.dataaccess.ejb.interfaces;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.ejb.Remote;
+import javax.persistence.EntityManager;
 
 /**
  * This class determines the basic functions for an entity, though requires some basic functions to be implemented by the entity management class.
@@ -41,6 +43,8 @@ public interface BasicEntity<E, ID> extends Serializable {
      * @param id
      */
     public void removeEntity(E entity);
+    
+    public void setEntityManager(EntityManager em);
     
 }
 

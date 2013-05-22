@@ -5,19 +5,19 @@ import javax.persistence.EntityManager;
 import spock.dataaccess.ejb.interfaces.ConnectionFunctions;
 import spock.dataaccess.ejb.interfaces.entities.InterfaceConnection;
 import spock.dataaccess.entities.InterfaceConnectionEntity;
+import javax.ejb.Stateful;
 
 /**
  * Reponsible for managing connections between environment and network interfaces
  * @author Loren Chorley
  */
+@Stateful
 public class ConcreteConnectionFunctions extends AbstractBasicEntity<InterfaceConnection, Long> implements ConnectionFunctions {
     
     public static final int NETWORK_INTERFACE = 0;
     public static final int ENVIRONMENT_INTERFACE = 1;
     
-    public ConcreteConnectionFunctions(EntityManager em) {
-        super(em);
-        this.em = em;
+    public ConcreteConnectionFunctions() {
     }
     
     @Override

@@ -6,15 +6,16 @@ import spock.dataaccess.ejb.interfaces.entities.Experiment;
 import spock.dataaccess.ejb.interfaces.entities.Network;
 import spock.dataaccess.ejb.support.AbstractBasicEntityCollection;
 import spock.dataaccess.entities.NetworkEntity;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author Loren Chorley
  */
+//@Stateful
 public class ExperimentNetworkCollection extends AbstractBasicEntityCollection<Experiment, Network, String> {
 
-    public ExperimentNetworkCollection(EntityManager em) {
-        super(em);
+    public ExperimentNetworkCollection() {
     }
 
     @Override

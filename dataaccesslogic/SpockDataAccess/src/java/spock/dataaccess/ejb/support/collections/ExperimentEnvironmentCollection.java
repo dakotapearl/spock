@@ -6,15 +6,16 @@ import spock.dataaccess.ejb.interfaces.entities.Environment;
 import spock.dataaccess.ejb.interfaces.entities.Experiment;
 import spock.dataaccess.ejb.support.AbstractBasicEntityCollection;
 import spock.dataaccess.entities.EnvironmentEntity;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author Loren Chorley
  */
+//@Stateful
 public class ExperimentEnvironmentCollection extends AbstractBasicEntityCollection<Experiment, Environment, String> {
 
-    public ExperimentEnvironmentCollection(EntityManager em) {
-        super(em);
+    public ExperimentEnvironmentCollection() {
     }
 
     @Override

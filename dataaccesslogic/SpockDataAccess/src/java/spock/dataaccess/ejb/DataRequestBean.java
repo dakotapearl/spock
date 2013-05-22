@@ -1,8 +1,10 @@
 package spock.dataaccess.ejb;
 
+import spock.dataaccess.ejb.interfaces.DataRequest;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -17,19 +19,28 @@ import spock.dataaccess.ejb.support.*;
  */
 @Stateful
 public class DataRequestBean implements DataRequest {
-    private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.DataRequestBean");
+    private static final Logger logger = Logger.getLogger("spock.dataaccess.ejb.DataRequestBean");
     
     @PersistenceContext
-    private EntityManager em;
+    public EntityManager em;
     
+    @EJB
     private ConfigurationFunctions configurationFns;
+    @EJB
     private NetworkFunctions networkFns;
+    @EJB
     private ExperimentFunctions experimentFns;
+    @EJB
     private EnvironmentFunctions environmentFns;
+    @EJB
     private UserFunctions userFns;
+    @EJB
     private UserInterfaceFunctions userInterfaceFns;
+    @EJB
     private ConnectionFunctions connectionFns;
+    @EJB
     private BehaviourFunctions behaviourFns;
+    @EJB
     private MetricFunctions metricFns;
     
     private String loggedInUser = null;
@@ -78,17 +89,10 @@ public class DataRequestBean implements DataRequest {
     }
     
     @Override
-    public ConfigurationFunctions Configuration() {
+    public UserFunctions User() {
         if (!userVerified()) { return null; }
         
-        return configurationFns;
-    }
-    
-    @Override
-    public NetworkFunctions Network() {
-        if (!userVerified()) { return null; }
-        
-        return networkFns;
+        return userFns;
     }
     
     @Override
@@ -103,17 +107,24 @@ public class DataRequestBean implements DataRequest {
     }
     
     @Override
+    public ConfigurationFunctions Configuration() {
+        if (!userVerified()) { return null; }
+        
+        return configurationFns;
+    }
+    
+    @Override
+    public NetworkFunctions Network() {
+        if (!userVerified()) { return null; }
+        
+        return networkFns;
+    }
+    
+    @Override
     public EnvironmentFunctions Environment() {
         if (!userVerified()) { return null; }
         
         return environmentFns;
-    }
-    
-    @Override
-    public UserFunctions User() {
-        if (!userVerified()) { return null; }
-        
-        return userFns;
     }
     
     @Override
@@ -147,26 +158,31 @@ public class DataRequestBean implements DataRequest {
     @PostConstruct
     public void RequestBeanConstruction() {
         
-        configurationFns = (ConfigurationFunctions) new ConcreteConfigurationFunctions(em);
-        networkFns = (NetworkFunctions) new ConcreteNetworkFunctions(em);
-        experimentFns = (ExperimentFunctions) new ConcreteExperimentFunctions(em);
-        environmentFns = (EnvironmentFunctions) new ConcreteEnvironmentFunctions(em);
-        userFns = (UserFunctions) new ConcreteUserFunctions(em);
-        userInterfaceFns = (UserInterfaceFunctions) new ConcreteUserInterfaceFunctions(em);
-        connectionFns = (ConnectionFunctions) new ConcreteConnectionFunctions(em);
-        behaviourFns = (BehaviourFunctions) new ConcreteBehaviourFunctions(em);
-        metricFns = (MetricFunctions) new ConcreteMetricFunctions(em);
+        //userFns = (UserFunctions) new ConcreteUserFunctions();
+        /*configurationFns = (ConfigurationFunctions) new ConcreteConfigurationFunctions();
+        networkFns = (NetworkFunctions) new ConcreteNetworkFunctions();
+        experimentFns = (ExperimentFunctions) new ConcreteExperimentFunctions();
+        environmentFns = (EnvironmentFunctions) new ConcreteEnvironmentFunctions();
+        userInterfaceFns = (UserInterfaceFunctions) new ConcreteUserInterfaceFunctions();
+        connectionFns = (ConnectionFunctions) new ConcreteConnectionFunctions();
+        behaviourFns = (BehaviourFunctions) new ConcreteBehaviourFunctions();
+        metricFns = (MetricFunctions) new ConcreteMetricFunctions();*/
+        
+        experimentFns.setEntityManager(em);
+        userFns.setEntityManager(em);
+        configurationFns.setEntityManager(em);
+        networkFns.setEntityManager(em);
+        environmentFns.setEntityManager(em);
+        userInterfaceFns.setEntityManager(em);
+        connectionFns.setEntityManager(em);
+        behaviourFns.setEntityManager(em);
+        metricFns.setEntityManager(em);
         
     }
     
     @Override
     public String returnTestString() {
         return "Spock Data Access test string.";
-    }
-
-    @Override
-    public NewObjectInterface getNewObject() {
-        return new NewObject();
     }
     
 }

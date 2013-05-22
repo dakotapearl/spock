@@ -5,16 +5,17 @@ import javax.persistence.EntityManager;
 import spock.dataaccess.ejb.interfaces.MetricFunctions;
 import spock.dataaccess.ejb.interfaces.entities.Metric;
 import spock.dataaccess.entities.MetricEntity;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author Loren Chorley
  */
+@Stateful
 public class ConcreteMetricFunctions extends AbstractBasicEntity<Metric, String> implements MetricFunctions {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.MetricFunctions");
     
-    public ConcreteMetricFunctions(EntityManager em) {
-        super(em);
+    public ConcreteMetricFunctions() {
     }
     
     @Override

@@ -5,16 +5,17 @@ import javax.persistence.EntityManager;
 import spock.dataaccess.ejb.interfaces.BehaviourFunctions;
 import spock.dataaccess.ejb.interfaces.entities.NetworkBehaviour;
 import spock.dataaccess.entities.NetworkBehaviourEntity;
+import javax.ejb.Stateful;
 
 /**
  * Allows access to the NetworkBehaviour entity and it's database
  * @author Loren Chorley
  */
+@Stateful
 public class ConcreteBehaviourFunctions extends AbstractBasicEntity<NetworkBehaviour, String> implements BehaviourFunctions {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.BehaviourFunctions");
     
-    public ConcreteBehaviourFunctions(EntityManager em) {
-        super(em);
+    public ConcreteBehaviourFunctions() {
     }
     
     @Override

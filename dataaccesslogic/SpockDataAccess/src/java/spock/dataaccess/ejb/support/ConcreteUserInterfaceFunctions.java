@@ -2,6 +2,7 @@ package spock.dataaccess.ejb.support;
 
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import spock.dataaccess.ejb.interfaces.UserInterfaceFunctions;
 import spock.dataaccess.ejb.interfaces.entities.UserInterface;
@@ -11,11 +12,11 @@ import spock.dataaccess.entities.UserInterfaceEntity;
  *
  * @author Loren Chorley
  */
+@Stateful
 public class ConcreteUserInterfaceFunctions extends AbstractBasicEntity<UserInterface, Long> implements UserInterfaceFunctions {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.UserInterfaceFunctions");
     
-    public ConcreteUserInterfaceFunctions(EntityManager em) {
-        super(em);
+    public ConcreteUserInterfaceFunctions() {
     }
     
     @Override

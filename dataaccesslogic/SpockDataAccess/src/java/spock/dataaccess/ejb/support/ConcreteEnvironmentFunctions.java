@@ -14,11 +14,13 @@ import spock.dataaccess.ejb.support.collections.EnvironmentInterfaceCollection;
 import spock.dataaccess.ejb.support.collections.EnvironmentMetricCollection;
 import spock.dataaccess.ejb.support.collections.EnvironmentNodeCollection;
 import spock.dataaccess.entities.EnvironmentEntity;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author Loren Chorley
  */
+@Stateful
 public class ConcreteEnvironmentFunctions extends AbstractBasicEntity<Environment, String> implements EnvironmentFunctions {
     private static final Logger logger = Logger.getLogger("spockdataaccess.ejb.requestsupport.EnvironmentFunctions");
     
@@ -27,13 +29,11 @@ public class ConcreteEnvironmentFunctions extends AbstractBasicEntity<Environmen
     private EnvironmentInterfaceCollection environmentInterfaceCollection;
     private EnvironmentMetricCollection environmentMetricCollection;
     
-    public ConcreteEnvironmentFunctions(EntityManager em) {
-        super(em);
-        this.em = em;
-        environmentExperimentCollection = new EnvironmentExperimentCollection(em);
-        environmentNodeCollection = new EnvironmentNodeCollection(em);
-        environmentInterfaceCollection = new EnvironmentInterfaceCollection(em);
-        environmentMetricCollection = new EnvironmentMetricCollection(em);
+    public ConcreteEnvironmentFunctions() {
+        environmentExperimentCollection = new EnvironmentExperimentCollection();
+        environmentNodeCollection = new EnvironmentNodeCollection();
+        environmentInterfaceCollection = new EnvironmentInterfaceCollection();
+        environmentMetricCollection = new EnvironmentMetricCollection();
     }
     
     public BasicEntityCollection<Environment, Experiment, String> Experiments() {
